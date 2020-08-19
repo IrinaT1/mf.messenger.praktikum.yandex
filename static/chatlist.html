@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Chat list</title>
+        <link href="../css/styles.css" rel="stylesheet" type="text/css">
+        <link href="../css/chatlist.css" rel="stylesheet" type="text/css">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins">
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    </head>
+    <body>
+
+        <div class="chats-wrapper">
+            <div class="chats-header">
+                <div class="chats-title">Chats</div>
+                <div class="chatdetail-chatinfo">
+                    <img class="chatdetail-chatinfo-img" src="https://picsum.photos/60"></img>
+                    <div class="chatdetail-chatinfo-name">
+                        Petya Vasin
+                    </div>
+                    
+                </div>
+            </div>
+            
+            <div class="chat-container">
+                <div class="chatlist">
+                    <div class="chatlist-item" onclick="select(this)">
+                        <div class="chatlist-item-img-container">
+                            <img src="https://picsum.photos/48" class="chatlist-item-img" alt="Avatar">
+                        </div>
+                        <div class="chatlist-item-details-container">
+                            <div class="chatlist-item-name">
+                                Petya
+                            </div>
+                            <div class="chatlist-item-last-message">
+                                You: Hi, how are ya?
+                            </div>
+                            <div class="chatlist-item-last-message-time">
+                                16:08
+                            </div>                        
+                        </div>
+                    </div>
+                    <div class="chatlist-item selected" onclick="select(this)">
+                        <div class="chatlist-item-img-container">
+                            <img src="https://picsum.photos/48" class="chatlist-item-img" alt="Avatar">
+                        </div>
+                        <div class="chatlist-item-details-container">
+                            <div class="chatlist-item-name">
+                                Petya
+                            </div>
+                            <div class="chatlist-item-last-message">
+                                You: Hi, how are ya?
+                            </div>
+                            <div class="chatlist-item-last-message-time">
+                                16:08
+                            </div>                        
+                        </div>
+                    </div>
+                    <div class="chatlist-item" onclick="select(this)">
+                        <div class="chatlist-item-img-container">
+                            <img src="https://picsum.photos/48" class="chatlist-item-img" alt="Avatar">
+                        </div>
+                        <div class="chatlist-item-details-container">
+                            <div class="chatlist-item-name">
+                                Petya
+                            </div>
+                            <div class="chatlist-item-last-message">
+                                You: Hi, how are ya?
+                            </div>
+                            <div class="chatlist-item-last-message-time">
+                                16:08
+                            </div>                        
+                        </div>
+                    </div>
+                    <div class="chatlist-item" onclick="select(this)">
+                        <div class="chatlist-item-img-container">
+                            <img src="https://picsum.photos/48" class="chatlist-item-img" alt="Avatar">
+                        </div>
+                        <div class="chatlist-item-details-container">
+                            <div class="chatlist-item-name">
+                                Petya
+                            </div>
+                            <div class="chatlist-item-last-message">
+                                You: Hi, how are ya?
+                            </div>
+                            <div class="chatlist-item-last-message-time">
+                                16:08
+                            </div>                        
+                        </div>
+                    </div>                       
+                </div>
+                <div class="chatdetail">
+                    <div class="chatdetail-messages">
+                        <div class="chatdetail-messages-message incoming">
+                            Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, 
+                            there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, 
+                            a large language ocean. A small river named Duden flows by their place and supplies it with the necessary 
+                            regelialia. It is a paradisematic country, in which roasted parts of sentences fly into your mouth. 
+                            Even the all-powerful Pointing has no control about the blind texts it is an almost unorthographic 
+                            life One day however a small line of blind text by the name of Lorem Ipsum decided to leave for the far 
+                            World of Grammar. The Big Oxmox advised her not to do so, because there were thousands of bad Commas, 
+                            wild Question Marks and devious Semikoli, but the Little Blind Text didn’t listen.                     </div>
+                        <div class="chatdetail-messages-message outcoming">
+                            She packed her seven versalia, put her initial into the belt and made herself on the way. 
+                            When she reached the first hills of the Italic Mountains, she had a last view back on the skyline 
+                            of her hometown Bookmarksgrove, the headline of Alphabet Village and the subline of her own road, 
+                            the Line Lane. Pityful a rethoric question ran over her cheek, then
+                        </div>
+                        <div class="chatdetail-messages-message incoming">
+                            Hi
+                        </div>
+                        <div class="chatdetail-messages-message incoming">
+                            Hi
+                        </div>
+                        <div class="chatdetail-messages-message outcoming">
+                            Hello
+                        </div>
+                        <div class="chatdetail-messages-message outcoming">
+                            <img src="https://loremflickr.com/300/150"></img>
+                        </div>
+                    </div>
+                    <div class="chatdetail-newmessage">
+                        <input type="text" class="chatdetail-newmessage-input" placeholder="Send something..."></input>
+                        <button class="chatdetail-newmessage-send">
+                            <i class="material-icons">send</i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </script>
+    </body>
+</html>

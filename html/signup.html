@@ -1,34 +1,42 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Log in to Chats</title>
+        <title>Create account</title>
         <link href="../css/login.css" rel="stylesheet" type="text/css">
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins">
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     </head>
     <body>
         <div class="wrapper">
-            <div class="card login-dialog">
+            <div class="card signup-dialog">
                 <div class="header">
-                    Log in to Chats
+                    Create account
                 </div>
 
+                <div class="input-container">
+                    <input type="text" class="inputtext" placeholder=" "/>
+                    <span class="inputtext-floating-label">Email</span>
+                </div>
                 <div class="input-container">
                     <input type="text" class="inputtext" placeholder=" "/>
                     <span class="inputtext-floating-label">Username</span>
                 </div>
                 <div class="input-container">
-                    <input type="text" class="inputtext" placeholder=" "/>
+                    <input type="password" class="inputtext" placeholder=" "/>
                     <span class="inputtext-floating-label">Password</span>
                 </div>
+                <div class="input-container">
+                    <input type="password" class="inputtext" placeholder=" "/>
+                    <span class="inputtext-floating-label">Re-enter password</span>
+                </div>
 
-                <button class="button-login">Log In</button>
+                <button class="button-login">Sign Up</button>
 
                 <div class="divider">
-                    <div class="divider-text">Need an account?</div>
+                    <div class="divider-text">Already have an account?</div>
                 </div>
                 
-                <button class="button-signup">Sign Up</button>
+                <button class="button-signup">Log In</button>
             </div>
         </div>
     </body>

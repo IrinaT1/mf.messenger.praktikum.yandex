@@ -75,8 +75,8 @@
 .inputtext-floating-label {
     position: absolute;
     pointer-events: none;
-    left: 20px;
-    top: 10px;
+    left: 24px;
+    top: 8px;
     color: var(--gray3);
     transition: 0.2s ease all;
 }

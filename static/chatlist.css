@@ -19,6 +19,7 @@
     justify-content: center;
     align-items: center;
     font-size: 24px;
+    margin: 0;
 }
 
 .chatdetail-chatinfo {
@@ -53,6 +54,7 @@
     overflow: scroll;
     border-right: 4px solid var(--gray1);
     padding: 16px 8px 8px 8px;
+    margin: 0;
     box-sizing: border-box;
     display: flex;
     flex-direction: column;
@@ -105,6 +107,7 @@
     font-size: 14px;
     font-weight: bold;
     color: var(--accent);
+    margin: 0;
 }
 
 .chatlist-item-last-message {

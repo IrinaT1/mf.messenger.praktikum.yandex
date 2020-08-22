@@ -1,7 +1,7 @@
 {
   "name": "mf.messenger.praktikum.yandex",
   "version": "1.0.0",
-  "description": "Даже законченный проект остаётся только заготовкой, пока им не начнут пользоваться. Но сначала пользователь должен понять, зачем ему пользоваться вашим кодом. В этом помогает файл README.",
+  "description": "Messenger project",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"

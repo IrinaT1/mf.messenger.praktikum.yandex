@@ -19,6 +19,6 @@
   "homepage": "https://github.com/IrinaT1/mf.messenger.praktikum.yandex#readme",
   "dependencies": {},
   "devDependencies": {
-    "express": "^4.17.1"
+    "express": "4.17.1"
   }
 }

@@ -39,5 +39,15 @@
                 <a href="https://www.w3schools.com" class="link-back">Back to Chats</a>
             </div>
         </div>
+
+        <script src="https://cdn.jsdelivr.net/npm/handlebars@latest/dist/handlebars.js"></script>
+        <script>
+          // compile the template
+          var template = Handlebars.compile("Handlebars <b>{{doesWhat}}</b>");
+          // execute the compiled template and print the output to the console
+          console.log(template({ doesWhat: "rocks!" }));
+        </script>
+
     </body>
 </html>
+

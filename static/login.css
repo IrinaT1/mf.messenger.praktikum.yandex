@@ -70,7 +70,11 @@
 
 .inputtext:focus {
     border-color: var(--accent);
-  }
+}
+
+.inputtext.error {
+    border-color: var(--errorred);
+}
 
 .inputtext-floating-label {
     position: absolute;
@@ -88,6 +92,57 @@
     opacity: 1;
     color: var(--accent);
 }
+
+.error-text {
+    position: absolute;
+    left: 10px;
+    bottom: -16px;;
+    font-size: 11px;
+    color: var(--errorred);
+}
+
+ .button-submit {
+    width: 80%;
+    font-size: 14px;
+    height: 40px;
+    font-weight: bold;
+    border-radius: 20px;
+    outline: none;
+}
+
+.button-submit.primary {
+    background-color: var(--accent);
+    color: white;
+    border: none;
+}
+
+.button-submit.secondary {
+    background-color: #ffffff;
+    color: var(--accent);
+    border: 1px solid var(--accent);
+}
+
+/* Ripple effect */
+.button-submit {
+    background-position: center;
+    transition: background 0.8s;
+}
+
+.button-submit.primary:hover {
+    background: var(--accent) radial-gradient(circle, transparent 1%, var(--accent) 1%) center/15000%;
+}
+
+.button-submit.secondary:hover {
+    background: #ffffff radial-gradient(circle, transparent 1%, #ffffff 1%) center/15000%;    
+}
+
+.button-submit.primary:active, .button-submit.secondary:active {
+    background-color: var(--accentlight);
+    background-size: 100%;
+    transition: background 0s;
+} 
+
+/* ------------------------------------------------ */
 
 .button-login {
     width: 80%;
@@ -132,7 +187,9 @@
     background-color: var(--accentlight);
     background-size: 100%;
     transition: background 0s;
-}
+} 
+
+/* ------------------------------------------------ */
 
 .divider {
     width: 80%;

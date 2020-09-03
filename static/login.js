@@ -29,7 +29,7 @@ const logIn = () => {
     } else {
         console.log('Loggin in...');
     }
-    console.log("data: ", getFormData(formSelector));
+    console.log("data: ", JSON.stringify(getFormData(formSelector)));
 }
 
 document.querySelector('.button-submit').addEventListener('click', logIn);

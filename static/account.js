@@ -32,7 +32,7 @@ const saveAccount = () => {
     } else {
         console.log('Saving...');
     }
-    console.log("data: ", getFormData(formSelector));
+    console.log("data: ", JSON.stringify(getFormData(formSelector)));
 }
 
 document.querySelector('.button-submit').addEventListener('click', saveAccount);

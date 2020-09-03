@@ -19,6 +19,8 @@ export const accountTemplate = `
             {{!chat-input-password 'password' 'Password' 'test'}}
             {{!chat-input-password 'confirm_password' 'Re-enter password' 'test'}}
 
+            <div style="height: 40px;"></div>
+
             {{!chat-button 'Save' 'primary' "saveAccount()"}}
             {{chat-button 'Save' 'primary'}}
             {{chat-link 'Back to Chats' "#"}}

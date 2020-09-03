@@ -1,6 +1,6 @@
 import {accountTemplate} from './account.tmpl.js';
 import {} from './helpers.js';
-import {setValidation, checkFormValidity} from './validation.js';
+import {FormValidation} from './validation.js';
 
 const context = {
     display_name: "IrinaT",
@@ -15,6 +15,7 @@ const root = document.querySelector(".root");
 root.innerHTML = template(context);
 
 const formSelector = "form.account-dialog";
+const formValidation = new FormValidation(formSelector);
 
 const getFormData = (formSelector) => {
     return {
@@ -25,8 +26,9 @@ const getFormData = (formSelector) => {
 }
 
 const saveAccount = () => {
-    if (!checkFormValidity(formSelector)) {
+    if (!formValidation.checkFormValidity()) {
         console.log("Form is invalid");
+        formValidation.showErrors();
     } else {
         console.log('Saving...');
     }
@@ -35,6 +37,6 @@ const saveAccount = () => {
 
 document.querySelector('.button-submit').addEventListener('click', saveAccount);
 
-setValidation(formSelector, "login");
-setValidation(formSelector, "display_name");
-setValidation(formSelector, "email");
+formValidation.setValidation("login");
+formValidation.setValidation("display_name");
+formValidation.setValidation("email");

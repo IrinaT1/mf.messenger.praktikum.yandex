@@ -23,10 +23,10 @@ const signUp = () => {
         console.log("Form is invalid");
         formValidation.showErrors();
     } else {
-        console.log('Saving...');
+        console.log('Signing up...');
     }
     console.log("data: ", JSON.stringify(formValidation.values));
-}
+} 
 
 document.querySelector('.button-submit').addEventListener('click', signUp);
 

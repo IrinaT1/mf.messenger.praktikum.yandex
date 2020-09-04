@@ -14,16 +14,7 @@ const root = document.querySelector(".root");
 
 root.innerHTML = template(context);
 
-const formSelector = "form.account-dialog";
-const formValidation = new FormValidation(formSelector);
-
-const getFormData = (formSelector) => {
-    return {
-        display_name: document.querySelector(formSelector).querySelector("[name='display_name']").value,
-        login: document.querySelector(formSelector).querySelector("[name='login']").value,
-        email: document.querySelector(formSelector).querySelector("[name='email']").value
-    }
-}
+const formValidation = new FormValidation("form.account-dialog");
 
 const saveAccount = () => {
     if (!formValidation.checkFormValidity()) {
@@ -32,7 +23,7 @@ const saveAccount = () => {
     } else {
         console.log('Saving...');
     }
-    console.log("data: ", JSON.stringify(getFormData(formSelector)));
+    console.log("data: ", JSON.stringify(formValidation.values));
 }
 
 document.querySelector('.button-submit').addEventListener('click', saveAccount);

@@ -21,7 +21,6 @@ export const accountTemplate = `
 
             <div style="height: 40px;"></div>
 
-            {{!chat-button 'Save' 'primary' "saveAccount()"}}
             {{chat-button 'Save' 'primary'}}
             {{chat-link 'Back to Chats' "#"}}
         </form>

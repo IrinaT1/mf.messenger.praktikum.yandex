@@ -12,15 +12,7 @@ const root = document.querySelector(".root");
 
 root.innerHTML = template(context);
 
-const formSelector = "form.login-dialog";
-const formValidation = new FormValidation(formSelector);
-
-const getFormData = (formSelector) => {
-    return {
-        login: document.querySelector(formSelector).querySelector("[name='login']").value,
-        password: document.querySelector(formSelector).querySelector("[name='password']").value
-    }
-}
+const formValidation = new FormValidation("form.login-dialog");
 
 const logIn = () => {
     if (!formValidation.checkFormValidity()) {
@@ -29,7 +21,7 @@ const logIn = () => {
     } else {
         console.log('Loggin in...');
     }
-    console.log("data: ", JSON.stringify(getFormData(formSelector)));
+    console.log("data: ", JSON.stringify(formValidation.values));
 }
 
 document.querySelector('.button-submit').addEventListener('click', logIn);

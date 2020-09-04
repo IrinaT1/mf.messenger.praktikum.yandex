@@ -71,6 +71,16 @@ export class FormValidation {
         });
         return obj;
     }
+
+    field(name) {
+        let result;
+        this.fields.forEach((field) => {
+            if (field.fieldName === name) {
+                result = field;
+            }
+        }); 
+        return result;      
+    }
 }
 
 class Field {

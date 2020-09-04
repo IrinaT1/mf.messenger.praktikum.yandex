@@ -34,4 +34,4 @@ formValidation.setValidation("email");
 formValidation.setValidation("login", {"Login should contain at least 4 symbols": (value) => value.trim().length <= 3});
 formValidation.setValidation("display_name");
 formValidation.setValidation("password");
-formValidation.setValidation("verify_password");
+formValidation.setValidation("verify_password", {"Passwords should match": (value) => value != formValidation.field("password").value});

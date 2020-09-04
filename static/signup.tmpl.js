@@ -14,8 +14,7 @@ export const signupTemplate = `
             <div style="height: 40px;"></div>
 
             {{chat-button 'Save' 'primary'}}
-            {{chat-link 'Already have an account? Log In' "#"}}
-            <div style="height: 10px;"></div>
+            {{chat-link 'Already have an account? Log In' "./login.html"}}
         </form>
     </div>
 `;

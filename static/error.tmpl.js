@@ -3,6 +3,6 @@ export const errorTemplate = `
         <div class="error-message">
             {{errorText}}
         </div>
-        {{chat-link 'Back to Chats' "#"}}
+        {{chat-link 'Back to Chats' "./chatlist.html"}}
     </div>
 `;

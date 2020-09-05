@@ -121,9 +121,6 @@ body {
 .section-main-header {
     flex: 0 0 84px;
     width: 60%;
-    /* background-color: var(--accentlight);
-    border-bottom-left-radius: 48px;
-    border-bottom-right-radius: 48px; */
 }
 
 .chatdetail-chatinfo-name {
@@ -138,6 +135,7 @@ body {
     display: flex;
     flex-direction: column;
     overflow: scroll;
+    width: 100%;
 }
 
 .chatdetail-messages-message {

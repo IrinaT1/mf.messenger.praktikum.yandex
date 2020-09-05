@@ -8,31 +8,22 @@
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     </head>
     <body>
-
         <div class="chats-wrapper">
-            <header class="chats-header">
-                <h1 class="chats-title">Chats</h1>
-                <div class="chatdetail-chatinfo">
-                    <img class="chatdetail-chatinfo-img" src="https://picsum.photos/60"></img>
-                    <h2 class="chatdetail-chatinfo-name">
-                        Petya Vasin
-                    </h2>
-                    
-                </div>
-            </header>
-            
-            <main class="chat-container">
+            <section class="section-side">
+                <header class="section-side-header">
+                    <h1 class="chats-title">Chats</h1>
+                </header>
                 <ul class="chatlist">
                     <li class="chatlist-item">
-                        <figure class="chatlist-item-img-container">
-                            <img src="https://picsum.photos/48" class="chatlist-item-img" alt="Avatar">
+                        <figure class="chatlist-item-img" style="background-image: url('https://picsum.photos/100')">
                         </figure>
+
                         <section class="chatlist-item-details-container">
                             <h3 class="chatlist-item-name">
                                 Petya
                             </h3>
                             <div class="chatlist-item-last-message">
-                                You: Hi, how are ya?
+                                You: Hi, how are ya? Hi, how are ya? Hi, how are ya? Hi, how are ya? Hi, how are ya? Hi, how are ya?
                             </div>
                             <div class="chatlist-item-last-message-time">
                                 16:08
@@ -40,9 +31,9 @@
                         </section>
                     </li>
                     <li class="chatlist-item selected">
-                        <figure class="chatlist-item-img-container">
-                            <img src="https://picsum.photos/48" class="chatlist-item-img" alt="Avatar">
+                        <figure class="chatlist-item-img" style="background-image: url('https://picsum.photos/100')">
                         </figure>
+
                         <section class="chatlist-item-details-container">
                             <h3 class="chatlist-item-name">
                                 Petya
@@ -55,76 +46,52 @@
                             </div>                        
                         </section>
                     </li>
-                    <li class="chatlist-item">
-                        <figure class="chatlist-item-img-container">
-                            <img src="https://picsum.photos/48" class="chatlist-item-img" alt="Avatar">
-                        </figure>
-                        <section class="chatlist-item-details-container">
-                            <h3 class="chatlist-item-name">
-                                Petya
-                            </h3>
-                            <div class="chatlist-item-last-message">
-                                You: Hi, how are ya?
-                            </div>
-                            <div class="chatlist-item-last-message-time">
-                                16:08
-                            </div>                        
-                        </section>
-                    </li>
-                    <li class="chatlist-item">
-                        <figure class="chatlist-item-img-container">
-                            <img src="https://picsum.photos/48" class="chatlist-item-img" alt="Avatar">
-                        </figure>
-                        <section class="chatlist-item-details-container">
-                            <h3 class="chatlist-item-name">
-                                Petya
-                            </h3>
-                            <div class="chatlist-item-last-message">
-                                You: Hi, how are ya?
-                            </div>
-                            <div class="chatlist-item-last-message-time">
-                                16:08
-                            </div>                        
-                        </section>
-                    </li>   
-                </ul>                    
-                <section class="chatdetail">
-                    <section class="chatdetail-messages">
-                        <article class="chatdetail-messages-message incoming">
-                            Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, 
-                            there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, 
-                            a large language ocean. A small river named Duden flows by their place and supplies it with the necessary 
-                            regelialia. It is a paradisematic country, in which roasted parts of sentences fly into your mouth. 
-                            Even the all-powerful Pointing has no control about the blind texts it is an almost unorthographic 
-                            life One day however a small line of blind text by the name of Lorem Ipsum decided to leave for the far 
-                            World of Grammar. The Big Oxmox advised her not to do so, because there were thousands of bad Commas, 
-                            wild Question Marks and devious Semikoli, but the Little Blind Text didn’t listen.                     </article>
-                        <article class="chatdetail-messages-message outcoming">
-                            She packed her seven versalia, put her initial into the belt and made herself on the way. 
-                            When she reached the first hills of the Italic Mountains, she had a last view back on the skyline 
-                            of her hometown Bookmarksgrove, the headline of Alphabet Village and the subline of her own road, 
-                            the Line Lane. Pityful a rethoric question ran over her cheek, then
-                        </article>
-                        <article class="chatdetail-messages-message incoming">
-                            Hi
-                        </article>
-                        <article class="chatdetail-messages-message incoming">
-                            Hi
-                        </article>
-                        <article class="chatdetail-messages-message outcoming">
-                            Hello
-                        </article>
-                        <article class="chatdetail-messages-message outcoming">
-                            <img src="https://loremflickr.com/300/150"></img>
-                        </article>
-                    </section>
-                    <section class="chatdetail-newmessage">
-                        <input type="text" class="chatdetail-newmessage-input" placeholder="Send something..."></input>
-                        <button class="chatdetail-newmessage-send">
-                            <i class="material-icons">send</i>
-                        </button>
-                    </section>
+                </ul>
+            </section>
+            <main class="section-main">
+                <header class="section-main-header">
+                    <div class="chatdetail-chatinfo">
+                        <h2 class="chatdetail-chatinfo-name">
+                            Petya Vasin
+                        </h2>
+                    </div>
+                </header>
+                <section class="chatdetail-messages">
+                    <article class="chatdetail-messages-message incoming">
+                        Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, 
+                        there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, 
+                        a large language ocean. A small river named Duden flows by their place and supplies it with the necessary 
+                        regelialia. It is a paradisematic country, in which roasted parts of sentences fly into your mouth. 
+                        Even the all-powerful Pointing has no control about the blind texts it is an almost unorthographic 
+                        life One day however a small line of blind text by the name of Lorem Ipsum decided to leave for the far 
+                        World of Grammar. The Big Oxmox advised her not to do so, because there were thousands of bad Commas, 
+                        wild Question Marks and devious Semikoli, but the Little Blind Text didn’t listen.                     
+                    </article>
+                    <article class="chatdetail-messages-message outcoming">
+                        She packed her seven versalia, put her initial into the belt and made herself on the way. 
+                        When she reached the first hills of the Italic Mountains, she had a last view back on the skyline 
+                        of her hometown Bookmarksgrove, the headline of Alphabet Village and the subline of her own road, 
+                        the Line Lane. Pityful a rethoric question ran over her cheek, then
+                    </article>
+                    <article class="chatdetail-messages-message incoming">
+                        Hi
+                    </article>
+                    <article class="chatdetail-messages-message incoming">
+                        Hi
+                    </article>
+                    <article class="chatdetail-messages-message outcoming">
+                        Hello
+                    </article>
+                    <article class="chatdetail-messages-message outcoming">
+                        <img src="https://loremflickr.com/300/150"></img>
+                    </article>
                 </section>
+                <form class="chatdetail-newmessage">
+                    <input type="text" class="chatdetail-newmessage-input" placeholder="Send something..."></input>
+                    <button class="chatdetail-newmessage-send">
+                        <i class="material-icons">send</i>
+                    </button>
+                </form>
             </main>
         </div>
     </body>

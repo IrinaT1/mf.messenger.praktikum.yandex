@@ -5,7 +5,7 @@ export const accountTemplate = `
                 Hi, {{display_name}}!
             </div>
 
-            <div class="account-picture" style="background-image: url('{{avatar}}')">s
+            <div class="account-picture" style="background-image: url('{{avatar}}')">
                 <div class="change-account-picture">Change</div>
             </div>
 

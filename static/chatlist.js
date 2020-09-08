@@ -1,5 +1,9 @@
-import {chatlistTemplate, chatdetailsNameTemplate, chatdetailsMessagesTemplate} from './chatlist.tmpl.js';
-import {} from './helpers.js';
+import {
+    chatlistTemplate, 
+    chatdetailsNameTemplate, 
+    chatdetailsMessagesTemplate
+} from './chatlist.tmpl.js';
+import './helpers.js';
 
 const context = {
 	"chats": [{
@@ -94,8 +98,7 @@ chatdetailsMessagesRoot.innerHTML = templateCDMessages(chatDetailsContext);
 const sendMessage = () => {
     let value = document.querySelector('.chatdetail-newmessage-input').value;
 
-    console.log('Sending...');
-    console.log("data: ", JSON.stringify({"value": value}));
+    console.log("Sending data: ", JSON.stringify({"value": value}));
 }
 
 document.querySelector('.chatdetail-newmessage-send').addEventListener('click', sendMessage);

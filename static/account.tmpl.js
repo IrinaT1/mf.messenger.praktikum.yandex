@@ -12,8 +12,8 @@ export const accountTemplate = `
             {{!chat-input-text 'first_name' 'First name' 'Irina'}}
             {{!chat-input-text 'last_name' 'Last name' 'Tishchenko'}}
 
-            {{chat-input-text-required 'display_name' 'Display name' display_name}}
-            {{chat-input-text-required 'login' 'Login' login}}
+            {{chat-input-text 'display_name' 'Display name' display_name}}
+            {{chat-input-text 'login' 'Login' login}}
             {{chat-input-email 'email' 'Email' email}}
 
             {{!chat-input-password 'password' 'Password' 'test'}}

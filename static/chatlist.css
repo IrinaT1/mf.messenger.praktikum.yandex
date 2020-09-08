@@ -177,13 +177,13 @@ body {
     flex: 1;
     height: 24px;
     border: none;
-    padding-top: 8px;
-    padding-bottom: 8px;
-    padding-left: 16px;
-    padding-right: 16px;
-    margin-right: 16px;
-    margin-left: 16px;
+    padding: 8px 16px;
+    margin: 0 16px;
     outline: none;
+}
+
+.chatdetail-newmessage-input:focus {
+    box-shadow: 0 0 0 3px var(--accent);
 }
 
 .chatdetail-newmessage-input::placeholder, 
@@ -200,7 +200,6 @@ body {
     border-radius: 50%;
     flex: 0 0 48px;
     height: 48px;
-    outline: none;
     margin-right: 16px;
 }
 

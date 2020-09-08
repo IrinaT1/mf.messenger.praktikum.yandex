@@ -8,47 +8,22 @@ export class FormValidation {
         return document.querySelector(this.formSelector); 
     }
 
-    waitForElementToAppear(elementName) {  
-        const self = this;                                        
-        return Rx.Observable.create(function(observer) {                            
-            let el_ref;
-            let form = self.formRef;                                                  
-            const f = () => {                                                   
-                el_ref = form.querySelector(`[name=${elementName}]`); 
-                if (el_ref) {                                              
-                    observer.next(el_ref);                                   
-                    observer.complete();                                     
-                    return;                                                  
-                }                                                            
-                window.requestAnimationFrame(f);                             
-            };                                                               
-            f();                                                             
-        });                                                                  
-    }
-
     setValidation(fieldName, validationConditionObject = {}) {
-        this.waitForElementToAppear(fieldName).subscribe(inputField => {
+        let inputField = this.formRef.querySelector(`[name=${fieldName}]`);
+        let field = new Field(fieldName, inputField);
+        if (!this.fields.includes(field)) {
+            this.fields.push(field);
+        }
 
-            let field = new Field(fieldName, inputField);
-            if (!this.fields.includes(field)) {
-                this.fields.push(field);
-            }
+        for (let errorText of Object.keys(validationConditionObject)) {
+            field.setValidationCondition(validationConditionObject[errorText], errorText);
+        }
 
-            for (let errorText of Object.keys(validationConditionObject)) {
-                field.setValidationCondition(validationConditionObject[errorText], errorText);
-            }
-
-            field.addListeners();
-        });
+        field.addListeners();
     }
 
     checkFormValidity() {
-        let valid = true;
-        this.fields.forEach((field) => {
-            if (field.hasError()) {
-                valid = false;
-            }
-        });
+        const valid = !(this.fields.some(field => field.hasError())); 
         return valid && this.formRef.checkValidity();
     }
 

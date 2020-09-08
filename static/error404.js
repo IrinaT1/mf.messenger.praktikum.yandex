@@ -1,5 +1,5 @@
 import {errorTemplate} from './error.tmpl.js';
-import {} from './helpers.js';
+import './helpers.js';
 
 const context = {
     errorText: "This is not what you're looking for.",

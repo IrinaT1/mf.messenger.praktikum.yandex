@@ -6,8 +6,8 @@ export const signupTemplate = `
             </div>
 
             {{chat-input-email 'email' 'Email' email}}
-            {{chat-input-text-required 'login' 'Username' login}}
-            {{chat-input-text-required 'display_name' 'Display name' display_name}}
+            {{chat-input-text 'login' 'Username' login}}
+            {{chat-input-text 'display_name' 'Display name' display_name}}
             {{chat-input-password 'password' 'Password' password}}
             {{chat-input-password 'verify_password' 'Re-enter password' password}}
 

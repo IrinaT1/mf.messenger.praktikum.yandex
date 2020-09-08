@@ -1,5 +1,5 @@
 import {accountTemplate} from './account.tmpl.js';
-import {} from './helpers.js';
+import './helpers.js';
 import {FormValidation} from './validation.js';
 
 const context = {
@@ -21,9 +21,8 @@ const saveAccount = () => {
         console.log("Form is invalid");
         formValidation.showErrors();
     } else {
-        console.log('Saving...');
+        console.log('Saving data: ', JSON.stringify(formValidation.values));
     }
-    console.log("data: ", JSON.stringify(formValidation.values));
 }
 
 document.querySelector('.button-submit').addEventListener('click', saveAccount);

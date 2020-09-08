@@ -1,5 +1,5 @@
 import {signupTemplate} from './signup.tmpl.js';
-import {} from './helpers.js';
+import './helpers.js';
 import {FormValidation} from './validation.js';
 
 const context = {
@@ -23,9 +23,8 @@ const signUp = () => {
         console.log("Form is invalid");
         formValidation.showErrors();
     } else {
-        console.log('Signing up...');
+        console.log('Signing up, data: ', JSON.stringify(formValidation.values));
     }
-    console.log("data: ", JSON.stringify(formValidation.values));
 } 
 
 document.querySelector('.button-submit').addEventListener('click', signUp);

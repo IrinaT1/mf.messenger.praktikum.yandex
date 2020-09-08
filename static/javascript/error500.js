@@ -1,5 +1,5 @@
-import {errorTemplate} from './error.tmpl.js';
-import './helpers.js';
+import {errorTemplate} from '../templates/error.tmpl.js';
+import './helpers/helpers.js';
 
 const context = {
     errorText: "Unexpected error.",

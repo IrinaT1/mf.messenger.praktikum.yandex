@@ -1,6 +1,6 @@
-import {signupTemplate} from './signup.tmpl.js';
-import './helpers.js';
-import {FormValidation} from './validation.js';
+import {signupTemplate} from '../templates/signup.tmpl.js';
+import './helpers/helpers.js';
+import {FormValidation} from './helpers/validation.js';
 
 const context = {
     email: "",

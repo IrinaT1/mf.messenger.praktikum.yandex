@@ -1,6 +1,6 @@
-import {accountTemplate} from './account.tmpl.js';
-import './helpers.js';
-import {FormValidation} from './validation.js';
+import {accountTemplate} from '../templates/account.tmpl.js';
+import './helpers/helpers.js';
+import {FormValidation} from './helpers/validation.js';
 
 const context = {
     display_name: "IrinaT",

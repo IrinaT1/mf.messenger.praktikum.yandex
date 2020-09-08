@@ -2,8 +2,8 @@ import {
     chatlistTemplate, 
     chatdetailsNameTemplate, 
     chatdetailsMessagesTemplate
-} from './chatlist.tmpl.js';
-import './helpers.js';
+} from '../templates/chatlist.tmpl.js';
+import './helpers/helpers.js';
 
 const context = {
 	"chats": [{

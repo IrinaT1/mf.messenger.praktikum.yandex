@@ -19,7 +19,7 @@ const logIn = () => {
         console.log("Form is invalid");
         formValidation.showErrors();
     } else {
-        console.log('Loggin in, data: ', JSON.stringify({"value": value}));
+        console.log('Logging in, data: ', JSON.stringify(formValidation.values));
     }
 }
 

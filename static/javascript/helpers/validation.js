@@ -1,3 +1,5 @@
+//TODO: разнести классы Field и FormValidation по разным файлам, чтоб каждый файл имел одну зону ответственности
+
 export class FormValidation {
     constructor(formSelector) {
         this.formSelector = formSelector;

@@ -1,6 +1,6 @@
 function last(list) {
   
-    if (!Array.isArray(list) || list.length == 0) {
+    if (!Array.isArray(list)) {
       return undefined;
     }
       

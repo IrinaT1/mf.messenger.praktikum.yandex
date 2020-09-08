@@ -4,6 +4,8 @@ Handlebars.registerHelper('chat-button', function(text, type) {
     return new Handlebars.SafeString(html);
 });
 
+//TODO: обёртку вокруг инпута вынести в отдельный шаблон, потому что он повторяется в каждом хэлпере с инпутом
+
 Handlebars.registerHelper('chat-input-text', function(name, label, value, required) {
     let html = `
     <div class="input-container">

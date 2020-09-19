@@ -1,8 +1,2 @@
-export const errorTemplate = `
-    <div class="wrapper">
-        <div class="error-message">
-            {{errorText}}
-        </div>
-        {{chat-link 'Back to Chats' "./chatlist.html"}}
-    </div>
-`;
+export var errorTemplate = "\n    <div class=\"wrapper\">\n        <div class=\"error-message\">\n            {{errorText}}\n        </div>\n        {{chat-link 'Back to Chats' \"./chatlist.html\"}}\n    </div>\n";
+//# sourceMappingURL=error.tmpl.js.map

@@ -1,10 +1,10 @@
-import {errorTemplate} from '../templates/error.tmpl.js';
+import { errorTemplate } from '../templates/error.tmpl.js';
 import './helpers/helpers.js';
-
-const context = {
+import { handlebars } from './helpers/handlebars.js';
+var context = {
     errorText: "Unexpected error.",
 };
-
-const template = Handlebars.compile(errorTemplate);
-const root = document.querySelector(".root");
+var template = handlebars().compile(errorTemplate);
+var root = document.querySelector(".root");
 root.innerHTML = template(context);
+//# sourceMappingURL=error500.js.map

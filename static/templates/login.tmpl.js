@@ -1,17 +1,2 @@
-export const loginTemplate = `
-    <div class="wrapper">
-        <form class="card login-dialog">
-            <div class="header">
-                Log in to Chats
-            </div>
-
-            {{chat-input-text 'login' 'Username' login}}
-            {{chat-input-password 'password' 'Password' password}}
-
-            <div style="height: 40px;"></div>
-
-            {{chat-button 'Log In' 'primary'}}
-            {{chat-link 'Need an account? Sign Up' "./signup.html"}}
-        </form>
-    </div>
-`;
+export var loginTemplate = "\n    <div class=\"wrapper\">\n        <form class=\"card login-dialog\">\n            <div class=\"header\">\n                Log in to Chats\n            </div>\n\n            {{chat-input-text 'login' 'Username' login}}\n            {{chat-input-password 'password' 'Password' password}}\n\n            <div style=\"height: 40px;\"></div>\n\n            {{chat-button 'Log In' 'primary'}}\n            {{chat-link 'Need an account? Sign Up' \"./signup.html\"}}\n        </form>\n    </div>\n";
+//# sourceMappingURL=login.tmpl.js.map

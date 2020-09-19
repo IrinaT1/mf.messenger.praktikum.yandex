@@ -1,6 +1,6 @@
 import {loginTemplate} from '../templates/login.tmpl.js';
 import './helpers/helpers.js';
-import {FormValidation} from './helpers/validation.js';
+import {FormValidation} from './helpers/formValidation.js';
 
 const context = {
     login: "",

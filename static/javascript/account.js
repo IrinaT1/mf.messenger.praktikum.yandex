@@ -1,6 +1,8 @@
+//"use strict";
+
 import {accountTemplate} from '../templates/account.tmpl.js';
 import './helpers/helpers.js';
-import {FormValidation} from './helpers/validation.js';
+import {FormValidation} from './helpers/FormValidation.js';
 
 const context = {
     display_name: "IrinaT",

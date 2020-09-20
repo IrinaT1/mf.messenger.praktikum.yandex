@@ -6,7 +6,9 @@
   "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "tsc"
+    "test1": "cd static/pages && pwd",
+    "build": "tsc",
+    "scss": "node-sass static -o static"
   },
   "repository": {
     "type": "git",
@@ -20,6 +22,9 @@
   },
   "homepage": "https://github.com/IrinaT1/mf.messenger.praktikum.yandex#readme",
   "devDependencies": {
-    "express": "4.17.1"
-  }
+    "express": "4.17.1",
+    "typescript": "^4.0.3",
+    "node-sass": "^4.14.1"
+  },
+  "dependencies": {}
 }

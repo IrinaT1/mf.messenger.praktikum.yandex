@@ -3,7 +3,6 @@
   "version": "1.0.0",
   "description": "Messenger project",
   "main": "index.js",
-  "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "test1": "cd static/pages && pwd",
@@ -21,10 +20,9 @@
     "url": "https://github.com/IrinaT1/mf.messenger.praktikum.yandex/issues"
   },
   "homepage": "https://github.com/IrinaT1/mf.messenger.praktikum.yandex#readme",
-  "devDependencies": {
+  "dependencies": {
     "express": "4.17.1",
     "typescript": "^4.0.3",
     "node-sass": "^4.14.1"
-  },
-  "dependencies": {}
+  }
 }

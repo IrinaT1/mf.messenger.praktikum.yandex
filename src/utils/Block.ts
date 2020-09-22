@@ -1,7 +1,7 @@
 import { EventBus } from './EventBus.js';
 
-type PropsValueType = string | number | boolean;
-type PropsType = Record<string, PropsValueType>;
+export type PropsValueType = string | number | boolean;
+export type PropsType = Record<string, PropsValueType>;
 
 export class Block {
     static EVENTS = {
@@ -14,7 +14,7 @@ export class Block {
     private _element: HTMLElement | null = null;
     private _meta = null;
 
-    private props: PropsType;
+    public props: PropsType;
     private eventBus: () => EventBus;
 
     constructor(tagName: string = "div", props: PropsType = {}) {
@@ -94,7 +94,7 @@ export class Block {
 
     // Может переопределять пользователь, необязательно трогать
     render(): string {
-        return 'Please provide rendeere data';
+        return 'Please provide render data';
     };
 
     getContent(): HTMLElement {
@@ -107,9 +107,9 @@ export class Block {
                 return target[prop];
             },
 
-            set(target: PropsType, prop: string, val: PropsValueType): boolean {
+            set: (target: PropsType, prop: string, val: PropsValueType): boolean => {
                 target[prop] = val;
-                this.eventBus().emit(this.EVENTS.FLOW_CDU, { ...target }, target);
+                this.eventBus().emit(Block.EVENTS.FLOW_CDU, { ...target }, target);
                 return true;
             },
 

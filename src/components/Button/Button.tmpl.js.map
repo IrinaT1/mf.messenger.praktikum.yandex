@@ -1,0 +1,1 @@
+{"version":3,"file":"Button.tmpl.js","sourceRoot":"","sources":["Button.tmpl.ts"],"names":[],"mappings":"AAAA,MAAM,CAAC,IAAM,QAAQ,GAAG,8DAIvB,CAAC","sourcesContent":["export const template = `\n<div class=\"{{ className }}\">\n    {{ child }}\n</div>\n`;"]}

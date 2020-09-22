@@ -1,0 +1,1 @@
+{"version":3,"file":"Pages.js","sourceRoot":"","sources":["Pages.ts"],"names":[],"mappings":"AAAA,OAAO,EAAE,QAAQ,EAAE,MAAM,gBAAgB,CAAC;AAE1C,OAAO,EAAE,QAAQ,EAAE,CAAC","sourcesContent":["import { TestPage } from './Test/test.js';\n\nexport { TestPage };"]}

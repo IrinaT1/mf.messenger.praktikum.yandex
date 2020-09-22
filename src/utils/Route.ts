@@ -4,10 +4,13 @@ import { render } from './Render.js';
 export class Route {
     private _pathname: string;
     private _blockClass: any;
-    private _props: {rootQuery: string};
+    private _props: { rootQuery: string };
     private _block: Block;
 
-    constructor(pathname: string, view: any, props: {rootQuery: string}) {
+    constructor(pathname: string, view: any, props: { rootQuery: string }) {
+        if (pathname.charAt(0) === '/') {
+            pathname = pathname.substring(1);
+        }
         this._pathname = pathname;
         this._blockClass = view;
         this._block = null;
@@ -39,5 +42,9 @@ export class Route {
         }
 
         this._block.show();
+    }
+
+    path(): string {
+        return this._pathname;
     }
 }

@@ -1,4 +1,4 @@
-import { Button, FormInput } from "../../components/Components.js";
+import { Button, FormInputText, FormInputEmail, FormButton, FormLink } from "../../components/Components.js";
 import { Block } from "../../utils/Block.js";
 import { handlebars, handlebarsSafeString } from "../../utils/Handlebars.js";
 
@@ -8,7 +8,10 @@ const template = `
 <div>
     {{ button }}
     {{ userName }}
-    <div class="input">{{ input }}</div>
+    <div class="input">{{ inputText }}</div>
+    <div class="input">{{ inputEmail }}</div>
+    <div class="button">{{ button1 }}</div>
+    {{ link }}
 </div>
 `;
 
@@ -20,26 +23,37 @@ export class TestPage extends Block {
             child: "Text 2"
         }).getContentAsText());
 
-        let input: string = handlebarsSafeString(new FormInput({
+        let inputText: string = handlebarsSafeString(new FormInputText({
             name: "name",
             value: "Hello",
             required: true,
             label: "Label"
         }).getContentAsText());
 
+        let inputEmail: string = handlebarsSafeString(new FormInputEmail({
+            name: "email",
+            value: "Hello",
+            label: "Email"
+        }).getContentAsText());
+
+        let button1: string = handlebarsSafeString(new FormButton({
+            text: "Click me",
+            isPrimary: true
+        }).getContentAsText());
+
+        let link: string = handlebarsSafeString(new FormLink({
+            text: "Go back",
+            href: "#"
+        }).getContentAsText());
+
         super("block", {
             name: "Login 1",
             button: button,
-            input: input
+            inputText: inputText,
+            inputEmail: inputEmail,
+            button1: button1,
+            link: link
         });
-    }
-
-    componentDidMount() {
-        setTimeout(() => {
-            this.setProps({
-                name: "Login 3",
-            });
-        }, 5000);
     }
 
     render() {
@@ -47,7 +61,18 @@ export class TestPage extends Block {
         return tmpl({
             userName: this.props.name,
             button: this.props.button,
-            input: this.props.input
+            inputText: this.props.inputText,
+            inputEmail: this.props.inputEmail,
+            button1: this.props.button1,
+            link: this.props.link
         });
+    }
+
+    componentDidMount() {
+        // setTimeout(() => {
+        //     this.setProps({
+        //         name: "Login 3",
+        //     });
+        // }, 5000);
     }
 }

@@ -1,3 +1,77 @@
+import { FormInputText, FormInputPassword, FormButton, FormLink } from "../../components/Components.js";
+import { Block } from "../../utils/Block.js";
+import { handlebars, handlebarsSafeString } from "../../utils/Handlebars.js";
+import { template } from './Login.tmpl.js';
+
+export class LoginPage extends Block {
+
+    constructor() {
+        let usernameInput: string = handlebarsSafeString(new FormInputText({
+            name: "login",
+            value: "",
+            required: true,
+            label: "Username"
+        }).getContentAsText());
+
+        let passwordInput: string = handlebarsSafeString(new FormInputPassword({
+            name: "password",
+            value: "",
+            label: "Password"
+        }).getContentAsText());
+
+        let loginButton: string = handlebarsSafeString(new FormButton({
+            text: "Log In",
+            isPrimary: true
+        }).getContentAsText());
+
+        let signupLink: string = handlebarsSafeString(new FormLink({
+            text: "Need an account? Sign Up",
+            href: "#"
+        }).getContentAsText());
+
+        super("block", {
+            usernameInput: usernameInput,
+            passwordInput: passwordInput,
+            loginButton: loginButton,
+            signupLink: signupLink,
+        });
+    }
+
+    componentDidMount() {
+        // setTimeout(() => {
+        //     this.setProps({
+        //         name: "Login 3",
+        //     });
+        // }, 5000);
+    }
+
+    render() {
+        const tmpl = handlebars().compile(template);
+        return tmpl({
+            usernameInput: this.props.usernameInput,
+            passwordInput: this.props.passwordInput,
+            loginButton: this.props.loginButton,
+            signupLink: this.props.signupLink,
+        });
+    }
+}
+
+// usernameInput {{chat-input-text 'login' 'Username' login}}
+// passwordInput {{chat-input-password 'password' 'Password' password}}
+// loginButton {{chat-button 'Log In' 'primary'}}
+// signupLink {{chat-link 'Need an account? Sign Up' "./signup.html"}}
+
+
+
+
+
+
+
+
+
+
+
+
 // import { loginTemplate } from './login.tmpl.js';
 // // import './helpers/helpers.js';
 // import { FormValidation } from '../../utils/formValidation.js';

@@ -1,5 +1,5 @@
-import { Router } from '../src/utils/Utils.js';
-import { TestPage } from '../src/pages/Pages.js';
+import { Router } from './utils/Utils.js';
+import { TestPage } from './pages/Pages.js';
 
 let router = new Router(".app");
 

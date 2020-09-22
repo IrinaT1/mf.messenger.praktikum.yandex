@@ -7,7 +7,9 @@
     "inlineSources": true,
     "experimentalDecorators": true,
     "allowJs": false,
-    "lib": ["es2016", "dom"]
-  }
+    "lib": ["es2016", "dom"],
+    "outDir": "public/dist/",
+  },
+  "include": ["src/**/*"]
 }
 

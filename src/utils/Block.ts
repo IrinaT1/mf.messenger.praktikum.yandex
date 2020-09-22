@@ -17,10 +17,11 @@ export class Block {
     public props: PropsType;
     private eventBus: () => EventBus;
 
-    constructor(tagName: string = "div", props: PropsType = {}) {
+    constructor(tagName: string = "div", props: PropsType = {}, tagClassList: string[] = []) {
         const eventBus = new EventBus();
         this._meta = {
             tagName,
+            tagClassList,
             props
         };
 
@@ -40,8 +41,11 @@ export class Block {
     }
 
     _createResources(): void {
-        const { tagName } = this._meta;
+        const { tagName, tagClassList } = this._meta;
         this._element = this._createDocumentElement(tagName);
+        tagClassList.forEach(tagClass => {
+            this._element.classList.add(tagClass);         
+        });
     }
 
     init(): void {
@@ -99,6 +103,10 @@ export class Block {
 
     getContent(): HTMLElement {
         return this.element;
+    }
+
+    getContentAsText(): string {
+        return this.getContent().outerHTML;
     }
 
     _makePropsProxy(props: PropsType): PropsType {

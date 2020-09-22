@@ -1,5 +1,4 @@
-import { Button } from "../../components/Button/Button.js";
-//import { Button } from '/Users/irina/Projects/yandex/mf.messenger.praktikum.yandex/src/components/Button/Button.js'
+import { Button, FormInput } from "../../components/Components.js";
 import { Block } from "../../utils/Block.js";
 import { handlebars, handlebarsSafeString } from "../../utils/Handlebars.js";
 
@@ -9,17 +8,29 @@ const template = `
 <div>
     {{ button }}
     {{ userName }}
+    <div class="input">{{ input }}</div>
 </div>
 `;
 
 export class TestPage extends Block {
+
     constructor() {
+        let button: string = handlebarsSafeString(new Button({
+            className: "className",
+            child: "Text 2"
+        }).getContentAsText());
+
+        let input: string = handlebarsSafeString(new FormInput({
+            name: "name",
+            value: "Hello",
+            required: true,
+            label: "Label"
+        }).getContentAsText());
+
         super("block", {
             name: "Login 1",
-            button: handlebarsSafeString(new Button({
-                className: "className",
-                child: "Text 2"
-            }).getContent().outerHTML)
+            button: button,
+            input: input
         });
     }
 
@@ -35,7 +46,8 @@ export class TestPage extends Block {
         const tmpl = handlebars().compile(template);
         return tmpl({
             userName: this.props.name,
-            button: this.props.button
+            button: this.props.button,
+            input: this.props.input
         });
     }
 }

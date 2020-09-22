@@ -14,12 +14,12 @@ const template = `
 
 export class TestPage extends Block {
     constructor() {
-        super("div", {
+        super("block", {
             name: "Login 1",
             button: handlebarsSafeString(new Button({
                 className: "className",
                 child: "Text 2"
-            }).render())
+            }).getContent().outerHTML)
         });
     }
 

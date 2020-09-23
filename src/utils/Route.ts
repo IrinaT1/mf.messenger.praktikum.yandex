@@ -38,10 +38,9 @@ export class Route {
         if (!this._block) {
             this._block = new this._blockClass();
             render(this._props.rootQuery, this._block);
-            return;
+        } else {
+            this._block.show();
         }
-
-        this._block.show();
     }
 
     path(): string {

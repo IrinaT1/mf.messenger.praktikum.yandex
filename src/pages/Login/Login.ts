@@ -1,10 +1,10 @@
 import { FormInputText, FormInputPassword, FormButton, FormLink } from "../../components/Components.js";
 import { Block } from "../../utils/Block.js";
+import { FormValidation } from "../../utils/FormValidation.js";
 import { handlebars, handlebarsSafeString } from "../../utils/Handlebars.js";
 import { template } from './Login.tmpl.js';
 
 export class LoginPage extends Block {
-
     constructor() {
         let usernameInput: string = handlebarsSafeString(new FormInputText({
             name: "login",
@@ -29,20 +29,33 @@ export class LoginPage extends Block {
             href: "#"
         }).getContentAsText());
 
-        super("block", {
+        super("div", {
             usernameInput: usernameInput,
             passwordInput: passwordInput,
             loginButton: loginButton,
             signupLink: signupLink,
-        });
+        }, { classes: ["dialog-wrapper"] });
     }
 
-    componentDidMount() {
-        // setTimeout(() => {
-        //     this.setProps({
-        //         name: "Login 3",
-        //     });
-        // }, 5000);
+    componentRendered(): void {
+        let formValidation = new FormValidation("form.login-dialog");
+        console.log("creating this.formValidation = ", formValidation);
+
+        formValidation.setValidation("login");
+        formValidation.setValidation("password");
+
+        const logIn = () => {
+            if (!formValidation.checkFormValidity()) {
+                console.log("Form is invalid");
+                formValidation.showErrors();
+            } else {
+                console.log('Logging in, data: ', JSON.stringify(formValidation.values));
+            }
+        }
+
+        document.querySelector('.button-submit').addEventListener('click', logIn);
+
+        //console.log("componentReady, this.formValidation = ", this.formValidation);
     }
 
     render() {

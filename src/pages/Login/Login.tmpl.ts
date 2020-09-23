@@ -1,18 +1,16 @@
 export const template = `
-    <div class="wrapper">
-        <form class="card login-dialog">
-            <div class="header">
-                Log in to Chats
-            </div>
+    <form class="card login-dialog">
+        <div class="header">
+            Log in to Chats
+        </div>
 
-            {{usernameInput}}
-            {{passwordInput}}
+        {{usernameInput}}
+        {{passwordInput}}
 
-            <div style="height: 40px;"></div>
+        <div style="height: 40px;"></div>
 
-            {{loginButton}}
-            {{signupLink}}
+        {{loginButton}}
+        {{signupLink}}
 
-        </form>
-    </div>
+    </form>
 `;

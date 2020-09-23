@@ -6,7 +6,7 @@ export class FormButton extends Block {
     constructor(props: { text: string, isPrimary: boolean }) {
 
         let className = props.isPrimary ? "primary" : "secondary";
-        super("div", props, {classes: ["button-submit", className], type: "button"});
+        super("button", props, {classes: ["button-submit", className], type: "button"});
     }
 
     render() {

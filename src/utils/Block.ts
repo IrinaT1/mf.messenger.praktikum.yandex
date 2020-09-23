@@ -15,7 +15,7 @@ export class Block {
     private _meta = null;
 
     public props: PropsType;
-    private eventBus: () => EventBus;
+    public eventBus: () => EventBus;
 
     constructor(tagName: string = "div", props: PropsType = {}, tagAttributes: { classes?: string[], type?: string, href?: string } = { classes: [] }) {
         const eventBus = new EventBus();
@@ -105,6 +105,10 @@ export class Block {
         this._element.innerHTML = block;
     }
 
+    componentRendered(): void {
+        // console.log("componentRendered");
+    }
+
     // Может переопределять пользователь, необязательно трогать
     render(): string {
         return 'Please provide render data';
@@ -144,7 +148,8 @@ export class Block {
     }
 
     show() {
-        this.getContent().style.display = "block";
+        // this.getContent().style.display = "block";
+        this.getContent().removeAttribute("style");
     }
 
     hide() {

@@ -1,4 +1,5 @@
 import { EventBus } from './EventBus.js';
+import { UniquieIdGenerator } from './UniquieIdGenerator.js';
 
 export type PropsValueType = string | number | boolean;
 export type PropsType = Record<string, PropsValueType>;
@@ -19,10 +20,12 @@ export class Block {
 
     constructor(tagName: string = "div", props: PropsType = {}, tagAttributes: { classes?: string[], type?: string, href?: string } = { classes: [] }) {
         const eventBus = new EventBus();
+        let id = UniquieIdGenerator.get();
         this._meta = {
             tagName,
             tagAttributes,
-            props
+            props,
+            id: id
         };
 
         this.props = this._makePropsProxy(props);
@@ -41,13 +44,13 @@ export class Block {
     }
 
     _createResources(): void {
-        const { tagName, tagAttributes } = this._meta;
+        const { tagName, tagAttributes, id } = this._meta;
         this._element = this._createDocumentElement(tagName);
 
         let tagClassList = tagAttributes.classes;
         tagClassList.forEach(tagClass => {
             if (tagClass !== undefined && tagClass !== "undefined" && tagClass !== "")
-            this._element.classList.add(tagClass);
+                this._element.classList.add(tagClass);
         });
 
         if (tagAttributes.type !== undefined && tagAttributes.type !== "") {
@@ -56,6 +59,11 @@ export class Block {
         if (tagAttributes.href !== undefined && tagAttributes.href !== "") {
             this._element.setAttribute('href', tagAttributes.href);
         }
+        this._element.setAttribute('id', id);
+    }
+
+    id(): string {
+        return this._meta.id;
     }
 
     init(): void {
@@ -157,5 +165,5 @@ export class Block {
         this.getContent().style.display = "none";
     }
 
-    clearData() {}
+    clearData() { }
 }

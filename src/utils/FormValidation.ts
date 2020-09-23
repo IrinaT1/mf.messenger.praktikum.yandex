@@ -60,9 +60,9 @@ export class FormValidation {
         return result;      
     }
 
-    clear(): void {
+    discardChanges(): void {
         this.fields.forEach((field) => {
-            field.clear();
+            field.discardChange();
         });
     }
 }

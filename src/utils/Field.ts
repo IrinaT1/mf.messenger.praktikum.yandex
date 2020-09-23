@@ -68,8 +68,8 @@ export class Field {
         this.fieldNode.classList.remove('error');
     }
 
-    clear(): void {
+    discardChange(): void {
         this.hideError();
-        this.fieldNode.value = "";
+        this.fieldNode.value = this.fieldNode.getAttribute("value");
     }
 }

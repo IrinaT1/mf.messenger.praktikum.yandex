@@ -60,7 +60,7 @@ export class LoginPage extends Block {
     }
 
     clearData() {
-        this.formValidation.clear();
+        this.formValidation.discardChanges();
     }
     render() {
         const tmpl = handlebars().compile(template);

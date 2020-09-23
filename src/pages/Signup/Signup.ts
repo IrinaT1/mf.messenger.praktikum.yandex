@@ -91,7 +91,7 @@ export class SignupPage extends Block {
     }
 
     clearData() {
-        this.formValidation.clear();
+        this.formValidation.discardChanges();
     }
 
     render() {

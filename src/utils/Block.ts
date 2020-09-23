@@ -46,6 +46,7 @@ export class Block {
 
         let tagClassList = tagAttributes.classes;
         tagClassList.forEach(tagClass => {
+            if (tagClass !== undefined && tagClass !== "undefined" && tagClass !== "")
             this._element.classList.add(tagClass);
         });
 
@@ -106,7 +107,6 @@ export class Block {
     }
 
     componentRendered(): void {
-        // console.log("componentRendered");
     }
 
     // Может переопределять пользователь, необязательно трогать
@@ -153,6 +153,9 @@ export class Block {
     }
 
     hide() {
+        this.clearData();
         this.getContent().style.display = "none";
     }
+
+    clearData() {}
 }

@@ -67,4 +67,9 @@ export class Field {
         this.errorNode.textContent = "";
         this.fieldNode.classList.remove('error');
     }
+
+    clear(): void {
+        this.hideError();
+        this.fieldNode.value = "";
+    }
 }

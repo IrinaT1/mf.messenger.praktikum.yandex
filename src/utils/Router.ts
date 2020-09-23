@@ -25,11 +25,6 @@ export class Router {
     const route = new Route(pathname, block, { rootQuery: this._rootQuery });
     this.routes.push(route);
 
-    // if (pathname.charAt(0) === '/') {
-    //   pathname = pathname.substring(1);
-    //   this.routes.push(new Route(pathname, block, { rootQuery: this._rootQuery }));
-    // }
-
     return this;
   }
 

@@ -3,10 +3,10 @@ import { handlebars } from "../../utils/Handlebars.js";
 import { template } from "./FormButton.tmpl.js";
 
 export class FormButton extends Block {
-    constructor(props: { text: string, isPrimary: boolean }) {
+    constructor(props: { className?: string, text: string, isPrimary: boolean }) {
 
-        let className = props.isPrimary ? "primary" : "secondary";
-        super("button", props, {classes: ["button-submit", className], type: "button"});
+        let typeClassName = props.isPrimary ? "primary" : "secondary";
+        super("button", props, {classes: ["button-submit", typeClassName, props.className], type: "button"});
     }
 
     render() {

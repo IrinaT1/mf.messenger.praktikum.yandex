@@ -3,8 +3,8 @@ import { handlebars } from "../../utils/Handlebars.js";
 import { template } from "./FormLink.tmpl.js";
 
 export class FormLink extends Block {
-    constructor(props: { text: string, href?: string }) {
-        super("a", props, {classes: ["link-back"], href: props.href});
+    constructor(props: { className?: string, text: string, href?: string }) {
+        super("a", props, {classes: ["link-back", props.className], href: props.href});
     }
 
     render() {

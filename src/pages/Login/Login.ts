@@ -2,6 +2,7 @@ import { FormInputText, FormInputPassword, FormButton, FormLink } from "../../co
 import { Block } from "../../utils/Block.js";
 import { FormValidation } from "../../utils/FormValidation.js";
 import { handlebars, handlebarsSafeString } from "../../utils/Handlebars.js";
+import { router } from "../../utils/Utils.js";
 import { template } from './Login.tmpl.js';
 
 export class LoginPage extends Block {
@@ -25,8 +26,9 @@ export class LoginPage extends Block {
         }).getContentAsText());
 
         let signupLink: string = handlebarsSafeString(new FormLink({
+            className: "signupLink",
             text: "Need an account? Sign Up",
-            href: "#"
+            href: "#signup"
         }).getContentAsText());
 
         super("div", {
@@ -37,25 +39,29 @@ export class LoginPage extends Block {
         }, { classes: ["dialog-wrapper"] });
     }
 
-    componentRendered(): void {
-        let formValidation = new FormValidation("form.login-dialog");
-        console.log("creating this.formValidation = ", formValidation);
+    formValidation: FormValidation;
 
-        formValidation.setValidation("login");
-        formValidation.setValidation("password");
+    componentRendered(): void {
+        this.formValidation = new FormValidation("form.login-dialog");
+        
+        this.formValidation.setValidation("login");
+        this.formValidation.setValidation("password");
 
         const logIn = () => {
-            if (!formValidation.checkFormValidity()) {
+            if (!this.formValidation.checkFormValidity()) {
                 console.log("Form is invalid");
-                formValidation.showErrors();
+                this.formValidation.showErrors();
             } else {
-                console.log('Logging in, data: ', JSON.stringify(formValidation.values));
+                console.log('Logging in, data: ', JSON.stringify(this.formValidation.values));
             }
         }
 
         this.getContent().querySelector('.button-submit').addEventListener('click', logIn);
     }
 
+    clearData() {
+        this.formValidation.clear();
+    }
     render() {
         const tmpl = handlebars().compile(template);
         return tmpl({

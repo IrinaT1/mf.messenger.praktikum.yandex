@@ -59,4 +59,10 @@ export class FormValidation {
         }); 
         return result;      
     }
+
+    clear(): void {
+        this.fields.forEach((field) => {
+            field.clear();
+        });
+    }
 }

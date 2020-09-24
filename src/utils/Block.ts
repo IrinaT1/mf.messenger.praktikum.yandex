@@ -1,5 +1,5 @@
 import { EventBus } from './EventBus.js';
-import { UniquieIdGenerator } from './UniquieIdGenerator.js';
+import { UniqueIdGenerator } from './UniqueIdGenerator.js';
 
 export type PropsValueType = string | number | boolean;
 export type PropsType = Record<string, PropsValueType>;
@@ -20,7 +20,7 @@ export class Block {
 
     constructor(tagName: string = "div", props: PropsType = {}, tagAttributes: { classes?: string[], type?: string, href?: string } = { classes: [] }) {
         const eventBus = new EventBus();
-        let id = UniquieIdGenerator.get();
+        let id = UniqueIdGenerator.get();
         this._meta = {
             tagName,
             tagAttributes,
@@ -79,17 +79,17 @@ export class Block {
     // Может переопределять пользователь, необязательно трогать
     componentDidMount(): void { }
 
-    _componentDidUpdate(oldProps: PropsType, newProps: PropsType): void {
-        const response = this.componentDidUpdate(oldProps, newProps);
+    _componentDidUpdate(): void {
+        const response = this.componentDidUpdate();
 
-        if (response || oldProps !== newProps) {
+        if (response) {
             this._render();
             this.eventBus().emit(Block.EVENTS.FLOW_RENDER);
         }
     }
 
     // Может переопределять пользователь, необязательно трогать
-    componentDidUpdate(oldProps: PropsType, newProps: PropsType): boolean {
+    componentDidUpdate(): boolean {
         return true;
     }
 

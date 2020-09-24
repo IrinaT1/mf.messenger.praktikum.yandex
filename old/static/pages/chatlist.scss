@@ -12,8 +12,9 @@ body {
 
 .section-side {
     flex: 0 0 320px;
-    background-image: url('../img/bg2.png'); 
-    background-repeat: repeat; 
+    // background-image: url('../img/bg2.png'); 
+    // background-repeat: repeat; 
+    color: #ffffff;
     display: flex;
     flex-direction: column;
 }

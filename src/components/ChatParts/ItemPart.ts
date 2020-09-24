@@ -1,9 +1,9 @@
 import { Block } from "../../utils/Block.js";
 import { handlebars } from "../../utils/Handlebars.js";
-import { template } from './ChatItem.tmpl.js';
+import { template } from './ItemPart.tmpl.js';
 import { ChatInfo } from "../../business/ChatInfo.js";
 
-export class ChatItem extends Block {
+export class ItemPart extends Block {
     constructor(public chatInfo: ChatInfo) {
         super("li", {
             user_id: chatInfo.user_id,

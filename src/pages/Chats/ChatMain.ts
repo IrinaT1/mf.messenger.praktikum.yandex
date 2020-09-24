@@ -1,7 +1,7 @@
 import { Block } from "../../utils/Block.js";
 import { template } from './ChatMain.tmpl.js';
 import { getAPIServer } from '../../server/Server.js';
-import { ChatItem, ChatHead, ChatMessages } from "../../components/Components.js";
+import { ItemPart, HeadPart, MessagesPart } from "../../components/Components.js";
 import { render } from "../../utils/Render.js";
 import { ChatInfo } from "../../business/ChatInfo.js";
 import { ChatDetails } from "../../business/ChatDetails.js";
@@ -23,24 +23,24 @@ export class ChatMainPage extends Block {
         });
     }
 
-    chatItems: ChatItem[] = [];
-    chatHead: ChatHead;
-    chatMessages: ChatMessages;
+    itemParts: ItemPart[] = [];
+    headPart: HeadPart;
+    messagesPart: MessagesPart;
 
     drawChatList = (data: ChatInfo[]): void => {
         data.forEach((chatInfo) => {
-            let chatItemBlock = new ChatItem(chatInfo);
-            chatItemBlock.componentRendered = () => {
-                document.getElementById(chatItemBlock.id()).addEventListener('click', () => { this.chatSelected(chatItemBlock.chatInfo); });
+            let itemPartBlock = new ItemPart(chatInfo);
+            itemPartBlock.componentRendered = () => {
+                document.getElementById(itemPartBlock.id()).addEventListener('click', () => { this.chatSelected(itemPartBlock.chatInfo); });
             };
 
-            this.chatItems.push(chatItemBlock);
-            render(".chatlist-root", chatItemBlock);
+            this.itemParts.push(itemPartBlock);
+            render(".chatlist-root", itemPartBlock);
         });
     }
 
     chatSelected = (chatInfo: ChatInfo) => {
-        this.chatItems.forEach((item) => {
+        this.itemParts.forEach((item) => {
             if (item.chatInfo === chatInfo) {
                 item.select();
             } else {
@@ -56,20 +56,20 @@ export class ChatMainPage extends Block {
     }
 
     drawHead(data: ChatInfo) {
-        if (this.chatHead === undefined || this.chatHead === null) {
-            this.chatHead = new ChatHead(data);
-            render(".chathead-root", this.chatHead);
+        if (this.headPart === undefined || this.headPart === null) {
+            this.headPart = new HeadPart(data);
+            render(".chathead-root", this.headPart);
         } else {
-            this.chatHead.setProps({ name: data.display_name });
+            this.headPart.setProps({ name: data.display_name });
         }
     }
 
     drawMessages(data: ChatDetails) {
-        if (this.chatMessages === undefined || this.chatMessages === null) {
-            this.chatMessages = new ChatMessages(data);
-            render(".chatdetail-messages-root", this.chatMessages);
+        if (this.messagesPart === undefined || this.messagesPart === null) {
+            this.messagesPart = new MessagesPart(data);
+            render(".chatdetail-messages-root", this.messagesPart);
         } else {
-            this.chatMessages.setProps({id: data.user_id});
+            this.messagesPart.setProps({id: data.user_id});
         }        
     }
 

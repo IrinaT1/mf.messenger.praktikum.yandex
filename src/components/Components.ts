@@ -4,8 +4,8 @@ import { FormInputEmail } from './FormInput/FormInputEmail.js';
 import { FormInputPassword } from './FormInput/FormInputPassword.js';
 import { FormButton } from './Buttons/FormButton.js';
 import { FormLink } from './Buttons/FormLink.js';
-import { ChatItem } from './ChatParts/ChatItem.js';
-import { ChatHead } from './ChatParts/ChatHead.js';
-import { ChatMessages } from './ChatParts/ChatMessages.js';
+import { ItemPart } from './ChatParts/ItemPart.js';
+import { HeadPart } from './ChatParts/HeadPart.js';
+import { MessagesPart } from './ChatParts/MessagesPart.js';
 
-export { Button, FormInputText, FormInputEmail, FormInputPassword, FormButton, FormLink, ChatItem, ChatHead, ChatMessages };
+export { Button, FormInputText, FormInputEmail, FormInputPassword, FormButton, FormLink, ItemPart, HeadPart, MessagesPart };

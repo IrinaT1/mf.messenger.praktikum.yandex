@@ -4,6 +4,7 @@ import { router } from "../../utils/Utils.js";
 import { template } from './ChatMain.tmpl.js';
 import { getAPIServer } from '../../server/Server.js';
 import { ChatItem } from "../../components/ChatParts/ChatItem.js";
+import { render } from "../../utils/Render.js";
 
 export class ChatMainPage extends Block {
 
@@ -19,25 +20,36 @@ export class ChatMainPage extends Block {
     }
 
     drawChatList(): void {
-        let chatListRoot = this.getContent().querySelector(".chatlist-root");
         let chatListLoader = this.getContent().querySelector(".chatlist-loader") as HTMLElement;
-
-        const showChatDetails = (userId: string): void => {
-            router.go("#chats/" + userId);
-        }
 
         getAPIServer().chats().then((data) => {
             chatListLoader.style.display = "none";
 
+            let chatItems: ChatItem[] = [];
+
+            const selectChatItem = (chatItem: ChatItem) => {
+                console.log("selected chatItem name = ", chatItem.props.display_name);
+                // chatItem.setProps({
+                //     display_name: chatItem.props.display_name + "1",
+                // });
+
+                chatItems.forEach((item) => {
+                    if (item == chatItem) {
+                        item.select();
+                    } else {
+                        item.unselect();
+                    }
+                });
+            }
+
             data.forEach((chatInfo) => {
                 let chatItemBlock = new ChatItem(chatInfo, false);
-                let chatItemElement = chatItemBlock.getContent();
-                chatListRoot.appendChild(chatItemElement);
+                chatItemBlock.componentRendered = () => {
+                    document.getElementById(chatItemBlock.id()).addEventListener('click', () => { selectChatItem(chatItemBlock); });
+                };
 
-                chatItemElement.addEventListener('click', () => {
-                    //chatListRoot.replaceChild((new ChatItem(chatInfo, true)).getContent(), chatItemElement);
-                    showChatDetails(chatInfo.user_id);
-                });
+                chatItems.push(chatItemBlock);
+                render(".chatlist-root", chatItemBlock);
             });
         });
     }

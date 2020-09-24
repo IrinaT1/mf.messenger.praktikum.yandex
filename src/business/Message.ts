@@ -16,6 +16,17 @@ export class Message {
     json() {
         return this.jsonData;
     };
+
+    static create(text: string): Message {
+        let time = (new Date()).toLocaleString();
+        let json = {
+            incoming: false,
+            text: text,
+            url: "",
+            datetime_text: time
+        };
+        return new this(json);
+    }
 }
 
 let fakeMessageJson = `

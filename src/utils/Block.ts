@@ -165,5 +165,9 @@ export class Block {
         this.getContent().style.display = "none";
     }
 
+    remove() {
+        this.getContent().remove();
+    }
+
     clearData() { }
 }

@@ -26,7 +26,9 @@ export class Route {
 
     leave(): void {
         if (this._block) {
-            this._block.hide();
+            //this._block.hide();
+            this._block.remove();
+            this._block = null;
         }
     }
 

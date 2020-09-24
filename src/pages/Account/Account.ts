@@ -71,7 +71,7 @@ export class AccountPage extends Block {
         this.getContent().querySelector('.button-submit').addEventListener('click', saveAccount);
 
         const goBack = () => {
-            router.back();
+            router.go("#chats");
         }
         document.getElementById(this.elements.backLinkElement.id()).addEventListener('click', goBack);
     }

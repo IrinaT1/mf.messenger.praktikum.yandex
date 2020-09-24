@@ -77,6 +77,8 @@ export class ChatMainPage extends Block {
     }
 
     chatSelected = (chatInfo: ChatInfo) => {
+        (this.getContent().querySelector(".chathead-no-chat-selected") as HTMLElement).style.display = "none";
+
         this.selectedChatInfo = chatInfo;
         this.itemParts.forEach((item) => {
             if (item.chatInfo === chatInfo) {

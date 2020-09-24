@@ -10,8 +10,8 @@ export const template = `
     <main class="section-main">
         <header class="section-main-header">
             <div class="chatdetail-chatinfo chathead-root">
-
             </div>
+            <div class="chathead-no-chat-selected">Please select contact to start messaging</div>
         </header>
         <section class="chatdetail-messages chatdetail-messages-root">
             

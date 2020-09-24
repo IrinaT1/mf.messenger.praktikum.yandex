@@ -9,14 +9,12 @@ export const template = `
     </section>
     <main class="section-main">
         <header class="section-main-header">
-            <div class="chatdetail-chatinfo">
-                <h2 class="chatdetail-chatinfo-name chatdetail-name-root">
-                    {{chatdetailsName}}
-                </h2>
+            <div class="chatdetail-chatinfo chathead-root">
+
             </div>
         </header>
         <section class="chatdetail-messages chatdetail-messages-root">
-            {{chatdetailsMessages}}
+            
         </section>
         <form class="chatdetail-newmessage">
             <input type="text" class="chatdetail-newmessage-input" name="message" placeholder="Send something..."></input>
@@ -26,9 +24,3 @@ export const template = `
         </form>
     </main>
 `;
-
-
-
-// {{#each chats}}
-// {{chatItem}}
-// {{/each}}

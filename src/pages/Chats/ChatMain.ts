@@ -30,18 +30,26 @@ export class ChatMainPage extends Block {
     itemParts: ItemPart[] = [];
     headPart: HeadPart;
     messageParts: MessagePart[] = [];
+
+    messagesContainer: HTMLElement;
     newMessageInput: HTMLSelectElement;
 
     sendMessageSetup(): void {
+        this.messagesContainer = this.getContent().querySelector(".chatdetail-messages-root");
         let buttonSend = this.getContent().querySelector(".chatdetail-newmessage-send") as HTMLElement;
         this.newMessageInput = this.getContent().querySelector(".chatdetail-newmessage-input") as HTMLSelectElement;
+
         buttonSend.addEventListener('click', () => { this.sendMessage(); });
     }
 
     sendMessage(): void {
         let text = this.newMessageInput.value;
 
-        if (this.selectedChatInfo === null || this.selectedChatInfo === undefined ) {
+        const updateScroll = () => {
+            window.scrollTo(0, this.messagesContainer.offsetHeight);
+        }
+
+        if (this.selectedChatInfo === null || this.selectedChatInfo === undefined) {
             console.log("select chat first!");
         } else if (text.trim() === "") {
             console.log("message is empty!");
@@ -52,6 +60,7 @@ export class ChatMainPage extends Block {
             render(".chatdetail-messages-root", messageBlock);
 
             this.newMessageInput.value = "";
+            updateScroll();
         }
     }
 

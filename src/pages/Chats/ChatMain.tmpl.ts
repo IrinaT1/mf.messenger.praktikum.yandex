@@ -16,9 +16,9 @@ export const template = `
         <section class="chatdetail-messages chatdetail-messages-root">
             
         </section>
-        <form class="chatdetail-newmessage">
+        <form class="chatdetail-newmessage" onsubmit="return false;">
             <input type="text" class="chatdetail-newmessage-input" name="message" placeholder="Send something..."></input>
-            <button class="chatdetail-newmessage-send" type="button">
+            <button class="chatdetail-newmessage-send">
                 <i class="material-icons">send</i>
             </button>
         </form>

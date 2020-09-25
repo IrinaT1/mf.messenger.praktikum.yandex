@@ -1,6 +1,5 @@
 import { router } from './utils/Utils.js';
-import { TestPage, LoginPage, SignupPage, AccountPage } from './pages/Pages.js';
-import { ChatMainPage } from './pages/Chats/ChatMain.js';
+import { TestPage, LoginPage, SignupPage, AccountPage, ErrorPage404, ErrorPage500, ChatMainPage } from './pages/Pages.js';
 
 router
     .use("/", TestPage)
@@ -8,4 +7,6 @@ router
     .use("/#signup", SignupPage)
     .use("/#account", AccountPage)
     .use("/#chats", ChatMainPage)
+    .use("/#404", ErrorPage404)
+    .use("/#500", ErrorPage500)
     .start();

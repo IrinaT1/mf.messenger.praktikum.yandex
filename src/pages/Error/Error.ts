@@ -4,7 +4,7 @@ import { handlebars, handlebarsSafeString } from '../../utils/Handlebars';
 import { router } from '../../utils/Utils';
 import { template } from './Error.tmpl';
 
-class GenericErrorPage extends Block {
+export class GenericErrorPage extends Block {
 
     private static elements = {
         backLinkElement: new FormLink({
@@ -32,17 +32,5 @@ class GenericErrorPage extends Block {
             errorText: this.props.errorText,
             backLink: this.props.backLink
         });
-    }
-}
-
-export class ErrorPage404 extends GenericErrorPage {
-    constructor() {
-        super("This is not what you're looking for.");
-    }
-}
-
-export class ErrorPage500 extends GenericErrorPage {
-    constructor() {
-        super("Unexpected error.");
     }
 }

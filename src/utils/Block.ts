@@ -55,14 +55,14 @@ export class Block {
 
         let tagClassList = tagAttributes.classes;
         tagClassList.forEach(tagClass => {
-            if (tagClass !== undefined && tagClass !== "undefined" && tagClass !== "")
+            if (tagClass)
                 this._element.classList.add(tagClass);
         });
 
-        if (tagAttributes.type !== undefined && tagAttributes.type !== "") {
+        if (tagAttributes.type) {
             this._element.setAttribute('type', tagAttributes.type);
         }
-        if (tagAttributes.href !== undefined && tagAttributes.href !== "") {
+        if (tagAttributes.href) {
             this._element.setAttribute('href', tagAttributes.href);
         }
         this._element.setAttribute('id', id);

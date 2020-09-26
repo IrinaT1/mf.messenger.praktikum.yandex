@@ -49,7 +49,7 @@ export class ChatMainPage extends Block {
             window.scrollTo(0, this.messagesContainer.offsetHeight);
         }
 
-        if (this.selectedChatInfo === null || this.selectedChatInfo === undefined) {
+        if (!this.selectedChatInfo) {
             console.log("select chat first!");
         } else if (text.trim() === "") {
             console.log("message is empty!");
@@ -96,7 +96,7 @@ export class ChatMainPage extends Block {
     }
 
     drawHead(data: ChatInfo) {
-        if (this.headPart === undefined || this.headPart === null) {
+        if (!this.headPart) {
             this.headPart = new HeadPart(data);
             render(".chathead-root", this.headPart);
         } else {

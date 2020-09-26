@@ -55,7 +55,7 @@ export class HTTPTransport {
                 resolve(xhr);
             };
 
-            if (headers !== null && headers != undefined) {
+            if (headers) {
                 for (let header of Object.keys(headers)) {
                     xhr.setRequestHeader(header, headers[header]);
                 }

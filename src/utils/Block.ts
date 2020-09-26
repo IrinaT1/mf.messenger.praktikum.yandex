@@ -4,6 +4,12 @@ import { UniqueIdGenerator } from './UniqueIdGenerator';
 export type PropsValueType = string | number | boolean;
 export type PropsType = Record<string, PropsValueType>;
 
+type TagAttributePropsType = {
+    classes?: string[];
+    type?: string;
+    href?: string;
+}
+
 export class Block {
     static EVENTS = {
         INIT: "init",
@@ -18,7 +24,7 @@ export class Block {
     public props: PropsType;
     public eventBus: () => EventBus;
 
-    constructor(tagName: string = "div", props: PropsType = {}, tagAttributes: { classes?: string[], type?: string, href?: string } = { classes: [] }) {
+    constructor(tagName: string = "div", props: PropsType = {}, tagAttributes: TagAttributePropsType = { classes: [] }) {
         const eventBus = new EventBus();
         let id = UniqueIdGenerator.get();
         this._meta = {

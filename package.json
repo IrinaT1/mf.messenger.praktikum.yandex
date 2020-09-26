@@ -6,9 +6,12 @@
   "type": "module",
   "scripts": {
     "start": "npm install && npm run build && node server.js",
+    "startwin": "npm install && npm run buildwin && node server.js",
     "test": "env TS_NODE_PROJECT=\"tsconfig.testing.json\" mocha --require ts-node/register --require jsdom-global/register 'src/**/*.test.ts'",
     "copyindex": "cp src/index.html dist",
+    "copyindexwin": "copy src\\index.html dist",
     "build": "tsc && npm run scss && npm run fixext && npm run copyindex",
+    "buildwin": "tsc && npm run scss && npm run fixext && npm run copyindexwin",
     "scss": "node-sass src/style -o dist/style",
     "fixext": "node add-js-ext.js dist",
     "gitpush": "git push -u origin master && git checkout deploy && git merge master && git push -u origin deploy && git checkout master"

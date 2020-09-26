@@ -7,11 +7,11 @@ Brand new and beautiful messenger! Check it out.
 https://dreamy-agnesi-e676f7.netlify.app/
 
 
-To run the app execute "npm start".
+To run the app execute "npm start" (or "npm run startwin" for Windows)
 
 Or you can run the commands individually:
 Install dependencies: "npm install"
-Build files: "npm run build"
+Build files: "npm run build" / "npm run buildwin"
 Start server: "node server.js"
 
 

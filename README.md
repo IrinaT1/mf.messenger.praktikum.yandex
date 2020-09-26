@@ -7,5 +7,13 @@ Brand new and beautiful messenger! Check it out.
 https://dreamy-agnesi-e676f7.netlify.app/
 
 
+To run the app execute "npm start".
+
+Or you can run the commands individually:
+Install dependencies: "npm install"
+Build files: "npm run build"
+Start server: "node server.js"
+
+
 Team:
 Irina Tishchenko - CEO and developer.

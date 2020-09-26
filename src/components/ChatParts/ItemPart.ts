@@ -1,7 +1,7 @@
-import { Block } from "../../utils/Block.js";
-import { handlebars } from "../../utils/Handlebars.js";
-import { template } from './ItemPart.tmpl.js';
-import { ChatInfo } from "../../business/ChatInfo.js";
+import { Block } from '../../utils/Block';
+import { handlebars } from '../../utils/Handlebars';
+import { template } from './ItemPart.tmpl';
+import { ChatInfo } from '../../business/ChatInfo';
 
 export class ItemPart extends Block {
     constructor(public chatInfo: ChatInfo) {

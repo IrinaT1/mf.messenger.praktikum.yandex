@@ -1,6 +1,6 @@
-import { Block } from "../../utils/Block.js";
-import { handlebars } from "../../utils/Handlebars.js";
-import { template } from "./FormLink.tmpl.js";
+import { Block } from '../../utils/Block';
+import { handlebars } from '../../utils/Handlebars';
+import { template } from './FormLink.tmpl';
 
 export class FormLink extends Block {
     constructor(props: { className?: string, text: string, href?: string }) {

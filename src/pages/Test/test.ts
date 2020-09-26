@@ -1,4 +1,4 @@
-import { Block } from "../../utils/Block.js";
+import { Block } from '../../utils/Block';
 
 const template = `
 <div style="display: flex; flex-direction: column; margin: 50px; ">

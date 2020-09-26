@@ -1,5 +1,5 @@
-import { EventBus } from './EventBus.js';
-import { UniqueIdGenerator } from './UniqueIdGenerator.js';
+import { EventBus } from './EventBus';
+import { UniqueIdGenerator } from './UniqueIdGenerator';
 
 export type PropsValueType = string | number | boolean;
 export type PropsType = Record<string, PropsValueType>;

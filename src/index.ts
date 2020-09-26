@@ -1,5 +1,5 @@
-import { router } from './utils/Utils.js';
-import { TestPage, LoginPage, SignupPage, AccountPage, ErrorPage404, ErrorPage500, ChatMainPage } from './pages/Pages.js';
+import { router } from './utils/Utils';
+import { TestPage, LoginPage, SignupPage, AccountPage, ErrorPage404, ErrorPage500, ChatMainPage } from './pages/Pages';
 
 router
     .use("/", TestPage)

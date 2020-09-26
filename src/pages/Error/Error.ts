@@ -1,8 +1,8 @@
-import { FormLink } from "../../components/Components.js";
-import { Block } from "../../utils/Block.js";
-import { handlebars, handlebarsSafeString } from "../../utils/Handlebars.js";
-import { router } from "../../utils/Utils.js";
-import { template } from './Error.tmpl.js';
+import { FormLink } from '../../components/Components';
+import { Block } from '../../utils/Block';
+import { handlebars, handlebarsSafeString } from '../../utils/Handlebars';
+import { router } from '../../utils/Utils';
+import { template } from './Error.tmpl';
 
 class GenericErrorPage extends Block {
 

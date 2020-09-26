@@ -1,9 +1,9 @@
-import { FormInputText, FormButton, FormLink, FormInputEmail } from "../../components/Components.js";
-import { Block } from "../../utils/Block.js";
-import { FormValidation } from "../../utils/FormValidation.js";
-import { handlebars, handlebarsSafeString } from "../../utils/Handlebars.js";
-import { router } from "../../utils/Utils.js";
-import { template } from './Account.tmpl.js';
+import { FormInputText, FormButton, FormLink, FormInputEmail } from '../../components/Components';
+import { Block } from '../../utils/Block';
+import { FormValidation } from '../../utils/FormValidation';
+import { handlebars, handlebarsSafeString } from '../../utils/Handlebars';
+import { router } from '../../utils/Utils';
+import { template } from './Account.tmpl';
 
 let accountData = {
     display_name: "IrinaT",

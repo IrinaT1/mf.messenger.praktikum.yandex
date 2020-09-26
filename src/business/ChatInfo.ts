@@ -1,5 +1,5 @@
-import { ChatDetails, fakeChatDetails } from "./ChatDetails.js";
-import { Message } from "./Message.js";
+import { ChatDetails, fakeChatDetails } from './ChatDetails';
+import { Message } from './Message';
 
 export class ChatInfo {
 

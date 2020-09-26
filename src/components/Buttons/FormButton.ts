@@ -1,6 +1,6 @@
-import { Block } from "../../utils/Block.js";
-import { handlebars } from "../../utils/Handlebars.js";
-import { template } from "./FormButton.tmpl.js";
+import { Block } from '../../utils/Block';
+import { handlebars } from '../../utils/Handlebars';
+import { template } from './FormButton.tmpl';
 
 export class FormButton extends Block {
     constructor(props: { className?: string, text: string, isPrimary: boolean }) {

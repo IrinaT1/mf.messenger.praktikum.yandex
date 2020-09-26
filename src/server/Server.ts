@@ -1,4 +1,4 @@
-import { APIServer } from './APIServer.js';
+import { APIServer } from './APIServer';
 
 const APIServerInstance = new APIServer();
 

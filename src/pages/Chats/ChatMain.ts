@@ -1,11 +1,11 @@
-import { Block } from "../../utils/Block.js";
-import { template } from './ChatMain.tmpl.js';
-import { getAPIServer } from '../../server/Server.js';
-import { ItemPart, HeadPart, MessagePart } from "../../components/Components.js";
-import { render } from "../../utils/Render.js";
-import { ChatInfo } from "../../business/ChatInfo.js";
-import { ChatDetails } from "../../business/ChatDetails.js";
-import { Message } from "../../business/Message.js";
+import { Block } from '../../utils/Block';
+import { template } from './ChatMain.tmpl';
+import { getAPIServer } from '../../server/Server';
+import { ItemPart, HeadPart, MessagePart } from '../../components/Components';
+import { render } from '../../utils/Render';
+import { ChatInfo } from '../../business/ChatInfo';
+import { ChatDetails } from '../../business/ChatDetails';
+import { Message } from '../../business/Message';
 
 export class ChatMainPage extends Block {
     constructor() {

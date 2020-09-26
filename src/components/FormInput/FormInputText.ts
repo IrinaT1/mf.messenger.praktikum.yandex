@@ -1,6 +1,6 @@
-import { Block, PropsType } from "../../utils/Block.js";
-import { handlebars } from "../../utils/Handlebars.js";
-import { template } from "./FormInputText.tmpl.js";
+import { Block, PropsType } from '../../utils/Block';
+import { handlebars } from '../../utils/Handlebars';
+import { template } from './FormInputText.tmpl';
 
 export class FormInputText extends Block {
     constructor(props: { className?: string, name: string, value: string, required: boolean, label: string }) {

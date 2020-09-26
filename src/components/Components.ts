@@ -1,10 +1,10 @@
-import { FormInputText } from './FormInput/FormInputText.js';
-import { FormInputEmail } from './FormInput/FormInputEmail.js';
-import { FormInputPassword } from './FormInput/FormInputPassword.js';
-import { FormButton } from './Buttons/FormButton.js';
-import { FormLink } from './Buttons/FormLink.js';
-import { ItemPart } from './ChatParts/ItemPart.js';
-import { HeadPart } from './ChatParts/HeadPart.js';
-import { MessagePart } from './ChatParts/MessagePart.js';
+import { FormInputText } from './FormInput/FormInputText';
+import { FormInputEmail } from './FormInput/FormInputEmail';
+import { FormInputPassword } from './FormInput/FormInputPassword';
+import { FormButton } from './Buttons/FormButton';
+import { FormLink } from './Buttons/FormLink';
+import { ItemPart } from './ChatParts/ItemPart';
+import { HeadPart } from './ChatParts/HeadPart';
+import { MessagePart } from './ChatParts/MessagePart';
 
 export { FormInputText, FormInputEmail, FormInputPassword, FormButton, FormLink, ItemPart, HeadPart, MessagePart };

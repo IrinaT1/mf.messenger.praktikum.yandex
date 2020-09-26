@@ -1,9 +1,7 @@
-import { textChangeRangeIsUnchanged } from "typescript";
-import { ChatDetails } from "../../business/ChatDetails.js";
-import { Message } from "../../business/Message.js";
-import { Block } from "../../utils/Block.js";
-import { handlebars } from "../../utils/Handlebars.js";
-import { template } from './MessagePart.tmpl.js';
+import { Message } from '../../business/Message';
+import { Block } from '../../utils/Block';
+import { handlebars } from '../../utils/Handlebars';
+import { template } from './MessagePart.tmpl';
 
 export class MessagePart extends Block {
     constructor(message: Message) {

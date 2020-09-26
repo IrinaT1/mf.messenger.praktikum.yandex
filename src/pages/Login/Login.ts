@@ -1,9 +1,9 @@
-import { FormInputText, FormInputPassword, FormButton, FormLink } from "../../components/Components.js";
-import { Block } from "../../utils/Block.js";
-import { FormValidation } from "../../utils/FormValidation.js";
-import { handlebars, handlebarsSafeString } from "../../utils/Handlebars.js";
-import { router } from "../../utils/Utils.js";
-import { template } from './Login.tmpl.js';
+import { FormInputText, FormInputPassword, FormButton, FormLink } from '../../components/Components';
+import { Block } from '../../utils/Block';
+import { FormValidation } from '../../utils/FormValidation';
+import { handlebars, handlebarsSafeString } from '../../utils/Handlebars';
+import { router } from '../../utils/Utils';
+import { template } from './Login.tmpl';
 
 export class LoginPage extends Block {
     constructor() {

@@ -1,7 +1,7 @@
-import { ChatInfo } from "../../business/ChatInfo.js";
-import { Block } from "../../utils/Block.js";
-import { handlebars } from "../../utils/Handlebars.js";
-import { template } from './HeadPart.tmpl.js';
+import { ChatInfo } from '../../business/ChatInfo';
+import { Block } from '../../utils/Block';
+import { handlebars } from '../../utils/Handlebars';
+import { template } from './HeadPart.tmpl';
 
 
 export class HeadPart extends Block {

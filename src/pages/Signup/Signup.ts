@@ -1,8 +1,8 @@
-import { FormInputText, FormInputPassword, FormButton, FormLink, FormInputEmail } from "../../components/Components.js";
-import { Block } from "../../utils/Block.js";
-import { FormValidation } from "../../utils/FormValidation.js";
-import { handlebars, handlebarsSafeString } from "../../utils/Handlebars.js";
-import { template } from './Signup.tmpl.js';
+import { FormInputText, FormInputPassword, FormButton, FormLink, FormInputEmail } from '../../components/Components';
+import { Block } from '../../utils/Block';
+import { FormValidation } from '../../utils/FormValidation';
+import { handlebars, handlebarsSafeString } from '../../utils/Handlebars';
+import { template } from './Signup.tmpl';
 
 let signupData = {
     email: "",

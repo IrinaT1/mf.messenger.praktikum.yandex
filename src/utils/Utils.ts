@@ -1,3 +1,3 @@
-import { Router } from './Router.js';
+import { Router } from './Router';
 
 export let router = new Router(".app");

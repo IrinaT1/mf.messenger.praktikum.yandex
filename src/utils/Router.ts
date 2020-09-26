@@ -1,9 +1,8 @@
-import { formatDiagnostic } from "typescript";
-import { Route } from "./Route.js";
+import { Route } from './Route';
 
 export class Router {
   private static __instance: Router;
-  private routes: Route[];
+  public routes: Route[];
   private history: History;
   private _currentRoute: Route;
   private _rootQuery: string;

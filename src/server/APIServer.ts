@@ -1,4 +1,4 @@
-import { ChatInfo } from "../business/ChatInfo.js";
+import { ChatInfo } from '../business/ChatInfo';
 
 export class APIServer {
 

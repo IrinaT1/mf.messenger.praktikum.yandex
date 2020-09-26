@@ -1,4 +1,4 @@
-import { ChatDetails, fakeChatDetails } from './ChatDetails';
+import { ChatDetails, fakeChatDetails1, fakeChatDetails2 } from './ChatDetails';
 import { Message } from './Message';
 
 export class ChatInfo {
@@ -18,7 +18,11 @@ export class ChatInfo {
     details(): Promise<ChatDetails> {
         return new Promise((resolve) => {
             console.log("Chat details() not yet implemented, returning fake data");
-            resolve(fakeChatDetails);
+            if (this.display_name === "Vasya") {
+                resolve(fakeChatDetails1);
+            } else {
+                resolve(fakeChatDetails2);
+            }
         });
     }
 }
@@ -38,5 +42,3 @@ let fakeChatInfoJson = `
     }
 }
 `;
-
-export let fakeChatInfo = new ChatInfo(JSON.parse(fakeChatInfoJson));

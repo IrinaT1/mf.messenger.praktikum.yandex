@@ -13,6 +13,7 @@ interface Options {
     data?: Record<string, any>;
 }
 
+//This class will be used later in the next sprint for API calls implementation
 export class HTTPTransport {
 
     METHODS = {

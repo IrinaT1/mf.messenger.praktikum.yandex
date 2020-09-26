@@ -7,6 +7,7 @@ export class Router {
   private _currentRoute: Route;
   private _rootQuery: string;
 
+  // TODO: refactor singleton
   constructor(rootQuery: string) {
     if (Router.__instance) {
       return Router.__instance;

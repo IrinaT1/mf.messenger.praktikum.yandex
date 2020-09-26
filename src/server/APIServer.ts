@@ -16,6 +16,8 @@ export class APIServer {
     }
 }
 
+//Эти данные лучше вынести отдельно в константы
+
 const fakeChatsResponse = `
 {
     "chats": [{

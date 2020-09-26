@@ -22,10 +22,9 @@ export class Block {
     private _meta = null;
 
     public props: PropsType;
-    public eventBus: () => EventBus;
+    public eventBus: EventBus;
 
     constructor(tagName: string = "div", props: PropsType = {}, tagAttributes: TagAttributePropsType = { classes: [] }) {
-        const eventBus = new EventBus();
         let id = UniqueIdGenerator.get();
         this._meta = {
             tagName,
@@ -36,10 +35,10 @@ export class Block {
 
         this.props = this._makePropsProxy(props);
 
-        this.eventBus = () => eventBus;
+        this.eventBus = new EventBus();
 
-        this._registerEvents(eventBus);
-        eventBus.emit(Block.EVENTS.INIT);
+        this._registerEvents(this.eventBus);
+        this.eventBus.emit(Block.EVENTS.INIT);
     }
 
     _registerEvents(eventBus: EventBus): void {
@@ -74,15 +73,15 @@ export class Block {
 
     init(): void {
         this._createResources();
-        this.eventBus().emit(Block.EVENTS.FLOW_CDM);
+        this.eventBus.emit(Block.EVENTS.FLOW_CDM);
     }
 
     _componentDidMount(): void {
         this.componentDidMount();
-        this.eventBus().emit(Block.EVENTS.FLOW_RENDER);
+        this.eventBus.emit(Block.EVENTS.FLOW_RENDER);
     }
 
-    // Может переопределять пользователь, необязательно трогать
+    // Может переопределять пользователь
     componentDidMount(): void { }
 
     _componentDidUpdate(): void {
@@ -90,11 +89,11 @@ export class Block {
 
         if (response) {
             this._render();
-            this.eventBus().emit(Block.EVENTS.FLOW_RENDER);
+            this.eventBus.emit(Block.EVENTS.FLOW_RENDER);
         }
     }
 
-    // Может переопределять пользователь, необязательно трогать
+    // Может переопределять пользователь
     componentDidUpdate(): boolean {
         return true;
     }
@@ -104,7 +103,6 @@ export class Block {
             return;
         }
         Object.assign(this.props, nextProps);
-        // this.eventBus().emit(Block.EVENTS.FLOW_CDU, this.props, nextProps);
     };
 
     get element() {
@@ -113,17 +111,13 @@ export class Block {
 
     _render(): void {
         const block = this.render();
-        // Этот небезопасный метод для упрощения логики
-        // Используйте шаблонизатор из npm или напиши свой безопасный
-        // Нужно не в строку компилировать (или делать это правильно),
-        // либо сразу в DOM-элементы превращать из возвращать из compile DOM-ноду
         this._element.innerHTML = block;
     }
 
     componentRendered(): void {
     }
 
-    // Может переопределять пользователь, необязательно трогать
+    // Может переопределять пользователь
     render(): string {
         return 'Please provide render data';
     };
@@ -144,7 +138,7 @@ export class Block {
 
             set: (target: PropsType, prop: string, val: PropsValueType): boolean => {
                 target[prop] = val;
-                this.eventBus().emit(Block.EVENTS.FLOW_CDU, { ...target }, target);
+                this.eventBus.emit(Block.EVENTS.FLOW_CDU, { ...target }, target);
                 return true;
             },
 
@@ -157,12 +151,10 @@ export class Block {
     }
 
     _createDocumentElement(tagName: string): HTMLElement {
-        // Можно сделать метод, который через фрагменты в цикле создает сразу несколько блоков
         return document.createElement(tagName);
     }
 
     show() {
-        // this.getContent().style.display = "block";
         this.getContent().removeAttribute("style");
     }
 

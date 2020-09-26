@@ -6,14 +6,16 @@ import { template } from './Error.tmpl';
 
 class GenericErrorPage extends Block {
 
-    constructor(errorText: string, private elements = {
+    private static elements = {
         backLinkElement: new FormLink({
             text: "Back to Chats",
         })
-    }) {
+    }
+
+    constructor(errorText: string) {
         super("div", {
             errorText: errorText,
-            backLink: handlebarsSafeString(elements.backLinkElement.getContentAsText())
+            backLink: handlebarsSafeString(GenericErrorPage.elements.backLinkElement.getContentAsText())
         }, { classes: ["error-wrapper"] });
     }
 
@@ -21,7 +23,7 @@ class GenericErrorPage extends Block {
         const goBack = () => {
             router.go("#chats");
         }
-        document.getElementById(this.elements.backLinkElement.id()).addEventListener('click', goBack);
+        document.getElementById(GenericErrorPage.elements.backLinkElement.id()).addEventListener('click', goBack);
     }
 
     render() {

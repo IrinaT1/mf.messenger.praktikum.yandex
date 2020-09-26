@@ -2,40 +2,40 @@ import { FormInputText, FormInputPassword, FormButton, FormLink } from '../../co
 import { Block } from '../../utils/Block';
 import { FormValidation } from '../../utils/FormValidation';
 import { handlebars, handlebarsSafeString } from '../../utils/Handlebars';
-import { router } from '../../utils/Utils';
 import { template } from './Login.tmpl';
 
 export class LoginPage extends Block {
+    
+    private static usernameInput: string = handlebarsSafeString(new FormInputText({
+        name: "login",
+        value: "",
+        required: true,
+        label: "Username"
+    }).getContentAsText());
+
+    private static passwordInput: string = handlebarsSafeString(new FormInputPassword({
+        name: "password",
+        value: "",
+        label: "Password"
+    }).getContentAsText());
+
+    private static loginButton: string = handlebarsSafeString(new FormButton({
+        text: "Log In",
+        isPrimary: true
+    }).getContentAsText());
+
+    private static signupLink: string = handlebarsSafeString(new FormLink({
+        className: "signupLink",
+        text: "Need an account? Sign Up",
+        href: "#signup"
+    }).getContentAsText());
+
     constructor() {
-        let usernameInput: string = handlebarsSafeString(new FormInputText({
-            name: "login",
-            value: "",
-            required: true,
-            label: "Username"
-        }).getContentAsText());
-
-        let passwordInput: string = handlebarsSafeString(new FormInputPassword({
-            name: "password",
-            value: "",
-            label: "Password"
-        }).getContentAsText());
-
-        let loginButton: string = handlebarsSafeString(new FormButton({
-            text: "Log In",
-            isPrimary: true
-        }).getContentAsText());
-
-        let signupLink: string = handlebarsSafeString(new FormLink({
-            className: "signupLink",
-            text: "Need an account? Sign Up",
-            href: "#signup"
-        }).getContentAsText());
-
         super("div", {
-            usernameInput: usernameInput,
-            passwordInput: passwordInput,
-            loginButton: loginButton,
-            signupLink: signupLink,
+            usernameInput: LoginPage.usernameInput,
+            passwordInput: LoginPage.passwordInput,
+            loginButton: LoginPage.loginButton,
+            signupLink: LoginPage.signupLink,
         }, { classes: ["dialog-wrapper"] });
     }
 

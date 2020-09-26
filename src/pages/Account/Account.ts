@@ -12,9 +12,11 @@ let accountData = {
     avatar: "https://picsum.photos/300"
 };
 
+
+
 export class AccountPage extends Block {
 
-    constructor(private elements = {
+    private static elements = {
         displayNameInputElement: new FormInputText({
             name: "display_name",
             value: accountData.display_name,
@@ -39,15 +41,17 @@ export class AccountPage extends Block {
         backLinkElement: new FormLink({
             text: "Back to Chats",
         })
-    }) {
+    }
+
+    constructor() {
         super("div", {
             display_name: accountData.display_name,
             avatarURL: accountData.avatar,
-            displayNameInput: handlebarsSafeString(elements.displayNameInputElement.getContentAsText()),
-            usernameInput: handlebarsSafeString(elements.usernameInputElement.getContentAsText()),
-            emailInput: handlebarsSafeString(elements.emailInputElement.getContentAsText()),
-            saveButton: handlebarsSafeString(elements.saveButtonElement.getContentAsText()),
-            backLink: handlebarsSafeString(elements.backLinkElement.getContentAsText())
+            displayNameInput: handlebarsSafeString(AccountPage.elements.displayNameInputElement.getContentAsText()),
+            usernameInput: handlebarsSafeString(AccountPage.elements.usernameInputElement.getContentAsText()),
+            emailInput: handlebarsSafeString(AccountPage.elements.emailInputElement.getContentAsText()),
+            saveButton: handlebarsSafeString(AccountPage.elements.saveButtonElement.getContentAsText()),
+            backLink: handlebarsSafeString(AccountPage.elements.backLinkElement.getContentAsText())
         }, { classes: ["dialog-wrapper"] });
     }
 
@@ -73,7 +77,7 @@ export class AccountPage extends Block {
         const goBack = () => {
             router.go("#chats");
         }
-        document.getElementById(this.elements.backLinkElement.id()).addEventListener('click', goBack);
+        document.getElementById(AccountPage.elements.backLinkElement.id()).addEventListener('click', goBack);
     }
 
     clearData() {

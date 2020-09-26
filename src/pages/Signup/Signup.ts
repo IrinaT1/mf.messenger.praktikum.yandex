@@ -13,57 +13,57 @@ let signupData = {
 };
 
 export class SignupPage extends Block {
+    private static emailInput: string = handlebarsSafeString(new FormInputEmail({
+        name: "email",
+        value: signupData.email,
+        label: "Email"
+    }).getContentAsText());
+
+    private static usernameInput: string = handlebarsSafeString(new FormInputText({
+        name: "login",
+        value: signupData.login,
+        required: true,
+        label: "Username"
+    }).getContentAsText());
+
+    private static displayNameInput: string = handlebarsSafeString(new FormInputText({
+        name: "display_name",
+        value: signupData.display_name,
+        required: true,
+        label: "Display name"
+    }).getContentAsText());
+
+    private static passwordInput: string = handlebarsSafeString(new FormInputPassword({
+        name: "password",
+        value: signupData.password,
+        label: "Password"
+    }).getContentAsText());
+
+    private static verifyPasswordInput: string = handlebarsSafeString(new FormInputPassword({
+        name: "verify_password",
+        value: signupData.verify_password,
+        label: "Re-enter password"
+    }).getContentAsText());
+
+    private static saveButton: string = handlebarsSafeString(new FormButton({
+        text: "Save",
+        isPrimary: true
+    }).getContentAsText());
+
+    private static loginLink: string = handlebarsSafeString(new FormLink({
+        text: "Already have an account? Log In",
+        href: "#login"
+    }).getContentAsText());
+
     constructor() {
-        let emailInput: string = handlebarsSafeString(new FormInputEmail({
-            name: "email",
-            value: signupData.email,
-            label: "Email"
-        }).getContentAsText());
-
-        let usernameInput: string = handlebarsSafeString(new FormInputText({
-            name: "login",
-            value: signupData.login,
-            required: true,
-            label: "Username"
-        }).getContentAsText());
-
-        let displayNameInput: string = handlebarsSafeString(new FormInputText({
-            name: "display_name",
-            value: signupData.display_name,
-            required: true,
-            label: "Display name"
-        }).getContentAsText());
-
-        let passwordInput: string = handlebarsSafeString(new FormInputPassword({
-            name: "password",
-            value: signupData.password,
-            label: "Password"
-        }).getContentAsText());
-
-        let verifyPasswordInput: string = handlebarsSafeString(new FormInputPassword({
-            name: "verify_password",
-            value: signupData.verify_password,
-            label: "Re-enter password"
-        }).getContentAsText());
-
-        let saveButton: string = handlebarsSafeString(new FormButton({
-            text: "Save",
-            isPrimary: true
-        }).getContentAsText());
-
-        let loginLink: string = handlebarsSafeString(new FormLink({
-            text: "Already have an account? Log In",
-            href: "#login"
-        }).getContentAsText());
-
         super("div", {
-            emailInput: emailInput,
-            usernameInput: usernameInput,
-            displayNameInput: displayNameInput,
-            passwordInput: passwordInput,
-            verifyPasswordInput: verifyPasswordInput,
-            saveButton: saveButton,
-            loginLink: loginLink
+            emailInput: SignupPage.emailInput,
+            usernameInput: SignupPage.usernameInput,
+            displayNameInput: SignupPage.displayNameInput,
+            passwordInput: SignupPage.passwordInput,
+            verifyPasswordInput: SignupPage.verifyPasswordInput,
+            saveButton: SignupPage.saveButton,
+            loginLink: SignupPage.loginLink
         }, { classes: ["dialog-wrapper"] });
     }
 

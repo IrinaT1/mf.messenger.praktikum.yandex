@@ -27,10 +27,16 @@ function fromDir(startPath, filter, callback) {
 
 function addDotJsToLocalImports(filename) {
     const buf = fs.readFileSync(filename);
-    const replaced = buf.toString().replace(/(import .* from\s+['"])(?!.*\.js['"])(\..*?)(?=['"])/g, '$1$2.js');
-    if (replaced !== buf.toString()) {
-        fs.writeFileSync(filename, replaced);
+
+    const replacedImport = buf.toString().replace(/(import .* from\s+['"])(?!.*\.js['"])(\..*?)(?=['"])/g, '$1$2.js');
+    if (replacedImport !== buf.toString()) {
+        fs.writeFileSync(filename, replacedImport);
         console.log('fixed imports at ' + filename);
+    }
+    const replacedExport = buf.toString().replace(/(export .* from\s+['"])(?!.*\.js['"])(\..*?)(?=['"])/g, '$1$2.js');
+    if (replacedExport !== buf.toString()) {
+        fs.writeFileSync(filename, replacedExport);
+        console.log('fixed exports at ' + filename);
     }
 }
 

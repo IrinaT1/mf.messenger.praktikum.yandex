@@ -1,4 +1,5 @@
-import { ChatDetails, fakeChatDetails1, fakeChatDetails2 } from './ChatDetails';
+import { ChatDetails } from './ChatDetails';
+import { fakeChatDetails1, fakeChatDetails2 } from './ChatDetails.mock'
 import { Message } from './Message';
 
 export class ChatInfo {
@@ -26,19 +27,3 @@ export class ChatInfo {
         });
     }
 }
-
-let fakeChatInfoJson = `
-{
-    "user_id": "123",
-    "display_name": "Vasya",
-    "login": "vasya123",
-    "avatar": "https://picsum.photos/100",
-    "last_message": {
-        "incoming": true,
-        "text": "Hi this is last message from Vasya!",
-        "url": "",
-        "timestamp": 1327611110417,
-        "datetime_text": "8:30 am"
-    }
-}
-`;

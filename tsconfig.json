@@ -8,7 +8,7 @@
     "experimentalDecorators": true,
     "allowJs": false,
     "lib": ["es2016", "dom"],
-    "outDir": "public/dist/"
+    "outDir": "dist/"
   },
   "include": ["src/**/*"],
   "exclude": ["src/**/*.test.ts"]

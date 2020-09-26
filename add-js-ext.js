@@ -15,10 +15,10 @@ function fromDir(startPath, filter, callback) {
         return;
     }
 
-    var files = fs.readdirSync(startPath);
-    for (var i = 0; i < files.length; i++) {
-        var filename = path.join(startPath, files[i]);
-        var stat = fs.lstatSync(filename);
+    const files = fs.readdirSync(startPath);
+    for (let i = 0; i < files.length; i++) {
+        const filename = path.join(startPath, files[i]);
+        const stat = fs.lstatSync(filename);
         if (stat.isDirectory()) {
             fromDir(filename, filter, callback); //recurse
         } else if (filter.test(filename)) callback(filename);
@@ -26,8 +26,8 @@ function fromDir(startPath, filter, callback) {
 }
 
 function addDotJsToLocalImports(filename) {
-    var buf = fs.readFileSync(filename);
-    let replaced = buf.toString().replace(/(import .* from\s+['"])(?!.*\.js['"])(\..*?)(?=['"])/g, '$1$2.js');
+    const buf = fs.readFileSync(filename);
+    const replaced = buf.toString().replace(/(import .* from\s+['"])(?!.*\.js['"])(\..*?)(?=['"])/g, '$1$2.js');
     if (replaced !== buf.toString()) {
         fs.writeFileSync(filename, replaced);
         console.log('fixed imports at ' + filename);

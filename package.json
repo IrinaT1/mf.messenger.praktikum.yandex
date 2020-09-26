@@ -5,6 +5,7 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
+    "start": "npm install && npm run build && node server.js",
     "test": "env TS_NODE_PROJECT=\"tsconfig.testing.json\" mocha --require ts-node/register --require jsdom-global/register 'src/**/*.test.ts'",
     "build": "tsc && npm run scss && npm run fixext",
     "scss": "node-sass src/style -o public/dist/style",
@@ -27,9 +28,11 @@
     "@types/mocha": "^7.0.2",
     "@types/node": "14.0.11",
     "chai": "^4.2.0",
+    "chai-http": "^4.3.0",
     "jsdom": "16.4.0",
     "jsdom-global": "3.0.2",
     "mocha": "^7.2.0",
+    "nock": "^13.0.4",
     "node-sass": "^4.14.1",
     "nyc": "^15.1.0",
     "ts-node": "^9.0.0",
@@ -37,5 +40,16 @@
   },
   "dependencies": {
     "express": "4.17.1"
+  },
+  "jest": {
+    "transform": {
+      ".(ts|tsx)": "<rootDir>/node_modules/ts-jest/preprocessor.js"
+    },
+    "testRegex": "(/__tests__/.*|\\.(test|spec))\\.(ts|tsx|js)$",
+    "moduleFileExtensions": [
+      "ts",
+      "tsx",
+      "js"
+    ]
   }
 }

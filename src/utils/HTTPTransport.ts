@@ -55,9 +55,12 @@ export class HTTPTransport {
                 resolve(xhr);
             };
 
-            for (let header of Object.keys(headers)) {
-                xhr.setRequestHeader(header, headers[header]);
+            if (headers !== null && headers != undefined) {
+                for (let header of Object.keys(headers)) {
+                    xhr.setRequestHeader(header, headers[header]);
+                }
             }
+
             xhr.timeout = timeout;
 
             xhr.onabort = reject;

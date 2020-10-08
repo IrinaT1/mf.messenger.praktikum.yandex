@@ -1,6 +1,5 @@
 import { Block, PropsType } from '../../utils/Block';
-import { handlebars } from '../../utils/Handlebars';
-import { template } from './FormInputText.tmpl';
+let template = require('./FormInputText.handlebars');
 
 type FormInputTextPropsType = {
     className?: string;
@@ -22,7 +21,6 @@ export class FormInputText extends Block {
     }
 
     render() {
-        const tmpl = handlebars().compile(template);
-        return tmpl(this.props);
+        return template(this.props);
     }
 }

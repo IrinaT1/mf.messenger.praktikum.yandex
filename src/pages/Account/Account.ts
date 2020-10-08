@@ -1,9 +1,8 @@
 import { FormInputText, FormButton, FormLink, FormInputEmail } from '../../components/Components';
 import { Block } from '../../utils/Block';
 import { FormValidation } from '../../utils/FormValidation';
-import { handlebars, handlebarsSafeString } from '../../utils/Handlebars';
 import { router } from '../../utils/Utils';
-import { template } from './Account.tmpl';
+let template = require('./Account.handlebars');
 
 let accountData = {
     display_name: "IrinaT",
@@ -11,8 +10,6 @@ let accountData = {
     email: "irin.tishchenko@gmail.com",
     avatar: "https://picsum.photos/300"
 };
-
-
 
 export class AccountPage extends Block {
 
@@ -47,11 +44,11 @@ export class AccountPage extends Block {
         super("div", {
             display_name: accountData.display_name,
             avatarURL: accountData.avatar,
-            displayNameInput: handlebarsSafeString(AccountPage.elements.displayNameInputElement.getContentAsText()),
-            usernameInput: handlebarsSafeString(AccountPage.elements.usernameInputElement.getContentAsText()),
-            emailInput: handlebarsSafeString(AccountPage.elements.emailInputElement.getContentAsText()),
-            saveButton: handlebarsSafeString(AccountPage.elements.saveButtonElement.getContentAsText()),
-            backLink: handlebarsSafeString(AccountPage.elements.backLinkElement.getContentAsText())
+            displayNameInput: AccountPage.elements.displayNameInputElement.getContentAsText(),
+            usernameInput: AccountPage.elements.usernameInputElement.getContentAsText(),
+            emailInput: AccountPage.elements.emailInputElement.getContentAsText(),
+            saveButton: AccountPage.elements.saveButtonElement.getContentAsText(),
+            backLink: AccountPage.elements.backLinkElement.getContentAsText()
         }, { classes: ["dialog-wrapper"] });
     }
 
@@ -85,8 +82,7 @@ export class AccountPage extends Block {
     }
 
     render() {
-        const tmpl = handlebars().compile(template);
-        return tmpl({
+        return template({
             display_name: this.props.display_name,
             avatarURL: this.props.avatarURL,
             displayNameInput: this.props.displayNameInput,

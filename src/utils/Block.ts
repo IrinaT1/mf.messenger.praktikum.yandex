@@ -112,6 +112,7 @@ export class Block {
     _render(): void {
         const block = this.render();
         this._element.innerHTML = block;
+        // this._element.insertAdjacentHTML('afterbegin', block);
     }
 
     componentRendered(): void {

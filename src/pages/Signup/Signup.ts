@@ -1,8 +1,7 @@
 import { FormInputText, FormInputPassword, FormButton, FormLink, FormInputEmail } from '../../components/Components';
 import { Block } from '../../utils/Block';
 import { FormValidation } from '../../utils/FormValidation';
-import { handlebars, handlebarsSafeString } from '../../utils/Handlebars';
-import { template } from './Signup.tmpl';
+let template = require('./Signup.handlebars');
 
 let signupData = {
     email: "",
@@ -13,47 +12,47 @@ let signupData = {
 };
 
 export class SignupPage extends Block {
-    private static emailInput: string = handlebarsSafeString(new FormInputEmail({
+    private static emailInput: string = new FormInputEmail({
         name: "email",
         value: signupData.email,
         label: "Email"
-    }).getContentAsText());
+    }).getContentAsText();
 
-    private static usernameInput: string = handlebarsSafeString(new FormInputText({
+    private static usernameInput: string = new FormInputText({
         name: "login",
         value: signupData.login,
         required: true,
         label: "Username"
-    }).getContentAsText());
+    }).getContentAsText();
 
-    private static displayNameInput: string = handlebarsSafeString(new FormInputText({
+    private static displayNameInput: string = new FormInputText({
         name: "display_name",
         value: signupData.display_name,
         required: true,
         label: "Display name"
-    }).getContentAsText());
+    }).getContentAsText();
 
-    private static passwordInput: string = handlebarsSafeString(new FormInputPassword({
+    private static passwordInput: string = new FormInputPassword({
         name: "password",
         value: signupData.password,
         label: "Password"
-    }).getContentAsText());
+    }).getContentAsText();
 
-    private static verifyPasswordInput: string = handlebarsSafeString(new FormInputPassword({
+    private static verifyPasswordInput: string = new FormInputPassword({
         name: "verify_password",
         value: signupData.verify_password,
         label: "Re-enter password"
-    }).getContentAsText());
+    }).getContentAsText();
 
-    private static saveButton: string = handlebarsSafeString(new FormButton({
+    private static saveButton: string = new FormButton({
         text: "Save",
         isPrimary: true
-    }).getContentAsText());
+    }).getContentAsText();
 
-    private static loginLink: string = handlebarsSafeString(new FormLink({
+    private static loginLink: string = new FormLink({
         text: "Already have an account? Log In",
         href: "#login"
-    }).getContentAsText());
+    }).getContentAsText();
 
     constructor() {
         super("div", {
@@ -95,8 +94,7 @@ export class SignupPage extends Block {
     }
 
     render() {
-        const tmpl = handlebars().compile(template);
-        return tmpl({
+        return template({
             emailInput: this.props.emailInput,
             usernameInput: this.props.usernameInput,
             displayNameInput: this.props.displayNameInput,

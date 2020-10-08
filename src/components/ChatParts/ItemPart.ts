@@ -1,7 +1,6 @@
 import { Block } from '../../utils/Block';
-import { handlebars } from '../../utils/Handlebars';
-import { template } from './ItemPart.tmpl';
 import { ChatInfo } from '../../business/ChatInfo';
+let template = require('./ItemPart.handlebars');
 
 export class ItemPart extends Block {
     constructor(public chatInfo: ChatInfo) {
@@ -14,8 +13,7 @@ export class ItemPart extends Block {
     }
 
     render() {
-        const tmpl = handlebars().compile(template);
-        return tmpl({
+        return template({
             avatarURL: this.props.avatarURL,
             display_name: this.props.display_name,
             last_message: this.props.last_message,

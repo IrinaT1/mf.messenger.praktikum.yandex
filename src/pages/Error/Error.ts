@@ -1,8 +1,7 @@
 import { FormLink } from '../../components/Components';
 import { Block } from '../../utils/Block';
-import { handlebars, handlebarsSafeString } from '../../utils/Handlebars';
 import { router } from '../../utils/Utils';
-import { template } from './Error.tmpl';
+let template = require('./Error.handlebars');
 
 export class GenericErrorPage extends Block {
 
@@ -15,7 +14,7 @@ export class GenericErrorPage extends Block {
     constructor(errorText: string) {
         super("div", {
             errorText: errorText,
-            backLink: handlebarsSafeString(GenericErrorPage.elements.backLinkElement.getContentAsText())
+            backLink: GenericErrorPage.elements.backLinkElement.getContentAsText()
         }, { classes: ["error-wrapper"] });
     }
 
@@ -27,8 +26,7 @@ export class GenericErrorPage extends Block {
     }
 
     render() {
-        const tmpl = handlebars().compile(template);
-        return tmpl({
+        return template({
             errorText: this.props.errorText,
             backLink: this.props.backLink
         });

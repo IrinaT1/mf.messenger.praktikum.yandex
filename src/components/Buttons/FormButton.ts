@@ -1,6 +1,5 @@
 import { Block } from '../../utils/Block';
-import { handlebars } from '../../utils/Handlebars';
-import { template } from './FormButton.tmpl';
+var template = require("./FormButton.handlebars");
 
 type FormButtonPropsType = {
     className?: string;
@@ -16,7 +15,6 @@ export class FormButton extends Block {
     }
 
     render() {
-        const tmpl = handlebars().compile(template);
-        return tmpl(this.props);
+        return template(this.props);
     }
 }

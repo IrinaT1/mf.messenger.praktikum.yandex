@@ -1,7 +1,6 @@
 import { Message } from '../../business/Message';
 import { Block } from '../../utils/Block';
-import { handlebars } from '../../utils/Handlebars';
-import { template } from './MessagePart.tmpl';
+let template = require('./MessagePart.handlebars');
 
 export class MessagePart extends Block {
     constructor(message: Message) {
@@ -13,8 +12,7 @@ export class MessagePart extends Block {
     }
 
     render() {
-        const tmpl = handlebars().compile(template);
-        return tmpl({
+        return template({
             url: this.props.url,
             text: this.props.text,
             datetime_text: this.props.datetime_text

@@ -1,34 +1,33 @@
 import { FormInputText, FormInputPassword, FormButton, FormLink } from '../../components/Components';
 import { Block } from '../../utils/Block';
 import { FormValidation } from '../../utils/FormValidation';
-import { handlebars, handlebarsSafeString } from '../../utils/Handlebars';
-import { template } from './Login.tmpl';
+let template = require('./Login.handlebars');
 
 export class LoginPage extends Block {
     
-    private static usernameInput: string = handlebarsSafeString(new FormInputText({
+    private static usernameInput: string = new FormInputText({
         name: "login",
         value: "",
         required: true,
         label: "Username"
-    }).getContentAsText());
+    }).getContentAsText();
 
-    private static passwordInput: string = handlebarsSafeString(new FormInputPassword({
+    private static passwordInput: string = new FormInputPassword({
         name: "password",
         value: "",
         label: "Password"
-    }).getContentAsText());
+    }).getContentAsText();
 
-    private static loginButton: string = handlebarsSafeString(new FormButton({
+    private static loginButton: string = new FormButton({
         text: "Log In",
         isPrimary: true
-    }).getContentAsText());
+    }).getContentAsText();
 
-    private static signupLink: string = handlebarsSafeString(new FormLink({
+    private static signupLink: string = new FormLink({
         className: "signupLink",
         text: "Need an account? Sign Up",
         href: "#signup"
-    }).getContentAsText());
+    }).getContentAsText();
 
     constructor() {
         super("div", {
@@ -63,8 +62,7 @@ export class LoginPage extends Block {
         this.formValidation.discardChanges();
     }
     render() {
-        const tmpl = handlebars().compile(template);
-        return tmpl({
+        return template({
             usernameInput: this.props.usernameInput,
             passwordInput: this.props.passwordInput,
             loginButton: this.props.loginButton,

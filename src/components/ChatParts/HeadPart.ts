@@ -1,8 +1,6 @@
 import { ChatInfo } from '../../business/ChatInfo';
 import { Block } from '../../utils/Block';
-import { handlebars } from '../../utils/Handlebars';
-import { template } from './HeadPart.tmpl';
-
+let template = require('./HeadPart.handlebars');
 
 export class HeadPart extends Block {
     constructor(chatInfo: ChatInfo) {
@@ -12,8 +10,7 @@ export class HeadPart extends Block {
     }
 
     render() {
-        const tmpl = handlebars().compile(template);
-        return tmpl({
+        return template({
             name: this.props.name
         });
     }

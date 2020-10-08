@@ -1,6 +1,5 @@
 import { Block } from '../../utils/Block';
-import { handlebars } from '../../utils/Handlebars';
-import { template } from './FormLink.tmpl';
+var template = require("./FormLink.handlebars");
 
 type FormLinkPropsType = {
     className?: string;
@@ -14,7 +13,6 @@ export class FormLink extends Block {
     }
 
     render() {
-        const tmpl = handlebars().compile(template);
-        return tmpl(this.props);
+        return template(this.props);
     }
 }

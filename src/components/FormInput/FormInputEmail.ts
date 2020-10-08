@@ -1,6 +1,5 @@
 import { Block } from '../../utils/Block';
-import { handlebars } from '../../utils/Handlebars';
-import { template } from './FormInputEmail.tmpl';
+let template = require('./FormInputEmail.handlebars');
 
 type FormInputEmailPropsType = {
     className?: string;
@@ -15,7 +14,6 @@ export class FormInputEmail extends Block {
     }
 
     render() {
-        const tmpl = handlebars().compile(template);
-        return tmpl(this.props);
+        return template(this.props);
     }
 }

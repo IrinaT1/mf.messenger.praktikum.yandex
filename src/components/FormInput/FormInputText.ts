@@ -1,5 +1,5 @@
 import { Block, PropsType } from '../../utils/Block';
-let template = require('./FormInputText.handlebars');
+const template = require('./FormInputText.handlebars');
 
 type FormInputTextPropsType = {
     className?: string;
@@ -12,8 +12,8 @@ type FormInputTextPropsType = {
 export class FormInputText extends Block {
     constructor(props: FormInputTextPropsType) {
 
-        let maybeRequired: string = props.required ? "required" : "";
-        let newProps: PropsType = {};
+        const maybeRequired: string = props.required ? "required" : "";
+        const newProps: PropsType = {};
         Object.assign(newProps, props);
         newProps.maybeRequired = maybeRequired;
 

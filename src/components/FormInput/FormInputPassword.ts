@@ -1,5 +1,5 @@
 import { Block } from '../../utils/Block';
-let template = require('./FormInputPassword.handlebars');
+const template = require('./FormInputPassword.handlebars');
 
 type FormInputPasswordPropsType = {
     className?: string;

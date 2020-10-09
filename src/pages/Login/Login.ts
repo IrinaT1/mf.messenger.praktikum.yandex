@@ -1,7 +1,7 @@
 import { FormInputText, FormInputPassword, FormButton, FormLink } from '../../components/Components';
 import { Block } from '../../utils/Block';
 import { FormValidation } from '../../utils/FormValidation';
-let template = require('./Login.handlebars');
+const template = require('./Login.handlebars');
 
 export class LoginPage extends Block {
     

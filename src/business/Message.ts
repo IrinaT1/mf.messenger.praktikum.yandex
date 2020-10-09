@@ -14,11 +14,11 @@ export class Message {
 
     json() {
         return this.jsonData;
-    };
+    }
 
     static create(text: string): Message {
-        let time = (new Date()).toLocaleString();
-        let json = {
+        const time = (new Date()).toLocaleString();
+        const json = {
             incoming: false,
             text: text,
             url: "",

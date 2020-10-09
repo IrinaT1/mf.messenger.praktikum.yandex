@@ -5,7 +5,11 @@
     "sourceMap": true,
     "esModuleInterop": true,
     "outDir": "dist/",
-    "lib": ["es2016", "dom"]
+    "lib": [
+      "es2016",
+      "dom"
+    ]
   },
-  "include": ["src/**/*"]
+  "include": ["src/**/*.test.ts"],
+  "exclude": ["src/**/*.handlebars"]
 }

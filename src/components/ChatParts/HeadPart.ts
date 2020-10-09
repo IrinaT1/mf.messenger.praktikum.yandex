@@ -1,6 +1,6 @@
 import { ChatInfo } from '../../business/ChatInfo';
 import { Block } from '../../utils/Block';
-let template = require('./HeadPart.handlebars');
+const template = require('./HeadPart.handlebars');
 
 export class HeadPart extends Block {
     constructor(chatInfo: ChatInfo) {

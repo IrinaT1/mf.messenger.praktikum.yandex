@@ -5,7 +5,7 @@ import { render } from '../../utils/Render';
 import { ChatInfo } from '../../business/ChatInfo';
 import { ChatDetails } from '../../business/ChatDetails';
 import { Message } from '../../business/Message';
-let template = require('./ChatMain.handlebars');
+const template = require('./ChatMain.handlebars');
 
 export class ChatMainPage extends Block {
     constructor() {
@@ -15,7 +15,7 @@ export class ChatMainPage extends Block {
     }
 
     componentRendered(): void {
-        let chatListLoader = this.getContent().querySelector(".chatlist-loader") as HTMLElement;
+        const chatListLoader = this.getContent().querySelector(".chatlist-loader") as HTMLElement;
 
         getAPIServer().chats().then((data) => {
             chatListLoader.style.display = "none";
@@ -36,14 +36,14 @@ export class ChatMainPage extends Block {
 
     sendMessageSetup(): void {
         this.messagesContainer = this.getContent().querySelector(".chatdetail-messages-root");
-        let buttonSend = this.getContent().querySelector(".chatdetail-newmessage-send") as HTMLElement;
+        const buttonSend = this.getContent().querySelector(".chatdetail-newmessage-send") as HTMLElement;
         this.newMessageInput = this.getContent().querySelector(".chatdetail-newmessage-input") as HTMLSelectElement;
 
         buttonSend.addEventListener('click', () => { this.sendMessage(); });
     }
 
     sendMessage(): void {
-        let text = this.newMessageInput.value;
+        const text = this.newMessageInput.value;
 
         const updateScroll = () => {
             window.scrollTo(0, this.messagesContainer.offsetHeight);
@@ -54,8 +54,8 @@ export class ChatMainPage extends Block {
         } else if (text.trim() === "") {
             console.log("message is empty!");
         } else {
-            let message = Message.create(text);
-            let messageBlock = new MessagePart(message);
+            const message = Message.create(text);
+            const messageBlock = new MessagePart(message);
             this.messageParts.push(messageBlock);
             render(".chatdetail-messages-root", messageBlock);
 
@@ -66,7 +66,7 @@ export class ChatMainPage extends Block {
 
     drawChatList = (data: ChatInfo[]): void => {
         data.forEach((chatInfo) => {
-            let itemPartBlock = new ItemPart(chatInfo);
+            const itemPartBlock = new ItemPart(chatInfo);
             itemPartBlock.componentRendered = () => {
                 document.getElementById(itemPartBlock.id()).addEventListener('click', () => { this.chatSelected(itemPartBlock.chatInfo); });
             };
@@ -110,9 +110,9 @@ export class ChatMainPage extends Block {
         });
         this.messageParts = [];
 
-        let messages = data.messages;
+        const messages = data.messages;
         messages.forEach((message) => {
-            let messageBlock = new MessagePart(message);
+            const messageBlock = new MessagePart(message);
             this.messageParts.push(messageBlock);
             render(".chatdetail-messages-root", messageBlock);
         });

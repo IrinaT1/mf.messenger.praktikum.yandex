@@ -1,5 +1,5 @@
 import { Block } from '../../utils/Block';
-let template = require('./FormInputEmail.handlebars');
+const template = require('./FormInputEmail.handlebars');
 
 type FormInputEmailPropsType = {
     className?: string;

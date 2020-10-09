@@ -3,11 +3,11 @@ import { render } from './Render';
 
 export class Route {
     private _pathname: string;
-    private _blockClass: any;
+    private _blockClass: typeof Block;
     private _props: { rootQuery: string };
     private _block: Block;
 
-    constructor(pathname: string, view: any, props: { rootQuery: string }) {
+    constructor(pathname: string, view: typeof Block, props: { rootQuery: string }) {
         if (pathname.charAt(0) === '/') {
             pathname = pathname.substring(1);
         }

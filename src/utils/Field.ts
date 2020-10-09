@@ -2,17 +2,15 @@ export class Field {
     private validationConditions: Record<string, Function>[];
     private errorNode: HTMLSelectElement;
     private label: string;
-    
+
     constructor(public fieldName: string, public fieldNode: HTMLSelectElement) {
         this.validationConditions = [];
 
         this.errorNode = this.fieldNode.parentElement.querySelector(".error-text");
         this.label = this.fieldNode.parentElement.querySelector(".inputtext-floating-label").textContent;
 
-        let self = this;
-
-        this.setValidationCondition(function() {return self.fieldNode.validity.typeMismatch; }, `Please enter valid ${self.label}`);
-        this.setValidationCondition(function() {return self.fieldNode.validity.valueMissing; }, `${self.label} can't be blank`);
+        this.setValidationCondition(() => { return this.fieldNode.validity.typeMismatch; }, `Please enter valid ${this.label}`);
+        this.setValidationCondition(() => { return this.fieldNode.validity.valueMissing; }, `${this.label} can't be blank`);
     }
 
     get value(): string {
@@ -20,44 +18,43 @@ export class Field {
     }
 
 
-    setValidationCondition(f: Function, errorText: string) :void {
-        let condition = {};
+    setValidationCondition(f: Function, errorText: string): void {
+        const condition = {};
         condition[errorText] = f;
         this.validationConditions.push(condition);
     }
 
     addListeners(): void {
-        let self = this;
-        this.fieldNode.addEventListener("focusout", function (event) {
-            self.showError();
+        this.fieldNode.addEventListener("focusout", (event) => {
+            this.showError();
         });
 
-        this.fieldNode.addEventListener("focusin", function (event) {
-            self.hideError();
+        this.fieldNode.addEventListener("focusin", (event) => {
+            this.hideError();
         });
     }
 
     hasError(): boolean {
-        for (let condition of this.validationConditions) {
-            let error = Object.keys(condition)[0];
-            let f = condition[error];
+        for (const condition of this.validationConditions) {
+            const error = Object.keys(condition)[0];
+            const f = condition[error];
 
             if (f(this.value)) {
-                return true;              
+                return true;
             }
-        } 
-        return false;       
+        }
+        return false;
     }
 
     showError(): void {
-        for (let condition of this.validationConditions) {
-            let error = Object.keys(condition)[0];
-            let f = condition[error];
+        for (const condition of this.validationConditions) {
+            const error = Object.keys(condition)[0];
+            const f = condition[error];
 
             if (f(this.value)) {
                 this.fieldNode.setCustomValidity(error);
                 this.errorNode.textContent = error;
-                this.fieldNode.classList.add('error');                
+                this.fieldNode.classList.add('error');
             }
         }
     }

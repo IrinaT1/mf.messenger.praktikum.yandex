@@ -6,4 +6,4 @@ export function render(query: string, block: Block): Element {
   root.appendChild(block.getContent());
   block.componentRendered();
   return root;
-};
+}

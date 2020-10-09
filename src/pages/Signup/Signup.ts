@@ -1,9 +1,9 @@
 import { FormInputText, FormInputPassword, FormButton, FormLink, FormInputEmail } from '../../components/Components';
 import { Block } from '../../utils/Block';
 import { FormValidation } from '../../utils/FormValidation';
-let template = require('./Signup.handlebars');
+const template = require('./Signup.handlebars');
 
-let signupData = {
+const signupData = {
     email: "",
     login: "",
     display_name: "",
@@ -77,7 +77,7 @@ export class SignupPage extends Block {
         this.formValidation.setValidation("password");
         this.formValidation.setValidation("verify_password", { "Passwords should match": (value) => { return value != this.formValidation.field("password").value; } });
 
-        var signUp = () => {
+        const signUp = () => {
             if (!this.formValidation.checkFormValidity()) {
                 console.log("Form is invalid");
                 this.formValidation.showErrors();

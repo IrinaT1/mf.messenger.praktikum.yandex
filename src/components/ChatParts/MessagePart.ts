@@ -1,6 +1,6 @@
 import { Message } from '../../business/Message';
 import { Block } from '../../utils/Block';
-let template = require('./MessagePart.handlebars');
+const template = require('./MessagePart.handlebars');
 
 export class MessagePart extends Block {
     constructor(message: Message) {

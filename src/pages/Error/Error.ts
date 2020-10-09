@@ -1,7 +1,7 @@
 import { FormLink } from '../../components/Components';
 import { Block } from '../../utils/Block';
 import { router } from '../../utils/Utils';
-let template = require('./Error.handlebars');
+const template = require('./Error.handlebars');
 
 export class GenericErrorPage extends Block {
 

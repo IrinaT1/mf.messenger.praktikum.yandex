@@ -2,9 +2,9 @@ import { FormInputText, FormButton, FormLink, FormInputEmail } from '../../compo
 import { Block } from '../../utils/Block';
 import { FormValidation } from '../../utils/FormValidation';
 import { router } from '../../utils/Utils';
-let template = require('./Account.handlebars');
+const template = require('./Account.handlebars');
 
-let accountData = {
+const accountData = {
     display_name: "IrinaT",
     login: "Irina2345",
     email: "irin.tishchenko@gmail.com",

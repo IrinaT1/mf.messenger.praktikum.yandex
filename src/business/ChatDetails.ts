@@ -14,7 +14,7 @@ export class ChatDetails {
         this.avatar = json.avatar;
         this.messages = [];
         json.messages.forEach(object => {
-            let message = new Message(object);
+            const message = new Message(object);
             this.messages.push(message);
         });
         this.message_count = this.messages.length;

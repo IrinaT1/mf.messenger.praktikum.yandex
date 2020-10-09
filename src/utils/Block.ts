@@ -24,8 +24,8 @@ export class Block {
     public props: PropsType;
     public eventBus: EventBus;
 
-    constructor(tagName: string = "div", props: PropsType = {}, tagAttributes: TagAttributePropsType = { classes: [] }) {
-        let id = UniqueIdGenerator.get();
+    constructor(tagName = "div", props: PropsType = {}, tagAttributes: TagAttributePropsType = { classes: [] }) {
+        const id = UniqueIdGenerator.get();
         this._meta = {
             tagName,
             tagAttributes,
@@ -52,7 +52,7 @@ export class Block {
         const { tagName, tagAttributes, id } = this._meta;
         this._element = this._createDocumentElement(tagName);
 
-        let tagClassList = tagAttributes.classes;
+        const tagClassList = tagAttributes.classes;
         tagClassList.forEach(tagClass => {
             if (tagClass)
                 this._element.classList.add(tagClass);
@@ -103,7 +103,7 @@ export class Block {
             return;
         }
         Object.assign(this.props, nextProps);
-    };
+    }
 
     get element() {
         return this._element;
@@ -121,7 +121,7 @@ export class Block {
     // Может переопределять пользователь
     render(): string {
         return 'Please provide render data';
-    };
+    }
 
     getContent(): HTMLElement {
         return this.element;
@@ -132,7 +132,7 @@ export class Block {
     }
 
     _makePropsProxy(props: PropsType): PropsType {
-        let proxyProps = new Proxy(props, {
+        const proxyProps = new Proxy(props, {
             get(target: PropsType, prop: string): PropsValueType {
                 return target[prop];
             },
@@ -143,7 +143,7 @@ export class Block {
                 return true;
             },
 
-            deleteProperty(target, prop): boolean {
+            deleteProperty(_target, _prop): boolean {
                 throw Error("Error: couldn't delete");
             }
         });

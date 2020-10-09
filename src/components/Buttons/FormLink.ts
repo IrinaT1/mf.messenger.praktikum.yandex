@@ -1,5 +1,5 @@
 import { Block } from '../../utils/Block';
-var template = require("./FormLink.handlebars");
+const template = require("./FormLink.handlebars");
 
 type FormLinkPropsType = {
     className?: string;

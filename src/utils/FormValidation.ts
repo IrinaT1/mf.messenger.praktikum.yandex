@@ -12,13 +12,13 @@ export class FormValidation {
 
     setValidation(fieldName: string, validationConditionObject: Record<string, Function> = {}) {
 
-        let inputField: HTMLSelectElement = this.formRef.querySelector(`[name=${fieldName}]`);
-        let field = new Field(fieldName, inputField);
+        const inputField: HTMLSelectElement = this.formRef.querySelector(`[name=${fieldName}]`);
+        const field = new Field(fieldName, inputField);
         if (!this.fields.includes(field)) {
             this.fields.push(field);
         }
 
-        for (let errorText of Object.keys(validationConditionObject)) {
+        for (const errorText of Object.keys(validationConditionObject)) {
             field.setValidationCondition(validationConditionObject[errorText], errorText);
         }
 
@@ -43,7 +43,7 @@ export class FormValidation {
     }
 
     get values(): Record<string, string> {
-        let obj = {};
+        const obj = {};
         this.fields.forEach((field) => {
             obj[field.fieldName] = field.value;
         });

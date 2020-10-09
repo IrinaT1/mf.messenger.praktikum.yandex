@@ -10,7 +10,7 @@ interface Options {
     timeout?: number;
     headers?: Record<string, string>;
     method?: string;
-    data?: Record<string, any>;
+    data?: Record<string, string>;
 }
 
 //This class will be used later in the next sprint for API calls implementation
@@ -39,7 +39,7 @@ export class HTTPTransport {
         return this.request(url, { ...options, method: this.METHODS.DELETE }, options.timeout);
     };
 
-    request = (url: string, options: Options, timeout: number = 5000): Promise<XMLHttpRequest> => {
+    request = (url: string, options: Options, timeout = 5000): Promise<XMLHttpRequest> => {
         const { method, data, headers } = options;
 
         return new Promise((resolve, reject) => {
@@ -57,7 +57,7 @@ export class HTTPTransport {
             };
 
             if (headers) {
-                for (let header of Object.keys(headers)) {
+                for (const header of Object.keys(headers)) {
                     xhr.setRequestHeader(header, headers[header]);
                 }
             }
@@ -71,8 +71,8 @@ export class HTTPTransport {
             if (method === this.METHODS.GET || !data) {
                 xhr.send();
             } else {
-                let formData = new FormData();
-                for (var key in data) {
+                const formData = new FormData();
+                for (const key in data) {
                     formData.append(key, data[key]);
                 }
                 xhr.send(formData);
@@ -80,13 +80,13 @@ export class HTTPTransport {
         });
     };
 
-    queryStringify = (data: Record<string, any>): string => {
+    queryStringify = (data: Record<string, string>): string => {
         if (!data || Object.keys(data).length === 0) {
             return "";
         }
 
         let dataString = "";
-        for (let key of Object.keys(data)) {
+        for (const key of Object.keys(data)) {
             if (typeof data[key] === 'object') {
                 throw Error("not yet implemented");
             }

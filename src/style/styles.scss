@@ -8,6 +8,10 @@
     font-family: "Poppins";
 }
 
+img[src=""] {
+    display: none;
+}
+
 .loader {
     align-self: center;
     margin-top: 16px;

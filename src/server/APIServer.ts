@@ -6,8 +6,8 @@ export class APIServer {
         return new Promise((resolve) => {
             console.log("APIServer chats() not yet implemented, returning fake data");
 
-            let data = JSON.parse(fakeChatsResponse);
-            let result: ChatInfo[] = [];
+            const data = JSON.parse(fakeChatsResponse);
+            const result: ChatInfo[] = [];
             data.chats.forEach(object => {
                 result.push(new ChatInfo(object));
             });

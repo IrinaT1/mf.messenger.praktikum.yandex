@@ -1,5 +1,8 @@
 const path = require('path');
 
+const webpack = require('webpack');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+
 module.exports = {
     mode: 'production',
     entry: './src/index.ts',
@@ -10,6 +13,19 @@ module.exports = {
     resolve: {
         extensions: ['.ts', '.js', '.json']
     },
+    devServer: {
+        port: 4001,
+        contentBase: __dirname,
+        hot: true
+    },
+    plugins: [
+        new HtmlWebpackPlugin({
+          filename: 'index.html',
+          template: __dirname + '/src/index.html',
+          inject: 'body'
+        }),
+        new webpack.HotModuleReplacementPlugin()
+    ],
     module: {
         rules: [
             {

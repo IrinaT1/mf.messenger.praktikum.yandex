@@ -1,9 +1,9 @@
-import express, { static } from 'express';
+const express = require('express');
 
 const app = express();
 const PORT = 4000;
 
-app.use(static('./dist'));
+app.use(express.static('./dist'));
 
 app.listen(PORT, function () {
     console.log(`Example app listening on port ${PORT}!`);

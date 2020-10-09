@@ -1,0 +1,9 @@
+version: '2'
+
+services:
+  chats:
+    image: irina/chats:latest
+    container_name: chats
+    build: .
+    ports:
+    - 4000:4000

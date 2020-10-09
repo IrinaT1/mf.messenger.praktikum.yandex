@@ -10,6 +10,8 @@
     "test": "mochapack --require jsdom-global/register --webpack-config webpack.test.config.js \"src/**/*.test.ts\"",
     "testold": "env TS_NODE_PROJECT=\"tsconfig.testing.json\" mocha --require ts-node/register --require jsdom-global/register 'src/**/*.test.ts'",
     "eslint": "eslint .",
+    "docker": "docker-compose down && docker-compose up",
+    "dockerbuild": "docker-compose down && docker-compose up --build",
     "gitpush": "git push -u origin master && git checkout deploy && git merge master && git push -u origin deploy && git checkout master"
   },
   "repository": {

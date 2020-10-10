@@ -4,7 +4,8 @@
 
 Brand new and beautiful messenger! Check it out.
 
-https://dreamy-agnesi-e676f7.netlify.app/
+Netlify: https://dreamy-agnesi-e676f7.netlify.app/
+Heroku: https://my-chats.herokuapp.com/
 
 
 To run the app execute "npm start"

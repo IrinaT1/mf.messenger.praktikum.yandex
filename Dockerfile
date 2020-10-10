@@ -6,4 +6,4 @@ RUN npm ci  && npm run build
 
 EXPOSE 4000
 
-CMD node server.js 
+CMD ["node", "server.js"] 

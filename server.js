@@ -1,10 +1,10 @@
 const express = require('express');
 
-const app = express();
-const PORT = 4000;
+console.log(`process.env.PORT = ${process.env.PORT}`);
 
+const app = express();
 app.use(express.static('./dist'));
 
-app.listen(PORT, function () {
-    console.log(`Example app listening on port ${PORT}!`);
+app.listen(process.env.PORT || 4000, function () {
+    console.log(`Example app listening on port ${process.env.PORT || 4000}!`);
 });

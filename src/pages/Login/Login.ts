@@ -1,4 +1,5 @@
 import { FormInputText, FormInputPassword, FormButton, FormLink } from '../../components/Components';
+import { getAuthServer } from '../../server/Server';
 import { Block } from '../../utils/Block';
 import { FormValidation } from '../../utils/FormValidation';
 const template = require('./Login.handlebars');

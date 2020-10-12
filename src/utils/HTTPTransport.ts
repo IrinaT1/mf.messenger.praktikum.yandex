@@ -6,7 +6,7 @@
  * new HTTPTransport().delete('https://chats', { timeout: 5000, headers: { "h1": "v1", "h2": "v2" }, data: { "d1": "dv1" }});
  */
 
-interface Options {
+export type HttpRequestOptions = {
     timeout?: number;
     headers?: Record<string, string>;
     method?: string;
@@ -23,23 +23,23 @@ export class HTTPTransport {
         DELETE: "DELETE"
     };
 
-    get = (url: string, options: Options = {}): Promise<XMLHttpRequest> => {
+    get = (url: string, options: HttpRequestOptions = {}): Promise<XMLHttpRequest> => {
         return this.request(url, { ...options, method: this.METHODS.GET }, options.timeout);
     };
 
-    put = (url: string, options: Options = {}): Promise<XMLHttpRequest> => {
+    put = (url: string, options: HttpRequestOptions = {}): Promise<XMLHttpRequest> => {
         return this.request(url, { ...options, method: this.METHODS.PUT }, options.timeout);
     };
 
-    post = (url: string, options: Options = {}): Promise<XMLHttpRequest> => {
+    post = (url: string, options: HttpRequestOptions = {}): Promise<XMLHttpRequest> => {
         return this.request(url, { ...options, method: this.METHODS.POST }, options.timeout);
     };
 
-    delete = (url: string, options: Options = {}): Promise<XMLHttpRequest> => {
+    delete = (url: string, options: HttpRequestOptions = {}): Promise<XMLHttpRequest> => {
         return this.request(url, { ...options, method: this.METHODS.DELETE }, options.timeout);
     };
 
-    request = (url: string, options: Options, timeout = 5000): Promise<XMLHttpRequest> => {
+    request = (url: string, options: HttpRequestOptions, timeout = 5000): Promise<XMLHttpRequest> => {
         const { method, data, headers } = options;
 
         return new Promise((resolve, reject) => {
@@ -71,11 +71,7 @@ export class HTTPTransport {
             if (method === this.METHODS.GET || !data) {
                 xhr.send();
             } else {
-                const formData = new FormData();
-                for (const key in data) {
-                    formData.append(key, data[key]);
-                }
-                xhr.send(formData);
+                xhr.send(JSON.stringify(data));
             }
         });
     };

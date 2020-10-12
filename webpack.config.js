@@ -3,8 +3,10 @@ const path = require('path');
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
+const devMode = true;
+
 module.exports = {
-    mode: 'production',
+    mode: devMode ? 'development' : 'production',
     entry: './src/index.ts',
     output: {
         path: path.resolve(__dirname, 'dist'),

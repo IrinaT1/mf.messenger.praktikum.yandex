@@ -5,7 +5,7 @@ const template = require('./ItemPart.handlebars');
 export class ItemPart extends Block {
     constructor(public chatInfo: ChatInfo) {
         super("li", {
-            user_id: chatInfo.user_id,
+            id: chatInfo.id,
             avatarURL: chatInfo.avatar,
             display_name: chatInfo.display_name,
             last_message: chatInfo.last_message.json()

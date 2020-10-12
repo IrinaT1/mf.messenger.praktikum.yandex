@@ -1,4 +1,6 @@
+import { User, UserDataType } from '../../business/User';
 import { FormInputText, FormInputPassword, FormButton, FormLink, FormInputEmail } from '../../components/Components';
+import { getAuthServer } from '../../server/Server';
 import { Block } from '../../utils/Block';
 import { FormValidation } from '../../utils/FormValidation';
 const template = require('./Signup.handlebars');
@@ -6,7 +8,9 @@ const template = require('./Signup.handlebars');
 const signupData = {
     email: "",
     login: "",
-    display_name: "",
+    first_name: "",
+    second_name: "",
+    phone: "",
     password: "",
     verify_password: ""
 };
@@ -25,11 +29,25 @@ export class SignupPage extends Block {
         label: "Username"
     }).getContentAsText();
 
-    private static displayNameInput: string = new FormInputText({
-        name: "display_name",
-        value: signupData.display_name,
+    private static firstNameInput: string = new FormInputText({
+        name: "first_name",
+        value: signupData.first_name,
         required: true,
-        label: "Display name"
+        label: "First name"
+    }).getContentAsText();
+
+    private static secondNameInput: string = new FormInputText({
+        name: "second_name",
+        value: signupData.second_name,
+        required: true,
+        label: "Second name"
+    }).getContentAsText();
+
+    private static phoneInput: string = new FormInputText({
+        name: "phone",
+        value: signupData.phone,
+        required: true,
+        label: "Phone"
     }).getContentAsText();
 
     private static passwordInput: string = new FormInputPassword({
@@ -58,7 +76,9 @@ export class SignupPage extends Block {
         super("div", {
             emailInput: SignupPage.emailInput,
             usernameInput: SignupPage.usernameInput,
-            displayNameInput: SignupPage.displayNameInput,
+            firstNameInput: SignupPage.firstNameInput,
+            secondNameInput: SignupPage.secondNameInput,
+            phoneInput: SignupPage.phoneInput,
             passwordInput: SignupPage.passwordInput,
             verifyPasswordInput: SignupPage.verifyPasswordInput,
             saveButton: SignupPage.saveButton,
@@ -73,7 +93,9 @@ export class SignupPage extends Block {
 
         this.formValidation.setValidation("email");
         this.formValidation.setValidation("login", { "Login should contain at least 4 symbols": (value) => { return value.trim().length <= 3; } });
-        this.formValidation.setValidation("display_name");
+        this.formValidation.setValidation("first_name");
+        this.formValidation.setValidation("second_name");
+        this.formValidation.setValidation("phone", { "Phone should contain only numbers and dashes": (value) => { return !(/^[\d -]+$/g).test(value.trim()) && value != ""; } });
         this.formValidation.setValidation("password");
         this.formValidation.setValidation("verify_password", { "Passwords should match": (value) => { return value != this.formValidation.field("password").value; } });
 
@@ -84,6 +106,13 @@ export class SignupPage extends Block {
             }
             else {
                 console.log('Signing up, data: ', JSON.stringify(this.formValidation.values));
+                const user = new User(this.formValidation.values as UserDataType);
+
+                getAuthServer().signup(user).then((data) => {
+                    console.log("response is ", data);
+                }).catch((error) => {
+                    console.log("error is ", error);
+                });
             }
         };
         this.getContent().querySelector('.button-submit').addEventListener('click', signUp);
@@ -97,7 +126,9 @@ export class SignupPage extends Block {
         return template({
             emailInput: this.props.emailInput,
             usernameInput: this.props.usernameInput,
-            displayNameInput: this.props.displayNameInput,
+            firstNameInput: this.props.firstNameInput,
+            secondNameInput: this.props.secondNameInput,
+            phoneInput: this.props.phoneInput,
             passwordInput: this.props.passwordInput,
             verifyPasswordInput: this.props.verifyPasswordInput,
             saveButton: this.props.saveButton,

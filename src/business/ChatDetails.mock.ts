@@ -2,7 +2,7 @@ import { ChatDetails } from "./ChatDetails";
 
 const fakeChatDetailsJson1 = `
 {
-    "user_id": "123",
+    "id": "123",
     "display_name": "Vasya",
     "avatar": "https://picsum.photos/100",
     "messages": [{
@@ -31,7 +31,7 @@ const fakeChatDetailsJson1 = `
 
 const fakeChatDetailsJson2 = `
 {
-    "user_id": "234",
+    "id": "234",
     "display_name": "Masha",
     "avatar": "https://picsum.photos/100",
     "messages": [{

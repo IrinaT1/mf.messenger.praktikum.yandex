@@ -112,6 +112,7 @@ export class SignupPage extends Block {
                     console.log("response is ", data);
                 }).catch((error) => {
                     console.log("error is ", error);
+                    alert(JSON.parse(error.response).reason ?? "Error");
                 });
             }
         };

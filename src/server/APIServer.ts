@@ -16,32 +16,32 @@ export class APIServer {
 
     protected get(url: string, options: HttpRequestOptions): Promise<HTTPResponse> {
         return this.parseResponse(this.http.get(this.baseUrl + url, options));
-    };
+    }
 
     protected put(url: string, options: HttpRequestOptions): Promise<HTTPResponse> {
         return this.parseResponse(this.http.put(this.baseUrl + url, options));
-    };
+    }
 
     protected post(url: string, options: HttpRequestOptions): Promise<HTTPResponse> {
         return this.parseResponse(this.http.post(this.baseUrl + url, options));
-    };
+    }
 
     protected delete(url: string, options: HttpRequestOptions): Promise<HTTPResponse> {
         return this.parseResponse(this.http.delete(this.baseUrl + url, options));
-    };
+    }
 
     private parseResponse(promise: Promise<XMLHttpRequest>): Promise<HTTPResponse> {
         return new Promise(function (resolve, reject) {
             promise.then((data: XMLHttpRequest) => {
-                let status = data.status;
-                let resp: HTTPResponse = { status: status, response: data.response };
+                const status = data.status;
+                const resp: HTTPResponse = { status: status, response: data.response };
                 if (status === 200) {
                     resolve(resp);
                 } else {
                     reject(resp);
                 }
             }).catch((error) => {
-                let resp: HTTPResponse = { status: 1, response: error };
+                const resp: HTTPResponse = { status: 1, response: error };
                 reject(resp);
             });
         });

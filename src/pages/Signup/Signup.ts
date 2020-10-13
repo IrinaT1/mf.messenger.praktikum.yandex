@@ -3,6 +3,7 @@ import { FormInputText, FormInputPassword, FormButton, FormLink, FormInputEmail 
 import { getAuthServer } from '../../server/Server';
 import { Block } from '../../utils/Block';
 import { FormValidation } from '../../utils/FormValidation';
+import { router } from '../../utils/Utils';
 const template = require('./Signup.handlebars');
 
 const signupData = {
@@ -109,13 +110,24 @@ export class SignupPage extends Block {
                 const user = new User(this.formValidation.values as UserDataType);
 
                 getAuthServer().signup(user).then((data) => {
-                    console.log("response is ", data);
+                    console.log("Successful sign up, response is ", data);
+
+                    getAuthServer().signin(user.data.login, user.data.password).then((data) => {
+                        console.log("Successful sign in, response is ", data);
+                        router.go("#chats");
+
+                    }).catch((error) => {
+                        console.log("Sign in error: ", error);
+                        alert(JSON.parse(error.response).reason ?? "Error");
+                    });
+
                 }).catch((error) => {
-                    console.log("error is ", error);
+                    console.log("Sign up error: ", error);
                     alert(JSON.parse(error.response).reason ?? "Error");
                 });
             }
         };
+
         this.getContent().querySelector('.button-submit').addEventListener('click', signUp);
     }
 

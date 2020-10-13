@@ -14,19 +14,19 @@ export class APIServer {
         this.http = new HTTPTransport();
     }
 
-    protected get(url: string, options: HttpRequestOptions): Promise<HTTPResponse> {
+    protected get(url: string, options?: HttpRequestOptions): Promise<HTTPResponse> {
         return this.parseResponse(this.http.get(this.baseUrl + url, options));
     }
 
-    protected put(url: string, options: HttpRequestOptions): Promise<HTTPResponse> {
+    protected put(url: string, options?: HttpRequestOptions): Promise<HTTPResponse> {
         return this.parseResponse(this.http.put(this.baseUrl + url, options));
     }
 
-    protected post(url: string, options: HttpRequestOptions): Promise<HTTPResponse> {
+    protected post(url: string, options?: HttpRequestOptions): Promise<HTTPResponse> {
         return this.parseResponse(this.http.post(this.baseUrl + url, options));
     }
 
-    protected delete(url: string, options: HttpRequestOptions): Promise<HTTPResponse> {
+    protected delete(url: string, options?: HttpRequestOptions): Promise<HTTPResponse> {
         return this.parseResponse(this.http.delete(this.baseUrl + url, options));
     }
 

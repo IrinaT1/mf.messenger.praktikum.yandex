@@ -1,10 +1,12 @@
 import { Block } from '../../utils/Block';
-import { getAPIServer } from '../../server/Server';
+import { getAPIServer, getAuthServer } from '../../server/Server';
 import { ItemPart, HeadPart, MessagePart } from '../../components/Components';
 import { render } from '../../utils/Render';
 import { ChatInfo } from '../../business/ChatInfo';
 import { ChatDetails } from '../../business/ChatDetails';
 import { Message } from '../../business/Message';
+import { router } from '../../utils/Utils';
+import { User, UserDataType } from '../../business/User';
 const template = require('./ChatMain.handlebars');
 
 export class ChatMainPage extends Block {
@@ -16,14 +18,25 @@ export class ChatMainPage extends Block {
 
     componentRendered(): void {
         const chatListLoader = this.getContent().querySelector(".chatlist-loader") as HTMLElement;
+        const chatUserHeader = this.getContent().querySelector(".username-header") as HTMLElement;
 
-        getAPIServer().chats().then((data) => {
-            chatListLoader.style.display = "none";
+        getAuthServer().auth().then((data) => {
+            let user = new User(JSON.parse(data.response) as UserDataType);
+            console.log("User successfully obtained, user = ", user);
 
-            this.drawChatList(data);
+            chatUserHeader.textContent = "Hi " + (user.data.display_name ?? user.data.first_name) + "!";
+
+            getAPIServer().chats().then((data) => {
+                chatListLoader.style.display = "none";
+    
+                this.drawChatList(data);
+            });
+    
+            this.sendMessageSetup();
+        }).catch((error) => {
+            console.log("User data is not available, error = ", error);
+            router.go("#login");
         });
-
-        this.sendMessageSetup();
     }
 
     selectedChatInfo: ChatInfo;

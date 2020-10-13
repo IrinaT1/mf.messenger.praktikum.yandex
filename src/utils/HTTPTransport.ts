@@ -45,6 +45,7 @@ export class HTTPTransport {
         return new Promise((resolve, reject) => {
 
             const xhr = new XMLHttpRequest();
+            xhr.withCredentials = true;
 
             if (method === this.METHODS.GET && data) {
                 xhr.open(method, url + this.queryStringify(data));

@@ -3,8 +3,10 @@ import { AuthServer } from './AuthServer';
 
 const ApiServerUrl = "https://ya-praktikum.tech/api/v2";
 
+const AuthServerInstance = new AuthServer(ApiServerUrl);
+
 export function getAuthServer(): AuthServer {
-    return new AuthServer(ApiServerUrl);
+    return AuthServerInstance;
 }
 
 export function getAPIServer(): APIServer {

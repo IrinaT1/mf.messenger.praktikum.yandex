@@ -21,7 +21,7 @@ export class ChatMainPage extends Block {
         const chatUserHeader = this.getContent().querySelector(".username-header") as HTMLElement;
 
         getAuthServer().auth().then((data) => {
-            let user = new User(JSON.parse(data.response) as UserDataType);
+            const user = new User(JSON.parse(data.response) as UserDataType);
             console.log("User successfully obtained, user = ", user);
 
             chatUserHeader.textContent = "Hi " + (user.data.display_name ?? user.data.first_name) + "!";

@@ -5,7 +5,7 @@ export class AuthServer extends APIServer {
 
     signup(user: User): Promise<HTTPResponse> {
         const headers = {"content-type": "application/json"};
-        return this.post("/auth/signup", {data: user.json(), headers: headers});
+        return this.post("/auth/signup", {data: user.json(), headers: headers, withCredentials: false});
     }
 
     signin(login: string, password: string): Promise<HTTPResponse> {

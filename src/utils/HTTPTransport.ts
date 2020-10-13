@@ -11,6 +11,7 @@ export type HttpRequestOptions = {
     headers?: Record<string, string>;
     method?: string;
     data?: Record<string, string>;
+    withCredentials?: boolean;
 }
 
 //This class will be used later in the next sprint for API calls implementation
@@ -24,28 +25,28 @@ export class HTTPTransport {
     };
 
     get = (url: string, options: HttpRequestOptions = {}): Promise<XMLHttpRequest> => {
-        return this.request(url, { ...options, method: this.METHODS.GET }, options.timeout);
+        return this.request(url, { ...options, method: this.METHODS.GET }, options.timeout, options.withCredentials);
     };
 
     put = (url: string, options: HttpRequestOptions = {}): Promise<XMLHttpRequest> => {
-        return this.request(url, { ...options, method: this.METHODS.PUT }, options.timeout);
+        return this.request(url, { ...options, method: this.METHODS.PUT }, options.timeout, options.withCredentials);
     };
 
     post = (url: string, options: HttpRequestOptions = {}): Promise<XMLHttpRequest> => {
-        return this.request(url, { ...options, method: this.METHODS.POST }, options.timeout);
+        return this.request(url, { ...options, method: this.METHODS.POST }, options.timeout, options.withCredentials);
     };
 
     delete = (url: string, options: HttpRequestOptions = {}): Promise<XMLHttpRequest> => {
-        return this.request(url, { ...options, method: this.METHODS.DELETE }, options.timeout);
+        return this.request(url, { ...options, method: this.METHODS.DELETE }, options.timeout, options.withCredentials);
     };
 
-    request = (url: string, options: HttpRequestOptions, timeout = 5000): Promise<XMLHttpRequest> => {
+    request = (url: string, options: HttpRequestOptions, timeout = 5000, withCredentials = true): Promise<XMLHttpRequest> => {
         const { method, data, headers } = options;
 
         return new Promise((resolve, reject) => {
 
             const xhr = new XMLHttpRequest();
-            xhr.withCredentials = true;
+            xhr.withCredentials = withCredentials;
 
             if (method === this.METHODS.GET && data) {
                 xhr.open(method, url + this.queryStringify(data));

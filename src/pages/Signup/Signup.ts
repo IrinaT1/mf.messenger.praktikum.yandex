@@ -112,13 +112,19 @@ export class SignupPage extends Block {
                 getAuthServer().signup(user).then((data) => {
                     console.log("Successful sign up, response is ", data);
 
-                    getAuthServer().signin(user.data.login, user.data.password).then((data) => {
-                        console.log("Successful sign in, response is ", data);
-                        router.go("#chats");
-
+                    getAuthServer().logout().then((data) => {
+                        console.log("signing out previous user, data = ", data);
                     }).catch((error) => {
-                        console.log("Sign in error: ", error);
-                        alert(JSON.parse(error.response).reason ?? "Error");
+                        console.log("signing out previous user failed, error = ", error);
+                    }).finally(() => {
+                        getAuthServer().signin(user.data.login, user.data.password).then((data) => {
+                            console.log("Successful sign in, response is ", data);
+                            router.go("#chats");
+
+                        }).catch((error) => {
+                            console.log("Sign in error: ", error);
+                            alert(JSON.parse(error.response).reason ?? "Error");
+                        });
                     });
 
                 }).catch((error) => {

@@ -19,12 +19,23 @@ export class ChatMainPage extends Block {
     componentRendered(): void {
         const chatListLoader = this.getContent().querySelector(".chatlist-loader") as HTMLElement;
         const chatUserHeader = this.getContent().querySelector(".username-header") as HTMLElement;
+        const logoutButton = this.getContent().querySelector(".chats-logout") as HTMLElement;
 
         getAuthServer().auth().then((data) => {
             const user = new User(JSON.parse(data.response) as UserDataType);
             console.log("User successfully obtained, user = ", user);
 
             chatUserHeader.textContent = "Hi " + (user.data.display_name ?? user.data.first_name) + "!";
+
+            logoutButton.addEventListener('click', () => { 
+                getAuthServer().logout().then((data) => {
+                    console.log("signing out previous user, data = ", data);
+                }).catch((error) => {
+                    console.log("signing out previous user failed, error = ", error);
+                }).finally(() => {
+                    router.go("#login");
+                });
+            });
 
             getAPIServer().chats().then((data) => {
                 chatListLoader.style.display = "none";

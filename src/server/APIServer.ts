@@ -7,7 +7,7 @@ export type HTTPResponse = {
     response: string;
 }
 
-export class APIServer {
+export abstract class APIServer {
 
     protected http: HTTPTransport;
     constructor(protected baseUrl: String) {

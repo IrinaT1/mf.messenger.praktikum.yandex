@@ -1,11 +1,12 @@
-import { APIServer } from './APIServer';
 import { AuthServer } from './AuthServer';
 import { ChatServer } from './ChatServer';
+import { UserServer } from './UserServer';
 
 const ApiServerUrl = "https://ya-praktikum.tech/api/v2";
 
 const AuthServerInstance = new AuthServer(ApiServerUrl);
 const ChatServerInstance = new ChatServer(ApiServerUrl);
+const UserServerInstance = new UserServer(ApiServerUrl);
 
 export function getAuthServer(): AuthServer {
     return AuthServerInstance;
@@ -15,6 +16,6 @@ export function getChatServer(): ChatServer {
     return ChatServerInstance;
 }
 
-export function getAPIServer(): APIServer {
-    return new APIServer(ApiServerUrl);
+export function getUserServer(): UserServer {
+    return UserServerInstance;
 }

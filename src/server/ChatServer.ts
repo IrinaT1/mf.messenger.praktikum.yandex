@@ -11,7 +11,7 @@ export class ChatServer extends APIServer {
         return this.post("/chats", { data: { title: title }, headers: headers });
     }
 
-    chatUsers(chatId: string): Promise<HTTPResponse> {
+    users(chatId: string): Promise<HTTPResponse> {
         return this.get("/chats/" + chatId + "/users");
     }
 

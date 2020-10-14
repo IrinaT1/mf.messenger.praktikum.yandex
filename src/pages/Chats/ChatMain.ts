@@ -1,5 +1,5 @@
 import { Block } from '../../utils/Block';
-import { getAPIServer, getAuthServer, getChatServer } from '../../server/Server';
+import { getAuthServer, getChatServer } from '../../server/Server';
 import { ItemPart, HeadPart, MessagePart, FormButton } from '../../components/Components';
 import { render } from '../../utils/Render';
 import { ChatInfo, ChatInfoDataType } from '../../business/ChatInfo';

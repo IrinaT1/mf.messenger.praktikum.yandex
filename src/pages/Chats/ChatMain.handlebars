@@ -9,6 +9,11 @@
     <ul class="chatlist chatlist-root">
         <div class="chatlist-loader loader"></div>
     </ul>
+
+    <div class="add-chat-button-wrapper">
+        {{{addChatButton}}}
+    </div>
+
 </section>
 <main class="section-main">
     <header class="section-main-header">
@@ -17,7 +22,7 @@
         <div class="chathead-no-chat-selected">Please select contact to start messaging</div>
     </header>
     <section class="chatdetail-messages chatdetail-messages-root">
-        
+
     </section>
     <form class="chatdetail-newmessage" onsubmit="return false;">
         <input type="text" class="chatdetail-newmessage-input" name="message" placeholder="Send something..."></input>

@@ -16,15 +16,14 @@ body {
     background-color: var(--gray1);
     display: flex;
     flex-direction: column;
-    position: sticky;
-    left: 0;
-    top: 0;
-    bottom: 0;
 }
 
 .section-side-header {
     flex: 0 0 84px;
     background-color: var(--accentlight);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
 }
 
 .chats-title {
@@ -43,9 +42,19 @@ body {
     color: var(--accent);
 }
 
+.add-chat-button-wrapper {
+    display: flex; 
+    justify-content: center; 
+    padding-top: 16px;
+    padding-bottom: 16px;
+    background-color: #ffffff;
+    position: sticky;
+    bottom: 0;
+}
+
 .chatlist {
     flex: 1 0 auto;  
-    overflow: scroll;
+    // overflow: scroll;
     padding: 8px;
     margin: 0;
     box-sizing: border-box;
@@ -64,6 +73,7 @@ body {
     flex-direction: row;
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
     transition: 0.3s;
+    position: relative;
 }
 
 .chatlist-item:hover {
@@ -80,6 +90,16 @@ body {
     background-color: var(--gray2);
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
     margin: 12px;
+}
+
+.delete-chat-button {
+    position: absolute;
+    top: -12px;
+    right: -12px;
+    color: red;
+    background-color: rgba(255, 255, 255, 0);
+    border: none;
+    z-index: 1;
 }
 
 .chatlist-item-details-container {
@@ -158,7 +178,7 @@ body {
     flex: 1;
     display: flex;
     flex-direction: column;
-    overflow: scroll;
+    // overflow: scroll;
     width: 100%;
     margin-bottom: 120px;
 }

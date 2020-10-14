@@ -1,8 +1,8 @@
 import { Block } from '../../utils/Block';
-import { getAPIServer, getAuthServer } from '../../server/Server';
-import { ItemPart, HeadPart, MessagePart } from '../../components/Components';
+import { getAPIServer, getAuthServer, getChatServer } from '../../server/Server';
+import { ItemPart, HeadPart, MessagePart, FormButton } from '../../components/Components';
 import { render } from '../../utils/Render';
-import { ChatInfo } from '../../business/ChatInfo';
+import { ChatInfo, ChatInfoDataType } from '../../business/ChatInfo';
 import { ChatDetails } from '../../business/ChatDetails';
 import { Message } from '../../business/Message';
 import { router } from '../../utils/Utils';
@@ -10,24 +10,45 @@ import { User, UserDataType } from '../../business/User';
 const template = require('./ChatMain.handlebars');
 
 export class ChatMainPage extends Block {
+
+    private static addChatButton: string = new FormButton({
+        text: "Add New Chat",
+        isPrimary: false
+    }).getContentAsText();
+
     constructor() {
         super("div", {
-            loading: true
+            addChatButton: ChatMainPage.addChatButton
         }, { classes: ["chats-wrapper"] });
     }
 
+    
+    selectedChatInfo: ChatInfo;
+    itemParts: ItemPart[] = [];
+    headPart: HeadPart;
+    messageParts: MessagePart[] = [];
+
+    messagesContainer: HTMLElement;
+    newMessageInput: HTMLSelectElement;
+    chatListLoader: HTMLElement;
+
+    user: User;
+
     componentRendered(): void {
-        const chatListLoader = this.getContent().querySelector(".chatlist-loader") as HTMLElement;
+        this.chatListLoader = this.getContent().querySelector(".chatlist-loader") as HTMLElement;
         const chatUserHeader = this.getContent().querySelector(".username-header") as HTMLElement;
         const logoutButton = this.getContent().querySelector(".chats-logout") as HTMLElement;
+        const addNewChatButton = this.getContent().querySelector(".add-chat-button-wrapper button") as HTMLElement;
 
         getAuthServer().auth().then((data) => {
-            const user = new User(JSON.parse(data.response) as UserDataType);
-            console.log("User successfully obtained, user = ", user);
+            this.user = new User(JSON.parse(data.response) as UserDataType);
+            console.log("User successfully obtained, user = ", this.user);
 
-            chatUserHeader.textContent = "Hi " + (user.data.display_name ?? user.data.first_name) + "!";
+            this.updateChatList();
 
-            logoutButton.addEventListener('click', () => { 
+            chatUserHeader.textContent = "Hi " + (this.user.data.display_name ?? this.user.data.first_name) + "!";
+
+            logoutButton.addEventListener('click', () => {
                 getAuthServer().logout().then((data) => {
                     console.log("signing out previous user, data = ", data);
                 }).catch((error) => {
@@ -37,12 +58,20 @@ export class ChatMainPage extends Block {
                 });
             });
 
-            getAPIServer().chats().then((data) => {
-                chatListLoader.style.display = "none";
-    
-                this.drawChatList(data);
+            let nNewChats = 0;
+
+            addNewChatButton.addEventListener('click', () => {
+                nNewChats += 1;
+                getChatServer().createChat("Chat " + nNewChats).then((data) => {
+                    console.log("chat created, data = ", data);
+
+                    this.updateChatList();
+                }).catch((error) => {
+                    console.log("error creating chat, error = ", error);
+                    alert(JSON.parse(error.response).reason ?? "Error");
+                });
             });
-    
+
             this.sendMessageSetup();
         }).catch((error) => {
             console.log("User data is not available, error = ", error);
@@ -50,13 +79,23 @@ export class ChatMainPage extends Block {
         });
     }
 
-    selectedChatInfo: ChatInfo;
-    itemParts: ItemPart[] = [];
-    headPart: HeadPart;
-    messageParts: MessagePart[] = [];
 
-    messagesContainer: HTMLElement;
-    newMessageInput: HTMLSelectElement;
+    updateChatList(): void {
+        getChatServer().chats().then((data) => {
+            console.log("got chats, data = ", data);
+            this.chatListLoader.style.display = "none";
+
+            let chats: ChatInfo[] = [];
+            const chatsArray = JSON.parse(data.response) as ChatInfoDataType[];
+            chats = chatsArray.map((e) => {
+                return new ChatInfo(e);
+            }); 
+
+            this.drawChatList(chats);
+        }).catch((error) => {
+            console.log("error getting chats, error = ", error);
+        });
+    }
 
     sendMessageSetup(): void {
         this.messagesContainer = this.getContent().querySelector(".chatdetail-messages-root");
@@ -89,6 +128,11 @@ export class ChatMainPage extends Block {
     }
 
     drawChatList = (data: ChatInfo[]): void => {
+        this.itemParts.forEach((itemPart) => {
+            itemPart.remove();
+        });
+        this.itemParts = [];
+
         data.forEach((chatInfo) => {
             const itemPartBlock = new ItemPart(chatInfo);
             itemPartBlock.componentRendered = () => {
@@ -97,6 +141,18 @@ export class ChatMainPage extends Block {
 
             this.itemParts.push(itemPartBlock);
             render(".chatlist-root", itemPartBlock);
+
+            itemPartBlock.getContent().querySelector(".delete-chat-button")
+                .addEventListener('click', (event) => { 
+                    event.stopPropagation();
+                    getChatServer().deleteUsers([this.user.data.id], chatInfo.data.id).then((data) => {
+                        console.log("chat successfully deleted, title = ", chatInfo.data.title);
+                    }).catch((error) => {
+                        console.log("error deleting chat, error = ", error);
+                    }).finally(() => {
+                        itemPartBlock.remove();
+                    });
+                });
         });
     }
 
@@ -124,7 +180,7 @@ export class ChatMainPage extends Block {
             this.headPart = new HeadPart(data);
             render(".chathead-root", this.headPart);
         } else {
-            this.headPart.setProps({ name: data.display_name });
+            this.headPart.setProps({ name: data.data.title });
         }
     }
 
@@ -143,6 +199,8 @@ export class ChatMainPage extends Block {
     }
 
     render() {
-        return template({});
+        return template({
+            addChatButton: this.props.addChatButton,
+        });
     }
 }

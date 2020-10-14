@@ -5,7 +5,7 @@ const template = require('./HeadPart.handlebars');
 export class HeadPart extends Block {
     constructor(chatInfo: ChatInfo) {
         super("h2", {
-            name: chatInfo.display_name
+            name: chatInfo.data.title
         }, { classes: ["chatdetail-chatinfo-name"] });
     }
 

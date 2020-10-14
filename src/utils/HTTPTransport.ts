@@ -6,11 +6,13 @@
  * new HTTPTransport().delete('https://chats', { timeout: 5000, headers: { "h1": "v1", "h2": "v2" }, data: { "d1": "dv1" }});
  */
 
+type DataType = Record<string, string | number | Array<string> | Array<number> | boolean>;
+
 export type HttpRequestOptions = {
     timeout?: number;
     headers?: Record<string, string>;
     method?: string;
-    data?: Record<string, string>;
+    data?: DataType;
     withCredentials?: boolean;
 }
 
@@ -78,7 +80,7 @@ export class HTTPTransport {
         });
     };
 
-    queryStringify = (data: Record<string, string>): string => {
+    queryStringify = (data: DataType): string => {
         if (!data || Object.keys(data).length === 0) {
             return "";
         }

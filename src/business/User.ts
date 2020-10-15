@@ -19,7 +19,6 @@ export class User {
     constructor(data: UserDataType) {
         if (data.avatar) {
             const url = new URL(ApiServerUrl);
-            console.log("url = ", url);
             data.avatar = url.protocol + "//" + url.host + data.avatar;
         }
         this.data = data;

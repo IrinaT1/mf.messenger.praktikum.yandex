@@ -64,7 +64,10 @@ export class AccountPage extends Block {
             }),
             backLinkElement: new FormLink({
                 text: "Back to Chats",
-            })
+            }),
+            changePasswordLinkElement: new FormLink({
+                text: "Change Password",
+            }), 
         };
     }
 
@@ -79,7 +82,8 @@ export class AccountPage extends Block {
             emailInput: AccountPage.currentElements.emailInputElement.getContentAsText(),
             phoneInput: AccountPage.currentElements.phoneInputElement.getContentAsText(),
             saveButton: AccountPage.currentElements.saveButtonElement.getContentAsText(),
-            backLink: AccountPage.currentElements.backLinkElement.getContentAsText()
+            backLink: AccountPage.currentElements.backLinkElement.getContentAsText(),
+            changePasswordLink: AccountPage.currentElements.changePasswordLinkElement.getContentAsText()
         }
     }
 
@@ -153,6 +157,12 @@ export class AccountPage extends Block {
         }
         document.getElementById(AccountPage.currentElements.backLinkElement.id()).addEventListener('click', goBack);
 
+        const changePassword = () => {
+            router.go("#changepassword");
+        }
+        document.getElementById(AccountPage.currentElements.changePasswordLinkElement.id()).addEventListener('click', changePassword);
+        
+
         const changeAvatarInput = document.getElementById("input-avatar") as HTMLInputElement;
         changeAvatarInput.onchange = () => {
             console.log("Saving user avatar ", changeAvatarInput.value);
@@ -188,7 +198,8 @@ export class AccountPage extends Block {
             usernameInput: this.props.usernameInput,
             emailInput: this.props.emailInput,
             saveButton: this.props.saveButton,
-            backLink: this.props.backLink
+            backLink: this.props.backLink,
+            changePasswordLink: this.props.changePasswordLink
         });
     }
 }

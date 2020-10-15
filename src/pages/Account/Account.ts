@@ -1,6 +1,6 @@
 import { User, UserDataType } from '../../business/User';
 import { FormInputText, FormButton, FormLink, FormInputEmail } from '../../components/Components';
-import { getAuthServer } from '../../server/Server';
+import { getAuthServer, getUserServer } from '../../server/Server';
 import { Block } from '../../utils/Block';
 import { FormValidation } from '../../utils/FormValidation';
 import { router } from '../../utils/Utils';
@@ -23,6 +23,18 @@ export class AccountPage extends Block {
 
     static makeNewElements() {
         AccountPage.currentElements = {
+            firstNameInputElement: new FormInputText({
+                name: "first_name",
+                value: AccountPage.currentData.first_name,
+                required: true,
+                label: "First name"
+            }),
+            secondNameInputElement: new FormInputText({
+                name: "second_name",
+                value: AccountPage.currentData.second_name,
+                required: true,
+                label: "Second name"
+            }),
             displayNameInputElement: new FormInputText({
                 name: "display_name",
                 value: AccountPage.currentData.display_name,
@@ -40,6 +52,12 @@ export class AccountPage extends Block {
                 value: AccountPage.currentData.email,
                 label: "Email"
             }),
+            phoneInputElement: new FormInputText({
+                name: "phone",
+                value: AccountPage.currentData.phone,
+                required: true,
+                label: "Phone"
+            }),
             saveButtonElement: new FormButton({
                 text: "Save",
                 isPrimary: true
@@ -54,9 +72,12 @@ export class AccountPage extends Block {
         return {
             display_name: AccountPage.currentData.display_name,
             avatarURL: AccountPage.currentData.avatar,
+            firstNameInput: AccountPage.currentElements.firstNameInputElement.getContentAsText(),
+            secondNameInput: AccountPage.currentElements.secondNameInputElement.getContentAsText(),
             displayNameInput: AccountPage.currentElements.displayNameInputElement.getContentAsText(),
             usernameInput: AccountPage.currentElements.usernameInputElement.getContentAsText(),
             emailInput: AccountPage.currentElements.emailInputElement.getContentAsText(),
+            phoneInput: AccountPage.currentElements.phoneInputElement.getContentAsText(),
             saveButton: AccountPage.currentElements.saveButtonElement.getContentAsText(),
             backLink: AccountPage.currentElements.backLinkElement.getContentAsText()
         }
@@ -71,10 +92,13 @@ export class AccountPage extends Block {
     user: User;
 
     componentRendered(): void {
-
         getAuthServer().auth().then((data) => {
             this.user = new User(JSON.parse(data.response) as UserDataType);
             console.log("User successfully obtained, user = ", this.user);
+
+            if (!this.user.data.display_name) {
+                this.user.data.display_name = this.user.data.first_name + " " + this.user.data.second_name;
+            }
 
             AccountPage.currentData = this.user.data;
             AccountPage.makeNewElements();
@@ -94,6 +118,9 @@ export class AccountPage extends Block {
         this.formValidation.setValidation("email");
         this.formValidation.setValidation("login", { "Login should contain at least 4 symbols": (value) => { return value.trim().length <= 3; } });
         this.formValidation.setValidation("display_name");
+        this.formValidation.setValidation("first_name");
+        this.formValidation.setValidation("second_name");
+        this.formValidation.setValidation("phone", { "Phone should contain only numbers and dashes": (value) => { return !(/^[\d -]+$/g).test(value.trim()) && value != ""; } });
 
         const saveAccount = () => {
             if (!this.formValidation.checkFormValidity()) {
@@ -101,6 +128,16 @@ export class AccountPage extends Block {
                 this.formValidation.showErrors();
             } else {
                 console.log('Saving data: ', JSON.stringify(this.formValidation.values));
+                const updatedUserData = this.formValidation.values as UserDataType;
+                updatedUserData.id = this.user.data.id;
+
+                getUserServer().update(updatedUserData).then((data) => {
+                    console.log("user info updated successfully, data = ", data);
+                    alert("Success!");
+                }).catch((error) => {
+                    console.log("error updating user info, error = ", error);
+                    alert(JSON.parse(error.response).reason ?? "Error");
+                });
             }
         }
         this.getContent().querySelector('.button-submit').addEventListener('click', saveAccount);
@@ -119,6 +156,9 @@ export class AccountPage extends Block {
         return template({
             display_name: this.props.display_name,
             avatarURL: this.props.avatarURL,
+            firstNameInput: this.props.firstNameInput,
+            secondNameInput: this.props.secondNameInput,
+            phoneInput: this.props.phoneInput,
             displayNameInput: this.props.displayNameInput,
             usernameInput: this.props.usernameInput,
             emailInput: this.props.emailInput,

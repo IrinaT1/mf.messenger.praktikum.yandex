@@ -1,4 +1,4 @@
-import { User } from "../business/User";
+import { User, UserDataType } from "../business/User";
 import { APIServer, HTTPResponse } from "./APIServer";
 
 export class UserServer extends APIServer {
@@ -7,12 +7,12 @@ export class UserServer extends APIServer {
         return this.get("/user/" + id);
     }
 
-    update(user: User): Promise<HTTPResponse> {
+    update(userData: UserDataType): Promise<HTTPResponse> {
         const headers = { "content-type": "application/json" };
-        if (!user.data.display_name) {
-            user.data.display_name = user.data.first_name + " " + user.data.second_name;
+        if (!userData.display_name) {
+            userData.display_name = userData.first_name + " " + userData.second_name;
         }
-        return this.put("/user/profile", { data: user.data, headers: headers });
+        return this.put("/user/profile", { data: userData, headers: headers });
     }
 
     changePassword(oldPassword: string, newPassword: string): Promise<HTTPResponse> {

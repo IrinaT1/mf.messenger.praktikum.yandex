@@ -230,6 +230,11 @@ export class ChatMainPage extends Block {
         this.drawChatUsersList();
 
         addUserButton.addEventListener('click', () => {
+            if (addUserInput.value == "") {
+                alert("Error: id can't be blank");
+                return;
+            }
+
             getUserServer().getUser(addUserInput.value).then((data) => {
                 console.log("User lookup successful, data = ", data);
                 const userToAdd = new User(JSON.parse(data.response) as UserDataType);

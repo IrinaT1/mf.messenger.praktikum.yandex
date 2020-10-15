@@ -7,7 +7,7 @@ Brand new and beautiful messenger! Check it out.
 Netlify: https://dreamy-agnesi-e676f7.netlify.app/
 
 Heroku: https://my-chats.herokuapp.com/
-
+I have set up Heroku and Netlify Continuous Delivery, so the app is updated every time the code is pushed to the "deploy" github branch.
 
 To run the app execute "npm start"
 

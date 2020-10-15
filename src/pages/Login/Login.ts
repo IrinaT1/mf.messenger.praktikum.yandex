@@ -2,6 +2,7 @@ import { FormInputText, FormInputPassword, FormButton, FormLink } from '../../co
 import { getAuthServer } from '../../server/Server';
 import { Block } from '../../utils/Block';
 import { FormValidation } from '../../utils/FormValidation';
+import { router } from '../../utils/Utils';
 const template = require('./Login.handlebars');
 
 export class LoginPage extends Block {
@@ -53,6 +54,14 @@ export class LoginPage extends Block {
                 this.formValidation.showErrors();
             } else {
                 console.log('Logging in, data: ', JSON.stringify(this.formValidation.values));
+                getAuthServer().signin(this.formValidation.values.login,this.formValidation.values.password).then((data) => {
+                    console.log("Successful sign in, response is ", data);
+                    router.go("#chats");
+                }).catch((error) => {
+                    console.log("Sign in error: ", error);
+                    alert(JSON.parse(error.response).reason ?? "Error");
+                    this.clearData();
+                });
             }
         }
 

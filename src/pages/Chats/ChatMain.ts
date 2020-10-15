@@ -1,6 +1,6 @@
 import { Block } from '../../utils/Block';
-import { getAuthServer, getChatServer } from '../../server/Server';
-import { ItemPart, HeadPart, MessagePart, FormButton } from '../../components/Components';
+import { getAuthServer, getChatServer, getUserServer } from '../../server/Server';
+import { ItemPart, HeadPart, MessagePart, FormButton, ChatUserChipPart } from '../../components/Components';
 import { render } from '../../utils/Render';
 import { ChatInfo, ChatInfoDataType } from '../../business/ChatInfo';
 import { ChatDetails } from '../../business/ChatDetails';
@@ -22,11 +22,12 @@ export class ChatMainPage extends Block {
         }, { classes: ["chats-wrapper"] });
     }
 
-    
+
     selectedChatInfo: ChatInfo;
     itemParts: ItemPart[] = [];
     headPart: HeadPart;
     messageParts: MessagePart[] = [];
+    chatUserChipParts: ChatUserChipPart[] = [];
 
     messagesContainer: HTMLElement;
     newMessageInput: HTMLSelectElement;
@@ -69,6 +70,8 @@ export class ChatMainPage extends Block {
                 }).catch((error) => {
                     console.log("error creating chat, error = ", error);
                     alert(JSON.parse(error.response).reason ?? "Error");
+                }).finally(() => {
+                    this.clearSelectedChatData();
                 });
             });
 
@@ -89,7 +92,7 @@ export class ChatMainPage extends Block {
             const chatsArray = JSON.parse(data.response) as ChatInfoDataType[];
             chats = chatsArray.map((e) => {
                 return new ChatInfo(e);
-            }); 
+            });
 
             this.drawChatList(chats);
         }).catch((error) => {
@@ -143,7 +146,7 @@ export class ChatMainPage extends Block {
             render(".chatlist-root", itemPartBlock);
 
             itemPartBlock.getContent().querySelector(".delete-chat-button")
-                .addEventListener('click', (event) => { 
+                .addEventListener('click', (event) => {
                     event.stopPropagation();
                     getChatServer().deleteUsers([this.user.data.id], chatInfo.data.id).then((data) => {
                         console.log("chat successfully deleted, title = ", chatInfo.data.title);
@@ -151,15 +154,102 @@ export class ChatMainPage extends Block {
                         console.log("error deleting chat, error = ", error);
                     }).finally(() => {
                         itemPartBlock.remove();
+                        this.clearSelectedChatData();
                     });
                 });
         });
     }
 
-    chatSelected = (chatInfo: ChatInfo) => {
-        (this.getContent().querySelector(".chathead-no-chat-selected") as HTMLElement).style.display = "none";
+    clearSelectedChatData = () => {
+        this.selectedChatInfo = null;
+        if (this.headPart) {
+            this.headPart.remove();
+            this.headPart = null;
+        }
+        this.itemParts.forEach((item) => {
+            item.unselect();
+        });
+        this.clearMessages();
+        this.chatUserChipParts.forEach((chatUserChipPart) => {
+            chatUserChipPart.remove();
+        });
+        this.chatUserChipParts = [];
+        (this.getContent().querySelector(".chathead-no-chat-selected") as HTMLElement).style.display = "block";
+        (this.getContent().querySelector(".section-users") as HTMLElement).style.display = "none";
+    }
 
+    drawChatUsersList = () => {
+        getChatServer().users(this.selectedChatInfo.data.id).then((data) => {
+
+            let users: User[] = [];
+            const usersArray = JSON.parse(data.response) as UserDataType[];
+            users = usersArray.map((e) => {
+                return new User(e);
+            });
+
+            this.chatUserChipParts.forEach((chatUserChipPart) => {
+                chatUserChipPart.remove();
+            });
+            this.chatUserChipParts = [];
+
+            users.forEach((user) => {
+                if (user.data.id === this.user.data.id) {
+                    return;
+                }
+                const chatUserBlock = new ChatUserChipPart(user);
+                this.chatUserChipParts.push(chatUserBlock);
+                render(".chatusers-root", chatUserBlock);
+
+                chatUserBlock.getContent().querySelector(".chip-close-button")
+                    .addEventListener('click', (event) => {
+                        getChatServer().deleteUsers([user.data.id], this.selectedChatInfo.data.id).then((data) => {
+                            console.log("user successfully deleted from chat, user = ", user.data.first_name);
+                        }).catch((error) => {
+                            console.log("error deleting chat, error = ", error);
+                        }).finally(() => {
+                            chatUserBlock.remove();
+                        });
+                    });
+            });
+
+        }).catch((error) => {
+            console.log("Chat users list not available, error = ", error);
+            alert("Error: " + JSON.stringify(error.response));
+        });
+    }
+
+    chatSelected = (chatInfo: ChatInfo) => {
         this.selectedChatInfo = chatInfo;
+
+        (this.getContent().querySelector(".chathead-no-chat-selected") as HTMLElement).style.display = "none";
+        (this.getContent().querySelector(".section-users") as HTMLElement).style.display = "block";
+
+        const addUserInput = document.getElementById("user-id-input") as HTMLInputElement;
+        const addUserButton = this.getContent().querySelector(".add-chat-user");
+
+        this.drawChatUsersList();
+
+        addUserButton.addEventListener('click', () => {
+            getUserServer().getUser(addUserInput.value).then((data) => {
+                console.log("User lookup successful, data = ", data);
+                const userToAdd = new User(JSON.parse(data.response) as UserDataType);
+
+                getChatServer().addUsers([userToAdd.data.id], this.selectedChatInfo.data.id).then((data) => {
+                    console.log("user added, data = ", data);
+                    this.drawChatUsersList();
+                }).catch((error) => {
+                    console.log("error adding user to chat chat, error = ", error);
+                    alert("Error, user not found, try another id");
+                });
+
+            }).catch((error) => {
+                console.log("User lookup failed, error = ", error);
+                alert("Error: " + JSON.stringify(error.response));
+            }).finally(() => {
+                addUserInput.value = "";
+            });
+        });
+
         this.itemParts.forEach((item) => {
             if (item.chatInfo === chatInfo) {
                 item.select();
@@ -184,11 +274,15 @@ export class ChatMainPage extends Block {
         }
     }
 
-    drawMessages(data: ChatDetails) {
+    clearMessages() {
         this.messageParts.forEach((messagePart) => {
             messagePart.remove();
         });
         this.messageParts = [];
+    }
+
+    drawMessages(data: ChatDetails) {
+        this.clearMessages();
 
         const messages = data.messages;
         messages.forEach((message) => {

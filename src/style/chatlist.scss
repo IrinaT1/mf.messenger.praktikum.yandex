@@ -174,6 +174,10 @@ body {
     text-align: center;
 }
 
+.section-users {
+    margin: 16px;
+}
+
 .chatdetail-messages {
     flex: 1;
     display: flex;
@@ -270,3 +274,35 @@ body {
     background-size: 100%;
     transition: background 0s;
 }
+
+.chip {
+    margin: 8px;
+    display: inline-block;
+    padding: 0 18px;
+    height: 36px;
+    font-size: 14px;
+    line-height: 36px;
+    border-radius: 18px;
+    background-color: #f1f1f1;
+  }
+  
+  .chip img {
+    float: left;
+    margin: 0 10px 0 -18px;
+    height: 36px;
+    width: 36px;
+    border-radius: 50%;
+  }
+  
+  .chip-close-button {
+    padding-left: 8px;
+    color: #888;
+    font-weight: bold;
+    float: right;
+    font-size: 18px;
+    cursor: pointer;
+  }
+  
+  .chip-close-button:hover {
+    color: #000;
+  }

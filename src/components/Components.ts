@@ -6,3 +6,4 @@ export { FormLink } from './Buttons/FormLink';
 export { ItemPart } from './ChatParts/ItemPart';
 export { HeadPart } from './ChatParts/HeadPart';
 export { MessagePart } from './ChatParts/MessagePart';
+export { ChatUserChipPart } from './ChatParts/ChatUserChipPart'

@@ -2,7 +2,7 @@ import { AuthServer } from './AuthServer';
 import { ChatServer } from './ChatServer';
 import { UserServer } from './UserServer';
 
-const ApiServerUrl = "https://ya-praktikum.tech/api/v2";
+export const ApiServerUrl = "https://ya-praktikum.tech/api/v2";
 
 const AuthServerInstance = new AuthServer(ApiServerUrl);
 const ChatServerInstance = new ChatServer(ApiServerUrl);

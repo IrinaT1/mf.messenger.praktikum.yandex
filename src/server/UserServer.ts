@@ -19,4 +19,8 @@ export class UserServer extends APIServer {
         const headers = { "content-type": "application/json" };
         return this.put("/user/password", { data: {oldPassword: oldPassword, newPassword}, headers: headers });
     }
+
+    changeAvatar(formData: FormData): Promise<HTTPResponse> {
+        return this.put("/user/profile/avatar", { data: formData });
+    }
 }

@@ -3,10 +3,11 @@
         Hi, {{display_name}}!
     </div>
 
-    <div class="account-picture" style="background-image: url('{{avatarURL}}')">
-        <div class="change-account-picture">Change</div>
+    <div class="account-picture" style="background-image: url('{{avatarURL}}'); background-size: contain;">
+        <label for="input-avatar" class="change-account-picture">Change</label>
+        <input style="display: none;" id="input-avatar" type="file" name="avatar" accept="image/*" />
     </div>
-    
+
     {{{firstNameInput}}}
     {{{secondNameInput}}}
     {{{displayNameInput}}}
@@ -20,5 +21,3 @@
     {{{backLink}}}
 
 </form>
-
-

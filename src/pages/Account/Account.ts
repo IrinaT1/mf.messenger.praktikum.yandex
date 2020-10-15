@@ -1,6 +1,6 @@
 import { User, UserDataType } from '../../business/User';
 import { FormInputText, FormButton, FormLink, FormInputEmail } from '../../components/Components';
-import { getAuthServer, getUserServer } from '../../server/Server';
+import { ApiServerUrl, getAuthServer, getUserServer } from '../../server/Server';
 import { Block } from '../../utils/Block';
 import { FormValidation } from '../../utils/FormValidation';
 import { router } from '../../utils/Utils';
@@ -89,23 +89,28 @@ export class AccountPage extends Block {
     }
 
     formValidation: FormValidation;
-    user: User;
+
+    private _user: User;
+    get user(): User {
+        return this._user;
+    }
+    set user(user: User) {
+        if (!user.data.display_name) {
+            user.data.display_name = user.data.first_name + " " + user.data.second_name;
+        }
+        this._user = user;
+
+        AccountPage.currentData = user.data;
+        AccountPage.makeNewElements();
+
+        this.setProps(AccountPage.getProps());
+        this.setup();
+    }
 
     componentRendered(): void {
         getAuthServer().auth().then((data) => {
             this.user = new User(JSON.parse(data.response) as UserDataType);
             console.log("User successfully obtained, user = ", this.user);
-
-            if (!this.user.data.display_name) {
-                this.user.data.display_name = this.user.data.first_name + " " + this.user.data.second_name;
-            }
-
-            AccountPage.currentData = this.user.data;
-            AccountPage.makeNewElements();
-
-            this.setProps(AccountPage.getProps());
-            this.setup();
-
         }).catch((error) => {
             console.log("User data is not available, error = ", error);
             router.go("#login");
@@ -133,10 +138,11 @@ export class AccountPage extends Block {
 
                 getUserServer().update(updatedUserData).then((data) => {
                     console.log("user info updated successfully, data = ", data);
+                    this.user = new User(JSON.parse(data.response) as UserDataType);
                     alert("Success!");
                 }).catch((error) => {
                     console.log("error updating user info, error = ", error);
-                    alert(JSON.parse(error.response).reason ?? "Error");
+                    alert("Error: " + JSON.stringify(error.response));
                 });
             }
         }
@@ -145,7 +151,26 @@ export class AccountPage extends Block {
         const goBack = () => {
             router.go("#chats");
         }
-        document.getElementById(AccountPage.currentElements.backLinkElement.id()).addEventListener('click', goBack);       
+        document.getElementById(AccountPage.currentElements.backLinkElement.id()).addEventListener('click', goBack);
+
+        const changeAvatarInput = document.getElementById("input-avatar") as HTMLInputElement;
+        changeAvatarInput.onchange = () => {
+            console.log("Saving user avatar ", changeAvatarInput.value);
+
+            const avatarFormData = new FormData();
+            avatarFormData.append('avatar', changeAvatarInput.files[0]);
+
+            console.log("avatarFormData ", avatarFormData);
+            console.log("changeAvatarInput.files[0] ", changeAvatarInput.files[0]);
+
+            getUserServer().changeAvatar(avatarFormData).then((data) => {
+                console.log("Avatar changed, data = ", data);
+                this.user = new User(JSON.parse(data.response) as UserDataType);
+            }).catch((error) => {
+                console.log("Error changing avatar, error = ", error);
+                alert("Error: " + JSON.stringify(error.response));
+            });
+        };
     }
 
     clearData() {

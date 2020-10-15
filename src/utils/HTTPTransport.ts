@@ -6,7 +6,7 @@
  * new HTTPTransport().delete('https://chats', { timeout: 5000, headers: { "h1": "v1", "h2": "v2" }, data: { "d1": "dv1" }});
  */
 
-type DataType = Record<string, string | number | Array<string> | Array<number> | boolean>;
+type DataType = Record<string, string | number | Array<string> | Array<number> | boolean> | FormData;
 
 export type HttpRequestOptions = {
     timeout?: number;
@@ -75,7 +75,11 @@ export class HTTPTransport {
             if (method === this.METHODS.GET || !data) {
                 xhr.send();
             } else {
-                xhr.send(JSON.stringify(data));
+                if (data instanceof FormData) {
+                    xhr.send(data);
+                } else {
+                    xhr.send(JSON.stringify(data));
+                }
             }
         });
     };

@@ -1,3 +1,4 @@
+import { ApiServerUrl } from "../server/Server";
 
 export type UserDataType = {
     id?: string;
@@ -16,6 +17,11 @@ export class User {
     public data: UserDataType;
 
     constructor(data: UserDataType) {
+        if (data.avatar) {
+            const url = new URL(ApiServerUrl);
+            console.log("url = ", url);
+            data.avatar = url.protocol + "//" + url.host + data.avatar;
+        }
         this.data = data;
     }
 

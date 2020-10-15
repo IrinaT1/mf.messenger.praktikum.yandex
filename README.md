@@ -5,6 +5,7 @@
 Brand new and beautiful messenger! Check it out.
 
 Netlify: https://dreamy-agnesi-e676f7.netlify.app/
+
 Heroku: https://my-chats.herokuapp.com/
 
 
@@ -15,6 +16,7 @@ Install dependencies: "npm install"
 Build files: "npm run build"
 Start server: "node server.js"
 
+I made 3 test users to test adding users to the existing chat. Their ids are 941, 952, 954.
 
 Team:
-Irina Tishchenko - CEO and developer.
+Irina Tishchenko

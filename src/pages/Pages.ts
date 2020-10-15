@@ -5,4 +5,4 @@ export { AccountPage } from './Account/Account';
 export { ErrorPage404 } from './Error/Error404';
 export { ErrorPage500 } from './Error/Error500';
 export { ChatMainPage } from './Chats/ChatMain';
-export {ChangePasswordPage} from './ChangePassword/ChangePassword';
+export { ChangePasswordPage } from './ChangePassword/ChangePassword';

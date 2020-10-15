@@ -45,6 +45,9 @@ export class Router {
     const route = this.getRoute(pathname);
     if (!route) {
       console.log(`route not found for path: ${pathname}`);
+      if (pathname !== "#404") {
+        this.go("#404");
+      }
       return;
     }
 
